@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Civitai Orchestration — Video Generation
+  description: 'Civitai Orchestration — Video Generation. Composition over the workflows submit endpoint for
+    WAN 2.1-2.7, Kling, LTX2, Vidu, Veo 3, HunyuanVideo, plus video upscaling and frame interpolation.
+    Self-contained Naftiko capability.'
+  tags:
+  - Civitai
+  - Orchestration
+  - Video Generation
+  - Workflows
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    CIVITAI_API_KEY: CIVITAI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: orchestration-videogen
+    baseUri: https://orchestration.civitai.com
+    description: Civitai Orchestration — Video Generation.
+    resources:
+    - name: workflows
+      path: /v2/consumer/workflows
+      operations:
+      - name: submitvideogen
+        method: POST
+        description: Submit a video generation workflow.
+        outputRawFormat: json
+        outputParameters:
+        - { name: result, type: object, value: $. }
+        inputParameters:
+        - { name: body, in: body, type: object, required: true }
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.CIVITAI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: orchestration-videogen-rest
+    port: 8080
+    description: REST adapter for Video Generation workflows.
+    resources:
+    - path: /v2/consumer/workflows/video
+      name: video-workflows
+      operations:
+      - method: POST
+        name: submitvideogen
+        description: Submit a video generation workflow.
+        call: orchestration-videogen.submitvideogen
+        with: { body: rest.body }
+        outputParameters: [{ type: object, mapping: $. }]
+  - type: mcp
+    namespace: orchestration-videogen-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Video Generation.
+    tools:
+    - name: civitai-generate-video
+      description: Generate a video with WAN, Kling, LTX2, Vidu, Veo 3, or HunyuanVideo.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: orchestration-videogen.submitvideogen
+      with: { body: tools.body }
+      outputParameters: [{ type: object, mapping: $. }]

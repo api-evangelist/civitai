@@ -1,0 +1,92 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Civitai Site API — Permissions
+  description: 'Civitai Site API — Permissions. Check what the current bearer can do for a given entity.
+    Self-contained Naftiko capability.'
+  tags:
+  - Civitai
+  - Permissions
+  - Authorization
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    CIVITAI_API_KEY: CIVITAI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: site-permissions
+    baseUri: https://civitai.com
+    description: Civitai Site Permissions.
+    resources:
+    - name: permissions-check
+      path: /api/v1/permissions/check
+      operations:
+      - name: checkpermissions
+        method: GET
+        description: Check permissions for an entity.
+        outputRawFormat: json
+        outputParameters:
+        - { name: result, type: object, value: $. }
+        inputParameters:
+        - { name: entityType, in: query, type: string, required: true }
+        - { name: entityId, in: query, type: integer, required: true }
+    - name: enums
+      path: /api/v1/enums
+      operations:
+      - name: getenums
+        method: GET
+        description: Get Civitai API enumeration values.
+        outputRawFormat: json
+        outputParameters:
+        - { name: result, type: object, value: $. }
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.CIVITAI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: site-permissions-rest
+    port: 8080
+    description: REST adapter for Civitai Permissions.
+    resources:
+    - path: /v1/permissions/check
+      name: permissions-check
+      operations:
+      - method: GET
+        name: checkpermissions
+        description: Check permissions.
+        call: site-permissions.checkpermissions
+        with:
+          entityType: rest.query.entityType
+          entityId: rest.query.entityId
+        outputParameters: [{ type: object, mapping: $. }]
+    - path: /v1/enums
+      name: enums
+      operations:
+      - method: GET
+        name: getenums
+        description: Get enums.
+        call: site-permissions.getenums
+        outputParameters: [{ type: object, mapping: $. }]
+  - type: mcp
+    namespace: site-permissions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Civitai Permissions.
+    tools:
+    - name: civitai-check-permissions
+      description: Check permissions for a Civitai entity.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: site-permissions.checkpermissions
+      with:
+        entityType: tools.entityType
+        entityId: tools.entityId
+      outputParameters: [{ type: object, mapping: $. }]
+    - name: civitai-get-enums
+      description: Get Civitai enumeration values.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: site-permissions.getenums
+      outputParameters: [{ type: object, mapping: $. }]

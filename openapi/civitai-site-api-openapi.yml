@@ -1,0 +1,552 @@
+openapi: 3.1.0
+info:
+  title: Civitai Site API
+  version: '1.0'
+  description: |
+    Browse and search the Civitai public catalog of Stable Diffusion, SDXL, Flux, and video models.
+    Exposes models, model versions, images, creators, tags, users, permissions, and the user vault.
+    Public read endpoints are cached; authenticated endpoints are not. Authenticate with a personal
+    API key issued at civitai.com using a Bearer token.
+  contact:
+    name: Civitai Developer Support
+    url: https://developer.civitai.com/
+  termsOfService: https://civitai.com/content/tos
+  license:
+    name: Civitai Terms of Service
+    url: https://civitai.com/content/tos
+servers:
+- url: https://civitai.com/api/v1
+  description: Civitai Site API
+security:
+- BearerAuth: []
+- {}
+tags:
+- name: Models
+  description: Catalog of model checkpoints, LoRAs, embeddings, and VAEs.
+- name: ModelVersions
+  description: Specific versions of a model with files, hashes, and AIR identifiers.
+- name: Images
+  description: Community-shared generation outputs.
+- name: Creators
+  description: Users who publish models.
+- name: Tags
+  description: Catalog tag taxonomy.
+- name: Users
+  description: User accounts.
+- name: Permissions
+  description: Permission checks for the current bearer.
+- name: Vault
+  description: A user's saved-model vault (membership tiers).
+- name: Enums
+  description: Enumerations used throughout the API.
+paths:
+  /models:
+    get:
+      operationId: listModels
+      summary: List Models
+      tags: [Models]
+      parameters:
+      - name: limit
+        in: query
+        schema: { type: integer, minimum: 1, maximum: 200, default: 100 }
+      - name: page
+        in: query
+        schema: { type: integer, minimum: 1 }
+      - name: query
+        in: query
+        schema: { type: string }
+      - name: tag
+        in: query
+        schema: { type: string }
+      - name: username
+        in: query
+        schema: { type: string }
+      - name: types
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+            enum: [Checkpoint, TextualInversion, Hypernetwork, AestheticGradient, LORA, LoCon, Controlnet, Poses, Wildcards, Workflows, Other]
+      - name: sort
+        in: query
+        schema:
+          type: string
+          enum: ['Highest Rated', 'Most Downloaded', 'Newest']
+      - name: period
+        in: query
+        schema:
+          type: string
+          enum: [AllTime, Year, Month, Week, Day]
+      - name: nsfw
+        in: query
+        schema: { type: boolean }
+      responses:
+        '200':
+          description: Page of models.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ModelPage' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '429': { $ref: '#/components/responses/RateLimited' }
+  /models/{id}:
+    get:
+      operationId: getModel
+      summary: Get Model
+      tags: [Models]
+      parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200':
+          description: Model detail.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Model' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /model-versions/{id}:
+    get:
+      operationId: getModelVersion
+      summary: Get Model Version
+      tags: [ModelVersions]
+      parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200':
+          description: Model version detail.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ModelVersion' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /model-versions/mini/{id}:
+    get:
+      operationId: getModelVersionMini
+      summary: Get Model Version Mini
+      tags: [ModelVersions]
+      description: Lightweight model-version payload optimized for client tools.
+      parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200':
+          description: Lightweight model version.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ModelVersionMini' }
+  /model-versions/by-hash/{hash}:
+    get:
+      operationId: getModelVersionByHash
+      summary: Get Model Version By Hash
+      tags: [ModelVersions]
+      parameters:
+      - { name: hash, in: path, required: true, schema: { type: string }, description: 'AutoV1, AutoV2, SHA256, CRC32, or Blake3 hash of the model file.' }
+      responses:
+        '200':
+          description: Model version matching the file hash.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ModelVersion' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /model-versions/by-hash:
+    post:
+      operationId: getModelVersionsByHashes
+      summary: Get Model Versions By Hashes
+      tags: [ModelVersions]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items: { type: string }
+      responses:
+        '200':
+          description: Map of hash to model version.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/ModelVersion' }
+  /model-versions/by-hash/ids:
+    post:
+      operationId: getModelVersionIdsByHashes
+      summary: Get Model Version IDs By Hashes
+      tags: [ModelVersions]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items: { type: string }
+      responses:
+        '200':
+          description: Map of hash to model version ID.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: { type: integer }
+  /images:
+    get:
+      operationId: listImages
+      summary: List Images
+      tags: [Images]
+      parameters:
+      - { name: limit, in: query, schema: { type: integer, default: 100, maximum: 200 } }
+      - { name: postId, in: query, schema: { type: integer } }
+      - { name: modelId, in: query, schema: { type: integer } }
+      - { name: modelVersionId, in: query, schema: { type: integer } }
+      - { name: username, in: query, schema: { type: string } }
+      - { name: nsfw, in: query, schema: { type: string, enum: [None, Soft, Mature, X] } }
+      - { name: sort, in: query, schema: { type: string, enum: ['Most Reactions', 'Most Comments', 'Newest'] } }
+      - { name: period, in: query, schema: { type: string, enum: [AllTime, Year, Month, Week, Day] } }
+      - { name: page, in: query, schema: { type: integer } }
+      responses:
+        '200':
+          description: Page of images.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ImagePage' }
+  /creators:
+    get:
+      operationId: listCreators
+      summary: List Creators
+      tags: [Creators]
+      parameters:
+      - { name: limit, in: query, schema: { type: integer, default: 20, maximum: 200 } }
+      - { name: page, in: query, schema: { type: integer } }
+      - { name: query, in: query, schema: { type: string } }
+      responses:
+        '200':
+          description: Page of creators.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CreatorPage' }
+  /tags:
+    get:
+      operationId: listTags
+      summary: List Tags
+      tags: [Tags]
+      parameters:
+      - { name: limit, in: query, schema: { type: integer, default: 20, maximum: 200 } }
+      - { name: page, in: query, schema: { type: integer } }
+      - { name: query, in: query, schema: { type: string } }
+      responses:
+        '200':
+          description: Page of tags.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/TagPage' }
+  /me:
+    get:
+      operationId: getCurrentUser
+      summary: Get Current User
+      tags: [Users]
+      security: [{ BearerAuth: [] }]
+      responses:
+        '200':
+          description: Authenticated user profile.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/User' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /users:
+    get:
+      operationId: listUsers
+      summary: List Users
+      tags: [Users]
+      parameters:
+      - { name: username, in: query, schema: { type: string } }
+      - { name: limit, in: query, schema: { type: integer } }
+      responses:
+        '200':
+          description: Matching users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/User' }
+  /permissions/check:
+    get:
+      operationId: checkPermissions
+      summary: Check Permissions
+      tags: [Permissions]
+      security: [{ BearerAuth: [] }]
+      parameters:
+      - { name: entityType, in: query, required: true, schema: { type: string, enum: [Model, ModelVersion, Image, Post, Article] } }
+      - { name: entityId, in: query, required: true, schema: { type: integer } }
+      responses:
+        '200':
+          description: Permission decisions for the current bearer.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PermissionResult' }
+  /vault/get:
+    get:
+      operationId: getVaultItem
+      summary: Get Vault Item
+      tags: [Vault]
+      security: [{ BearerAuth: [] }]
+      parameters:
+      - { name: modelVersionId, in: query, required: true, schema: { type: integer } }
+      responses:
+        '200':
+          description: Vault item.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/VaultItem' }
+  /vault/all:
+    get:
+      operationId: getAllVaultItems
+      summary: Get All Vault Items
+      tags: [Vault]
+      security: [{ BearerAuth: [] }]
+      responses:
+        '200':
+          description: All vault items for the current user.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/VaultItem' }
+  /vault/check-vault:
+    get:
+      operationId: checkVault
+      summary: Check Vault Status
+      tags: [Vault]
+      security: [{ BearerAuth: [] }]
+      responses:
+        '200':
+          description: Vault subscription/storage status.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/VaultStatus' }
+  /vault/toggle-version:
+    post:
+      operationId: toggleVaultVersion
+      summary: Toggle Vault Version
+      tags: [Vault]
+      security: [{ BearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [modelVersionId]
+              properties:
+                modelVersionId: { type: integer }
+      responses:
+        '200':
+          description: Vault item after toggle.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/VaultItem' }
+  /enums:
+    get:
+      operationId: getEnums
+      summary: Get Enums
+      tags: [Enums]
+      responses:
+        '200':
+          description: Enumeration values used by the API.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+      description: Personal API token issued at https://civitai.com/user/account.
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    RateLimited:
+      description: Too many requests.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+  schemas:
+    Error:
+      type: object
+      properties:
+        error: { type: string }
+        message: { type: string }
+        code: { type: string }
+    Metadata:
+      type: object
+      properties:
+        currentPage: { type: integer }
+        pageSize: { type: integer }
+        nextPage: { type: string }
+        prevPage: { type: string }
+        totalItems: { type: integer }
+        totalPages: { type: integer }
+    Model:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        description: { type: string }
+        type: { type: string, enum: [Checkpoint, TextualInversion, Hypernetwork, AestheticGradient, LORA, LoCon, Controlnet, Poses, Wildcards, Workflows, Other] }
+        nsfw: { type: boolean }
+        nsfwLevel: { type: integer }
+        allowNoCredit: { type: boolean }
+        allowCommercialUse: { type: array, items: { type: string, enum: [None, Image, RentCivit, Rent, Sell] } }
+        allowDerivatives: { type: boolean }
+        allowDifferentLicense: { type: boolean }
+        stats: { $ref: '#/components/schemas/Stats' }
+        creator: { $ref: '#/components/schemas/Creator' }
+        tags: { type: array, items: { type: string } }
+        modelVersions: { type: array, items: { $ref: '#/components/schemas/ModelVersion' } }
+    ModelPage:
+      type: object
+      properties:
+        items: { type: array, items: { $ref: '#/components/schemas/Model' } }
+        metadata: { $ref: '#/components/schemas/Metadata' }
+    ModelVersion:
+      type: object
+      properties:
+        id: { type: integer }
+        modelId: { type: integer }
+        name: { type: string }
+        baseModel: { type: string, description: 'e.g. SD 1.5, SDXL 1.0, Flux.1 D' }
+        baseModelType: { type: string }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+        publishedAt: { type: string, format: date-time }
+        trainedWords: { type: array, items: { type: string } }
+        air: { type: string, description: 'AI Resource Identifier, e.g. urn:air:sdxl:lora:civitai:12345@67890' }
+        downloadUrl: { type: string, format: uri }
+        files: { type: array, items: { $ref: '#/components/schemas/ModelFile' } }
+        images: { type: array, items: { $ref: '#/components/schemas/Image' } }
+        stats: { $ref: '#/components/schemas/Stats' }
+    ModelVersionMini:
+      type: object
+      properties:
+        id: { type: integer }
+        modelId: { type: integer }
+        name: { type: string }
+        baseModel: { type: string }
+        air: { type: string }
+        downloadUrl: { type: string, format: uri }
+    ModelFile:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        sizeKB: { type: number }
+        type: { type: string, enum: [Model, VAE, Config, Negative, Training Data, Archive, Other] }
+        format: { type: string, enum: [SafeTensor, PickleTensor, Other] }
+        pickleScanResult: { type: string }
+        virusScanResult: { type: string }
+        scannedAt: { type: string, format: date-time }
+        downloadUrl: { type: string, format: uri }
+        hashes:
+          type: object
+          properties:
+            AutoV1: { type: string }
+            AutoV2: { type: string }
+            SHA256: { type: string }
+            CRC32: { type: string }
+            Blake3: { type: string }
+    Image:
+      type: object
+      properties:
+        id: { type: integer }
+        url: { type: string, format: uri }
+        hash: { type: string }
+        width: { type: integer }
+        height: { type: integer }
+        nsfwLevel: { type: integer }
+        nsfw: { type: boolean }
+        createdAt: { type: string, format: date-time }
+        postId: { type: integer }
+        stats: { $ref: '#/components/schemas/Stats' }
+        meta:
+          type: object
+          additionalProperties: true
+        username: { type: string }
+    ImagePage:
+      type: object
+      properties:
+        items: { type: array, items: { $ref: '#/components/schemas/Image' } }
+        metadata: { $ref: '#/components/schemas/Metadata' }
+    Creator:
+      type: object
+      properties:
+        username: { type: string }
+        image: { type: string, format: uri }
+        modelCount: { type: integer }
+        link: { type: string, format: uri }
+    CreatorPage:
+      type: object
+      properties:
+        items: { type: array, items: { $ref: '#/components/schemas/Creator' } }
+        metadata: { $ref: '#/components/schemas/Metadata' }
+    Tag:
+      type: object
+      properties:
+        name: { type: string }
+        modelCount: { type: integer }
+        link: { type: string, format: uri }
+    TagPage:
+      type: object
+      properties:
+        items: { type: array, items: { $ref: '#/components/schemas/Tag' } }
+        metadata: { $ref: '#/components/schemas/Metadata' }
+    User:
+      type: object
+      properties:
+        id: { type: integer }
+        username: { type: string }
+        email: { type: string }
+        image: { type: string, format: uri }
+        tier: { type: string, enum: [Free, Founder, Bronze, Silver, Gold] }
+        createdAt: { type: string, format: date-time }
+    PermissionResult:
+      type: object
+      properties:
+        entityType: { type: string }
+        entityId: { type: integer }
+        canView: { type: boolean }
+        canEdit: { type: boolean }
+        canDelete: { type: boolean }
+        canDownload: { type: boolean }
+    VaultItem:
+      type: object
+      properties:
+        id: { type: integer }
+        modelVersionId: { type: integer }
+        modelId: { type: integer }
+        addedAt: { type: string, format: date-time }
+        status: { type: string, enum: [Pending, Stored, Failed] }
+        sizeKb: { type: number }
+    VaultStatus:
+      type: object
+      properties:
+        subscribed: { type: boolean }
+        storageUsedKb: { type: number }
+        storageLimitKb: { type: number }
+        tier: { type: string }
+    Stats:
+      type: object
+      properties:
+        downloadCount: { type: integer }
+        favoriteCount: { type: integer }
+        commentCount: { type: integer }
+        ratingCount: { type: integer }
+        rating: { type: number }
+        thumbsUpCount: { type: integer }
+        thumbsDownCount: { type: integer }

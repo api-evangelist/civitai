@@ -1,0 +1,68 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Civitai Orchestration — Audio
+  description: 'Civitai Orchestration — Audio. Transcription (Qwen3-ASR), TTS with cloning, multi-speaker
+    dialogue, and ACE-Step music generation through the workflows endpoint. Self-contained Naftiko capability.'
+  tags:
+  - Civitai
+  - Orchestration
+  - Audio
+  - Transcription
+  - TTS
+  - Music
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    CIVITAI_API_KEY: CIVITAI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: orchestration-audio
+    baseUri: https://orchestration.civitai.com
+    description: Civitai Orchestration — Audio.
+    resources:
+    - name: workflows
+      path: /v2/consumer/workflows
+      operations:
+      - name: submitaudio
+        method: POST
+        description: Submit an audio workflow (transcription, TTS, dialogue, or music).
+        outputRawFormat: json
+        outputParameters:
+        - { name: result, type: object, value: $. }
+        inputParameters:
+        - { name: body, in: body, type: object, required: true }
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.CIVITAI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: orchestration-audio-rest
+    port: 8080
+    description: REST adapter for Audio workflows.
+    resources:
+    - path: /v2/consumer/workflows/audio
+      name: audio-workflows
+      operations:
+      - method: POST
+        name: submitaudio
+        description: Submit an audio workflow.
+        call: orchestration-audio.submitaudio
+        with: { body: rest.body }
+        outputParameters: [{ type: object, mapping: $. }]
+  - type: mcp
+    namespace: orchestration-audio-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Audio.
+    tools:
+    - name: civitai-audio
+      description: Submit a Civitai audio workflow (transcribe, tts, dialogue, music).
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: orchestration-audio.submitaudio
+      with: { body: tools.body }
+      outputParameters: [{ type: object, mapping: $. }]

@@ -1,0 +1,66 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Civitai Orchestration — LoRA Training
+  description: 'Civitai Orchestration — LoRA Training. Submit LoRA training jobs for SDXL, Flux, WAN, and
+    LTX2 ecosystems through the workflows endpoint. Self-contained Naftiko capability.'
+  tags:
+  - Civitai
+  - Orchestration
+  - Training
+  - LoRA
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    CIVITAI_API_KEY: CIVITAI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: orchestration-training
+    baseUri: https://orchestration.civitai.com
+    description: Civitai Orchestration — Training.
+    resources:
+    - name: workflows
+      path: /v2/consumer/workflows
+      operations:
+      - name: submittraining
+        method: POST
+        description: Submit a LoRA training workflow.
+        outputRawFormat: json
+        outputParameters:
+        - { name: result, type: object, value: $. }
+        inputParameters:
+        - { name: body, in: body, type: object, required: true }
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.CIVITAI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: orchestration-training-rest
+    port: 8080
+    description: REST adapter for LoRA training workflows.
+    resources:
+    - path: /v2/consumer/workflows/training
+      name: training-workflows
+      operations:
+      - method: POST
+        name: submittraining
+        description: Submit a LoRA training workflow.
+        call: orchestration-training.submittraining
+        with: { body: rest.body }
+        outputParameters: [{ type: object, mapping: $. }]
+  - type: mcp
+    namespace: orchestration-training-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Training.
+    tools:
+    - name: civitai-train-lora
+      description: Submit a LoRA training job for SDXL, Flux, WAN, or LTX2.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: orchestration-training.submittraining
+      with: { body: tools.body }
+      outputParameters: [{ type: object, mapping: $. }]

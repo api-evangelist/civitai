@@ -1,0 +1,96 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Civitai OAuth API — Authorization
+  description: 'Civitai OAuth API — Authorization. OAuth 2.0 authorization-code with PKCE for third-party
+    apps acting on behalf of a Civitai user. Supports scoped tokens, refresh, and per-app Buzz spend caps.
+    Self-contained Naftiko capability.'
+  tags:
+  - Civitai
+  - OAuth
+  - PKCE
+  - Authentication
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    CIVITAI_CLIENT_ID: CIVITAI_CLIENT_ID
+    CIVITAI_CLIENT_SECRET: CIVITAI_CLIENT_SECRET
+capability:
+  consumes:
+  - type: http
+    namespace: oauth-authorization
+    baseUri: https://civitai.com
+    description: Civitai OAuth.
+    resources:
+    - name: oauth-authorize
+      path: /api/oauth/authorize
+      operations:
+      - name: authorize
+        method: GET
+        description: Begin OAuth authorization-code with PKCE flow.
+        outputRawFormat: raw
+        outputParameters:
+        - { name: result, type: object, value: $. }
+        inputParameters:
+        - { name: client_id, in: query, type: string, required: true }
+        - { name: redirect_uri, in: query, type: string, required: true }
+        - { name: response_type, in: query, type: string, required: true }
+        - { name: scope, in: query, type: string }
+        - { name: state, in: query, type: string }
+        - { name: code_challenge, in: query, type: string, required: true }
+        - { name: code_challenge_method, in: query, type: string, required: true }
+    - name: oauth-token
+      path: /api/oauth/token
+      operations:
+      - name: exchangetoken
+        method: POST
+        description: Exchange authorization code or refresh token for an access token.
+        outputRawFormat: json
+        outputParameters:
+        - { name: result, type: object, value: $. }
+        inputParameters:
+        - { name: body, in: body, type: object, required: true }
+  exposes:
+  - type: rest
+    namespace: oauth-authorization-rest
+    port: 8080
+    description: REST adapter for OAuth.
+    resources:
+    - path: /v1/oauth/authorize
+      name: oauth-authorize
+      operations:
+      - method: GET
+        name: authorize
+        description: Begin OAuth authorization.
+        call: oauth-authorization.authorize
+        with:
+          client_id: rest.query.client_id
+          redirect_uri: rest.query.redirect_uri
+          response_type: rest.query.response_type
+          scope: rest.query.scope
+          state: rest.query.state
+          code_challenge: rest.query.code_challenge
+          code_challenge_method: rest.query.code_challenge_method
+        outputParameters: [{ type: object, mapping: $. }]
+    - path: /v1/oauth/token
+      name: oauth-token
+      operations:
+      - method: POST
+        name: exchangetoken
+        description: Exchange token.
+        call: oauth-authorization.exchangetoken
+        with: { body: rest.body }
+        outputParameters: [{ type: object, mapping: $. }]
+  - type: mcp
+    namespace: oauth-authorization-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OAuth.
+    tools:
+    - name: civitai-oauth-exchange
+      description: Exchange OAuth authorization code or refresh token for an access token.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: oauth-authorization.exchangetoken
+      with: { body: tools.body }
+      outputParameters: [{ type: object, mapping: $. }]

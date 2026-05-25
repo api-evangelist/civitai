@@ -1,0 +1,151 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Civitai Orchestration API — Blobs
+  description: 'Civitai Orchestration API — Blobs. Upload, head, refresh, and retrieve blob references used
+    as workflow inputs/outputs. NSFW moderation runs on upload. Self-contained Naftiko capability.'
+  tags:
+  - Civitai
+  - Orchestration
+  - Blobs
+  - Uploads
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    CIVITAI_API_KEY: CIVITAI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: orchestration-blobs
+    baseUri: https://orchestration.civitai.com
+    description: Civitai Orchestration Blobs.
+    resources:
+    - name: blobs
+      path: /v2/consumer/blobs
+      operations:
+      - name: uploadblob
+        method: POST
+        description: Upload a blob with NSFW moderation.
+        outputRawFormat: json
+        outputParameters:
+        - { name: result, type: object, value: $. }
+        inputParameters:
+        - { name: body, in: body, type: object, required: true }
+    - name: blob-upload-url
+      path: /v2/consumer/blobs/upload-url
+      operations:
+      - name: getbloburl
+        method: GET
+        description: Get a presigned blob upload URL.
+        outputRawFormat: json
+        outputParameters:
+        - { name: result, type: object, value: $. }
+        inputParameters:
+        - { name: mimeType, in: query, type: string, required: true }
+        - { name: sizeBytes, in: query, type: integer }
+    - name: blob
+      path: /v2/consumer/blobs/{blobId}
+      operations:
+      - name: getblob
+        method: GET
+        description: Get blob metadata.
+        outputRawFormat: json
+        outputParameters:
+        - { name: result, type: object, value: $. }
+        inputParameters:
+        - { name: blobId, in: path, type: string, required: true }
+      - name: headblob
+        method: HEAD
+        description: Head blob.
+        outputRawFormat: raw
+        outputParameters:
+        - { name: result, type: object, value: $. }
+        inputParameters:
+        - { name: blobId, in: path, type: string, required: true }
+    - name: blob-refresh
+      path: /v2/consumer/blobs/{blobId}/refresh
+      operations:
+      - name: refreshblob
+        method: POST
+        description: Refresh a blob's signed URL.
+        outputRawFormat: json
+        outputParameters:
+        - { name: result, type: object, value: $. }
+        inputParameters:
+        - { name: blobId, in: path, type: string, required: true }
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.CIVITAI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: orchestration-blobs-rest
+    port: 8080
+    description: REST adapter for Orchestration Blobs.
+    resources:
+    - path: /v2/consumer/blobs
+      name: blobs
+      operations:
+      - method: POST
+        name: uploadblob
+        description: Upload blob.
+        call: orchestration-blobs.uploadblob
+        with: { body: rest.body }
+        outputParameters: [{ type: object, mapping: $. }]
+    - path: /v2/consumer/blobs/upload-url
+      name: blob-upload-url
+      operations:
+      - method: GET
+        name: getbloburl
+        description: Get presigned upload URL.
+        call: orchestration-blobs.getbloburl
+        with:
+          mimeType: rest.query.mimeType
+          sizeBytes: rest.query.sizeBytes
+        outputParameters: [{ type: object, mapping: $. }]
+    - path: /v2/consumer/blobs/{blobId}
+      name: blob
+      operations:
+      - method: GET
+        name: getblob
+        description: Get blob.
+        call: orchestration-blobs.getblob
+        with: { blobId: rest.path.blobId }
+        outputParameters: [{ type: object, mapping: $. }]
+    - path: /v2/consumer/blobs/{blobId}/refresh
+      name: blob-refresh
+      operations:
+      - method: POST
+        name: refreshblob
+        description: Refresh blob.
+        call: orchestration-blobs.refreshblob
+        with: { blobId: rest.path.blobId }
+        outputParameters: [{ type: object, mapping: $. }]
+  - type: mcp
+    namespace: orchestration-blobs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Orchestration Blobs.
+    tools:
+    - name: civitai-get-blob-upload-url
+      description: Get a presigned blob upload URL.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: orchestration-blobs.getbloburl
+      with:
+        mimeType: tools.mimeType
+        sizeBytes: tools.sizeBytes
+      outputParameters: [{ type: object, mapping: $. }]
+    - name: civitai-get-blob
+      description: Get blob metadata.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: orchestration-blobs.getblob
+      with: { blobId: tools.blobId }
+      outputParameters: [{ type: object, mapping: $. }]
+    - name: civitai-refresh-blob
+      description: Refresh blob signed URL.
+      hints: { readOnly: false, destructive: false, idempotent: true }
+      call: orchestration-blobs.refreshblob
+      with: { blobId: tools.blobId }
+      outputParameters: [{ type: object, mapping: $. }]

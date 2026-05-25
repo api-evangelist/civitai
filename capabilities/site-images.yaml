@@ -1,0 +1,97 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Civitai Site API — Images
+  description: 'Civitai Site API — Images. Browse community-shared generation outputs with filters by model,
+    creator, NSFW level, period, and reactions. Self-contained Naftiko capability.'
+  tags:
+  - Civitai
+  - Images
+  - Community
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    CIVITAI_API_KEY: CIVITAI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: site-images
+    baseUri: https://civitai.com
+    description: Civitai Site API — Images.
+    resources:
+    - name: images
+      path: /api/v1/images
+      operations:
+      - name: listimages
+        method: GET
+        description: List Civitai community images.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - { name: limit, in: query, type: integer }
+        - { name: postId, in: query, type: integer }
+        - { name: modelId, in: query, type: integer }
+        - { name: modelVersionId, in: query, type: integer }
+        - { name: username, in: query, type: string }
+        - { name: nsfw, in: query, type: string }
+        - { name: sort, in: query, type: string }
+        - { name: period, in: query, type: string }
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.CIVITAI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: site-images-rest
+    port: 8080
+    description: REST adapter for Civitai Images.
+    resources:
+    - path: /v1/images
+      name: images
+      operations:
+      - method: GET
+        name: listimages
+        description: List images.
+        call: site-images.listimages
+        with:
+          limit: rest.query.limit
+          postId: rest.query.postId
+          modelId: rest.query.modelId
+          modelVersionId: rest.query.modelVersionId
+          username: rest.query.username
+          nsfw: rest.query.nsfw
+          sort: rest.query.sort
+          period: rest.query.period
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: site-images-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Civitai Images.
+    tools:
+    - name: civitai-list-images
+      description: List Civitai community images.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: site-images.listimages
+      with:
+        limit: tools.limit
+        postId: tools.postId
+        modelId: tools.modelId
+        modelVersionId: tools.modelVersionId
+        username: tools.username
+        nsfw: tools.nsfw
+        sort: tools.sort
+        period: tools.period
+      outputParameters:
+      - type: object
+        mapping: $.

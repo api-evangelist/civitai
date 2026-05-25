@@ -1,0 +1,94 @@
+vocabulary: civitai
+version: '0.1.0'
+created: '2026-05-25'
+modified: '2026-05-25'
+description: |
+  Domain vocabulary for the Civitai platform — AI model community plus Orchestration generation
+  service. Captures concepts that span the Site API, Orchestration API, OAuth API, and surrounding
+  ecosystem (AIR, Buzz, Vault, Engines).
+concepts:
+- term: Model
+  definition: A trained AI checkpoint, LoRA, embedding, ControlNet, hypernetwork, or other artifact
+    published on Civitai by a creator.
+- term: ModelVersion
+  definition: A specific revision of a Model with files, hashes, base model, trained words, and an
+    AIR identifier.
+- term: BaseModel
+  definition: The foundation architecture a ModelVersion is built on — e.g. SD 1.5, SDXL 1.0,
+    Flux.1 D, WAN 2.5, LTX2.
+- term: AIR
+  definition: AI Resource Identifier — a `urn:air:` URN scheme that uniquely identifies a model,
+    version, or weight across Civitai and partner ecosystems.
+- term: Hash
+  definition: Content-addressable identifier for a model file. Civitai stores AutoV1, AutoV2, SHA256,
+    CRC32, and Blake3 hashes for hash-based lookup by client tools.
+- term: Creator
+  definition: A user who publishes models on Civitai.
+- term: Image
+  definition: A community-shared AI-generated image with optional generation metadata (prompt, seed,
+    sampler, resources used).
+- term: Post
+  definition: A user-published collection of images, typically tied to a Model or ModelVersion.
+- term: Vault
+  definition: Membership-tier storage that lets a user pin model versions to a personal vault for
+    long-term API-accessible storage.
+- term: Buzz
+  definition: Civitai's internal credit currency. Generation jobs are metered in Buzz; balances are
+    topped up via memberships or purchased packs.
+- term: Workflow
+  definition: An Orchestration unit of work containing one or more steps; submitted to the
+    `/v2/consumer/workflows` endpoint.
+- term: Step
+  definition: One generator invocation inside a Workflow. Identified by `$type` (imageGen, videoGen,
+    audioGen, training, etc.) and a recipe-specific input.
+- term: Job
+  definition: A backend execution slot. Multiple jobs may race for a single step; the orchestrator
+    returns the first successful result.
+- term: Blob
+  definition: A binary artifact (image, video, audio) used as a Workflow input or output. Uploaded
+    with NSFW moderation and addressable by `blobId`.
+- term: Engine
+  definition: A specific generator implementation backing a step — e.g. flux2, sdxl, sd1, z-image,
+    qwen, seedream, grok, wan2.5, kling, ltx2, vidu, veo3, hunyuan.
+- term: Recipe
+  definition: A documented pattern for invoking a specific engine and configuration through the
+    Orchestration API. Recipes are the canonical examples in the developer docs.
+- term: Webhook
+  definition: HTTPS POST callback delivered for workflow, step, or job lifecycle events. Delivered
+    in-order and serialized per workflow with retry on non-2xx.
+- term: NSFWLevel
+  definition: Numeric NSFW classification (None, Soft, Mature, X) applied to images, models, and
+    uploaded blobs.
+- term: Permission
+  definition: A scoped capability the authenticated bearer has against a specific entity — view,
+    edit, delete, download.
+- term: Scope
+  definition: An OAuth permission set requested by a third-party application during the
+    authorization-code with PKCE flow.
+- term: BuzzSpendCap
+  definition: Per-application limit on the amount of Buzz a delegated OAuth token can spend on a
+    user's behalf.
+- term: LoRA
+  definition: Low-Rank Adaptation — a small fine-tune that augments a base model. First-class
+    artifact type on Civitai with hashes, AIR identifiers, and trained words.
+- term: ControlNet
+  definition: Conditioning model used at inference time to guide generation from a reference image
+    (pose, depth, edges, etc.).
+- term: TextualInversion
+  definition: Embedding-based fine-tune that adds new tokens to a base model.
+- term: Checkpoint
+  definition: A full model weights file (the foundation of a generation pipeline).
+- term: ComfyUI
+  definition: Open-source node-graph UI for Stable Diffusion; Civitai forks and integrates with
+    ComfyUI via Civitai Link and custom nodes (smZNodes).
+- term: CivitaiLink
+  definition: Desktop application that syncs vault and downloaded models into local Stable
+    Diffusion installations (A1111, ComfyUI).
+- term: ModelScanner
+  definition: Open-source tool maintained by Civitai for scanning models for safety/security
+    issues prior to download.
+- term: AIToolkit
+  definition: Civitai's open-source training toolkit for fine-tuning diffusion models.
+- term: MembershipTier
+  definition: User subscription level (Free, Founder, Bronze, Silver, Gold) controlling Buzz
+    allowances, Vault storage, and feature access.

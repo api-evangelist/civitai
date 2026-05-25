@@ -1,0 +1,58 @@
+{
+  "$comment": "Submit an SDXL image generation workflow to https://orchestration.civitai.com/v2/consumer/workflows",
+  "request": {
+    "method": "POST",
+    "url": "https://orchestration.civitai.com/v2/consumer/workflows",
+    "headers": {
+      "Authorization": "Bearer <CIVITAI_API_KEY>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "tags": ["api-evangelist", "sdxl-demo"],
+      "callbackUrl": "https://example.com/civitai/webhooks",
+      "callbackEvents": ["workflow:succeeded", "workflow:failed"],
+      "detailed": true,
+      "steps": [
+        {
+          "$type": "imageGen",
+          "name": "sdxl-hero",
+          "input": {
+            "engine": "sdxl",
+            "model": "urn:air:sdxl:checkpoint:civitai:101055@128078",
+            "prompt": "a glowing API specification floating above a cyberpunk skyline, ultra detailed, cinematic",
+            "negativePrompt": "blurry, watermark, low quality, text",
+            "width": 1024,
+            "height": 1024,
+            "steps": 30,
+            "cfgScale": 7,
+            "sampler": "DPM++ 2M Karras",
+            "seed": 42,
+            "quantity": 2,
+            "additionalNetworks": [
+              { "air": "urn:air:sdxl:lora:civitai:200000@250000", "strength": 0.8 }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 202,
+    "headers": { "Content-Type": "application/json" },
+    "body": {
+      "id": "wf_01HX6Y0Z8A7F8B6C5D4E3F2G1H",
+      "status": "preparing",
+      "tags": ["api-evangelist", "sdxl-demo"],
+      "createdAt": "2026-05-25T15:42:11.000Z",
+      "cost": { "base": 24, "total": 24, "currency": "BUZZ" },
+      "steps": [
+        {
+          "name": "sdxl-hero",
+          "$type": "imageGen",
+          "status": "preparing",
+          "jobs": []
+        }
+      ]
+    }
+  }
+}

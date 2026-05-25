@@ -1,0 +1,55 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Civitai
+providerId: civitai
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - Rate Limiting
+  - Quotas
+  - AI
+description: |
+  Documented rate-limit and quota surface for Civitai. As of May 2026 Civitai's developer docs note that
+  per-tier rate limits and scope-level limits are pending finalization for the Orchestration API. The
+  effective constraints in practice are Buzz balance, per-app OAuth spend caps, and the orchestrator's
+  internal racing/scheduling. Site API public reads are cached; authenticated endpoints are not cached
+  and are subject to abuse-mitigation throttling.
+sources:
+  - https://developer.civitai.com/orchestration/guide/authentication
+  - https://developer.civitai.com/site/oauth/buzz-limits
+  - https://developer.civitai.com/orchestration/guide/errors-and-retries
+responseCodes:
+  throttled: 429
+  insufficientCredit: 402
+algorithm: documented-as-token-bucket-pending
+notes:
+  - Site API public read endpoints (e.g. /api/v1/models, /api/v1/images) are CDN-cached and impose only
+    abuse-protection throttling.
+  - Authenticated endpoints (/api/v1/me, /vault/*, /permissions/check) are not cached.
+  - Orchestration cost is paid in Buzz at workflow submit; insufficient balance returns HTTP 402 before
+    any provider is engaged.
+  - Per-app OAuth tokens carry a Buzz spend cap configured at app registration, capping per-day Buzz spend
+    on the user's behalf.
+  - Webhooks are retried on non-2xx with serialized in-order delivery per workflow. Endpoints must reply
+    quickly (2xx within a few seconds) to avoid retry storms.
+  - Civitai documents that final per-tier rate-limit tables and scope limits are forthcoming; consumers
+    should implement exponential backoff on 429 responses.
+limits:
+  - tier: Free
+    surface: Site API (authenticated)
+    rpm: documented-as-pending
+    notes: Standard abuse-prevention throttling.
+  - tier: Free
+    surface: Orchestration API
+    rpm: documented-as-pending
+    notes: Constrained primarily by Buzz balance, not by RPM/TPM.
+  - tier: Bronze / Silver / Gold
+    surface: Orchestration API
+    rpm: documented-as-pending
+    notes: Higher Buzz stipends + queue priority; explicit RPM tables not yet published.
+  - tier: OAuth app (delegated)
+    surface: Orchestration API
+    rpm: documented-as-pending
+    notes: Subject to per-app Buzz spend cap configured at app registration.

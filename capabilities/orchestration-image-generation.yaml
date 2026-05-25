@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Civitai Orchestration — Image Generation
+  description: 'Civitai Orchestration — Image Generation. Composition over the workflows submit endpoint with
+    a shaped tool surface for Flux 1/2, SDXL, SD1, Z-Image, Qwen, Seedream, and Grok image generators.
+    Self-contained Naftiko capability.'
+  tags:
+  - Civitai
+  - Orchestration
+  - Image Generation
+  - Flux
+  - SDXL
+  - Workflows
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    CIVITAI_API_KEY: CIVITAI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: orchestration-imagegen
+    baseUri: https://orchestration.civitai.com
+    description: Civitai Orchestration — Image Generation.
+    resources:
+    - name: workflows
+      path: /v2/consumer/workflows
+      operations:
+      - name: submitimagegen
+        method: POST
+        description: Submit an image generation workflow.
+        outputRawFormat: json
+        outputParameters:
+        - { name: result, type: object, value: $. }
+        inputParameters:
+        - { name: body, in: body, type: object, required: true }
+      - name: queryimagegens
+        method: GET
+        description: Query image-generation workflows.
+        outputRawFormat: json
+        outputParameters:
+        - { name: result, type: object, value: $. }
+        inputParameters:
+        - { name: take, in: query, type: integer }
+        - { name: cursor, in: query, type: string }
+        - { name: tags, in: query, type: array }
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.CIVITAI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: orchestration-imagegen-rest
+    port: 8080
+    description: REST adapter for Image Generation workflows.
+    resources:
+    - path: /v2/consumer/workflows/image
+      name: image-workflows
+      operations:
+      - method: POST
+        name: submitimagegen
+        description: Submit an image generation workflow.
+        call: orchestration-imagegen.submitimagegen
+        with: { body: rest.body }
+        outputParameters: [{ type: object, mapping: $. }]
+  - type: mcp
+    namespace: orchestration-imagegen-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Image Generation.
+    tools:
+    - name: civitai-generate-image
+      description: Generate an image with a Civitai-hosted engine (Flux, SDXL, SD1, Z-Image, Qwen, Seedream, Grok).
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: orchestration-imagegen.submitimagegen
+      with:
+        body: tools.body
+      outputParameters: [{ type: object, mapping: $. }]

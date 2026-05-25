@@ -1,0 +1,131 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Civitai
+providerId: civitai
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - FinOps
+  - Cost Management
+  - FOCUS
+  - AI
+  - Image Generation
+  - Video Generation
+description: |
+  FOCUS-aligned FinOps definition for Civitai. Civitai is billed in Buzz, a virtual credit. Buzz is acquired
+  via monthly memberships (Free/Founder/Bronze/Silver/Gold) and via one-off Buzz Packs. Generation, training,
+  and certain content actions deduct Buzz. There is no per-API-call USD pricing; cost discovery is mediated
+  through the `cost` field returned on each workflow.
+sources:
+  - https://civitai.com/pricing
+  - https://education.civitai.com/civitai-buzz-and-memberships/
+  - https://developer.civitai.com/
+  - https://developer.civitai.com/site/oauth/buzz-limits
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Civitai
+serviceCategory: AI and Machine Learning
+billingModel:
+  pricingCategory: Usage-Based + Subscription
+  billingFrequency: Monthly (membership) + On-demand (Buzz packs)
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Subscription
+    - Credit
+    - Adjustment
+  primaryUnit: buzz
+  secondaryUnits:
+    - workflow
+    - blob_byte
+    - vault_byte
+focusColumns:
+  ServiceName: Civitai
+  ServiceCategory: AI and Machine Learning
+  ProviderName: Civitai
+  PublisherName: Civitai
+  InvoiceIssuerName: Civitai
+  PricingCategory: Usage-Based
+  PricingUnit: BUZZ
+  BillingCurrency: USD
+meters:
+  - name: buzz_spent_imagegen
+    unit: buzz
+    aggregation: sum
+    dimensions:
+      - engine
+      - model
+      - quantity
+      - width
+      - height
+      - steps
+  - name: buzz_spent_videogen
+    unit: buzz
+    aggregation: sum
+    dimensions:
+      - engine
+      - duration_s
+      - fps
+      - aspect_ratio
+  - name: buzz_spent_audio
+    unit: buzz
+    aggregation: sum
+    dimensions:
+      - subtype
+      - duration_s
+  - name: buzz_spent_training
+    unit: buzz
+    aggregation: sum
+    dimensions:
+      - base_model
+      - dataset_size
+      - epochs
+  - name: buzz_purchased
+    unit: buzz
+    aggregation: sum
+    dimensions:
+      - source
+      - usd_paid
+  - name: vault_storage_used
+    unit: kilobyte
+    aggregation: max
+    dimensions:
+      - membership_tier
+  - name: blob_storage_used
+    unit: byte
+    aggregation: max
+    dimensions:
+      - mime_type
+buzzModel:
+  description: |
+    Buzz is Civitai's internal virtual credit. It is not denominated in USD on a 1:1 basis; conversion ratios
+    vary by promotion. Buzz balance is debited at workflow submit; insufficient balance returns HTTP 402 and
+    no provider is engaged.
+  acquisitionChannels:
+    - Membership stipend (monthly allowance by tier)
+    - Buzz Pack one-off purchase
+    - Community rewards (Yellow Buzz)
+    - Creator earnings (model tips, image reactions)
+  flavors:
+    - name: Blue Buzz
+      description: Purchased / membership Buzz — fully fungible, spendable on any recipe.
+    - name: Yellow Buzz
+      description: Earned Buzz — community-rewarded, restricted to a subset of features.
+  spendCaps:
+    - scope: OAuth third-party app
+      description: Each OAuth app receives a per-day Buzz spend cap configured at app registration.
+        Civitai will not allow the app to exceed the cap on the user's behalf.
+recommendations:
+  - Capture the `cost.total` from each workflow response and tag with workflow `id` and `tags` for FOCUS
+    attribution.
+  - Track Buzz purchases as Purchase charges with USD paid; track workflow spend as Usage charges in Buzz.
+  - Use the `tags` array on submitted workflows as a project/cost-center allocation key.
+  - Set a low Buzz spend cap on OAuth apps until they have demonstrated stable cost behavior.
+  - Alert on Buzz-balance < threshold to avoid HTTP 402 during production batches.

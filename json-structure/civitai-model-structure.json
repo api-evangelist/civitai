@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-structure.org/draft-01/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/civitai/main/json-structure/civitai-model-structure.json",
+  "title": "Civitai Model Structure",
+  "description": "Structural mapping of the Civitai Model resource — entity relationships, identifiers, and primary lookup paths.",
+  "entity": "civitai:Model",
+  "primaryKey": "id",
+  "naturalKeys": ["name", "creator.username"],
+  "relationships": [
+    {
+      "name": "modelVersions",
+      "type": "hasMany",
+      "target": "civitai:ModelVersion",
+      "lookup": "/api/v1/model-versions/{id}"
+    },
+    {
+      "name": "creator",
+      "type": "belongsTo",
+      "target": "civitai:Creator",
+      "lookup": "/api/v1/creators?query={username}"
+    },
+    {
+      "name": "tags",
+      "type": "hasMany",
+      "target": "civitai:Tag",
+      "lookup": "/api/v1/tags?query={name}"
+    },
+    {
+      "name": "images",
+      "type": "hasMany",
+      "target": "civitai:Image",
+      "lookup": "/api/v1/images?modelId={id}"
+    }
+  ],
+  "identifiers": {
+    "id": "Civitai numeric model ID",
+    "air": "AI Resource Identifier (urn:air:...) for a specific ModelVersion",
+    "hashes": "Content-addressable file identifiers (AutoV1, AutoV2, SHA256, CRC32, Blake3)"
+  },
+  "lookupPaths": [
+    "/api/v1/models/{id}",
+    "/api/v1/model-versions/{id}",
+    "/api/v1/model-versions/by-hash/{hash}"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/civitai/main/json-schema/civitai-image-schema.json",
+  "title": "Civitai Image",
+  "description": "A community-shared image on Civitai.",
+  "type": "object",
+  "required": ["id", "url", "width", "height"],
+  "properties": {
+    "id": { "type": "integer" },
+    "url": { "type": "string", "format": "uri" },
+    "hash": { "type": "string" },
+    "width": { "type": "integer" },
+    "height": { "type": "integer" },
+    "nsfwLevel": { "type": "integer", "minimum": 0 },
+    "nsfw": { "type": "boolean" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "postId": { "type": "integer" },
+    "username": { "type": "string" },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "cryCount": { "type": "integer" },
+        "laughCount": { "type": "integer" },
+        "likeCount": { "type": "integer" },
+        "dislikeCount": { "type": "integer" },
+        "heartCount": { "type": "integer" },
+        "commentCount": { "type": "integer" }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "description": "Generation metadata extracted from the image.",
+      "properties": {
+        "prompt": { "type": "string" },
+        "negativePrompt": { "type": "string" },
+        "seed": { "type": "integer" },
+        "steps": { "type": "integer" },
+        "cfgScale": { "type": "number" },
+        "sampler": { "type": "string" },
+        "Model": { "type": "string" },
+        "Model hash": { "type": "string" },
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "type": { "type": "string" },
+              "hash": { "type": "string" }
+            }
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

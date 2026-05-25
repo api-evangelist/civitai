@@ -1,0 +1,45 @@
+{
+  "$comment": "Submit a WAN 2.5 text-to-video workflow.",
+  "request": {
+    "method": "POST",
+    "url": "https://orchestration.civitai.com/v2/consumer/workflows",
+    "headers": {
+      "Authorization": "Bearer <CIVITAI_API_KEY>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "tags": ["video", "wan2.5"],
+      "callbackUrl": "https://example.com/civitai/webhooks",
+      "callbackEvents": ["workflow:*"],
+      "steps": [
+        {
+          "$type": "videoGen",
+          "name": "wan-hero",
+          "input": {
+            "engine": "wan2.5",
+            "prompt": "a slow cinematic dolly across an API gateway control room, neon lights, sci-fi",
+            "negativePrompt": "low quality, watermark",
+            "aspectRatio": "16:9",
+            "duration": 5,
+            "fps": 24,
+            "seed": 1234
+          }
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 202,
+    "headers": { "Content-Type": "application/json" },
+    "body": {
+      "id": "wf_01HX6Y2Q9C0D1E2F3G4H5J6K",
+      "status": "preparing",
+      "tags": ["video", "wan2.5"],
+      "createdAt": "2026-05-25T15:51:03.000Z",
+      "cost": { "base": 320, "total": 320, "currency": "BUZZ" },
+      "steps": [
+        { "name": "wan-hero", "$type": "videoGen", "status": "preparing", "jobs": [] }
+      ]
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/civitai/main/json-schema/civitai-model-schema.json",
+  "title": "Civitai Model",
+  "description": "A model checkpoint, LoRA, embedding, or other artifact hosted on Civitai.",
+  "type": "object",
+  "required": ["id", "name", "type"],
+  "properties": {
+    "id": { "type": "integer", "description": "Civitai numeric model ID." },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "type": {
+      "type": "string",
+      "enum": ["Checkpoint", "TextualInversion", "Hypernetwork", "AestheticGradient", "LORA", "LoCon", "Controlnet", "Poses", "Wildcards", "Workflows", "Other"]
+    },
+    "nsfw": { "type": "boolean" },
+    "nsfwLevel": { "type": "integer", "minimum": 0 },
+    "allowNoCredit": { "type": "boolean" },
+    "allowCommercialUse": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["None", "Image", "RentCivit", "Rent", "Sell"] }
+    },
+    "allowDerivatives": { "type": "boolean" },
+    "allowDifferentLicense": { "type": "boolean" },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "creator": {
+      "type": "object",
+      "properties": {
+        "username": { "type": "string" },
+        "image": { "type": "string", "format": "uri" }
+      }
+    },
+    "modelVersions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "name": { "type": "string" },
+          "baseModel": { "type": "string", "description": "e.g. SD 1.5, SDXL 1.0, Flux.1 D" },
+          "air": { "type": "string", "description": "AI Resource Identifier URN." },
+          "downloadUrl": { "type": "string", "format": "uri" },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "sizeKB": { "type": "number" },
+                "format": { "type": "string", "enum": ["SafeTensor", "PickleTensor", "Other"] },
+                "hashes": {
+                  "type": "object",
+                  "properties": {
+                    "AutoV1": { "type": "string" },
+                    "AutoV2": { "type": "string" },
+                    "SHA256": { "type": "string" },
+                    "CRC32": { "type": "string" },
+                    "Blake3": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "downloadCount": { "type": "integer" },
+        "favoriteCount": { "type": "integer" },
+        "thumbsUpCount": { "type": "integer" },
+        "thumbsDownCount": { "type": "integer" },
+        "rating": { "type": "number" }
+      }
+    }
+  }
+}

@@ -1,0 +1,98 @@
+extends:
+  - spectral:oas
+formats:
+  - oas3_1
+documentationUrl: https://developer.civitai.com/
+rules:
+  civitai-info-contact:
+    description: Civitai specs must declare Civitai developer contact.
+    given: $.info.contact
+    severity: warn
+    then:
+      field: url
+      function: truthy
+
+  civitai-info-license:
+    description: Civitai specs reference Civitai's Terms of Service for licensing.
+    given: $.info.license
+    severity: warn
+    then:
+      field: name
+      function: truthy
+
+  civitai-server-https:
+    description: Civitai API servers must use HTTPS.
+    given: $.servers[*].url
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://'
+
+  civitai-operation-id-camel:
+    description: Civitai operationIds are camelCase.
+    given: $.paths.*[get,post,put,patch,delete,head].operationId
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]+$'
+
+  civitai-operation-summary-title-case:
+    description: Civitai operation summaries use Title Case.
+    given: $.paths.*[get,post,put,patch,delete,head].summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[A-Z][A-Za-z]*(\s[A-Z][A-Za-z]*)*$'
+
+  civitai-bearer-auth-required:
+    description: Civitai specs must declare a Bearer security scheme.
+    given: $.components.securitySchemes
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            BearerAuth:
+              type: object
+              properties:
+                type: { const: http }
+                scheme: { const: bearer }
+              required: [type, scheme]
+          required: [BearerAuth]
+
+  civitai-buzz-cost-on-orchestration:
+    description: Orchestration responses must surface a `cost` field with currency BUZZ.
+    given: $.components.schemas.Workflow.properties.cost
+    severity: warn
+    then:
+      function: truthy
+
+  civitai-error-schema-defined:
+    description: A shared Error schema must be defined.
+    given: $.components.schemas.Error
+    severity: warn
+    then:
+      function: truthy
+
+  civitai-no-pickle-in-examples:
+    description: Examples should not encourage PickleTensor; SafeTensor is preferred.
+    given: $..files[?(@.format)]
+    severity: warn
+    then:
+      field: format
+      function: pattern
+      functionOptions:
+        notMatch: '^PickleTensor$'
+
+  civitai-webhook-events-enum:
+    description: Workflow callback events must use the Civitai event enum.
+    given: $.components.schemas.WorkflowRequest.properties.callbackEvents.items
+    severity: warn
+    then:
+      field: enum
+      function: truthy

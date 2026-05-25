@@ -1,0 +1,211 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Civitai
+providerId: civitai
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - AI
+  - Image Generation
+  - Video Generation
+  - Stable Diffusion
+  - Flux
+description: |
+  Plans, memberships, and Buzz credit pricing for Civitai. Civitai meters generation in Buzz, a virtual
+  credit purchased via memberships or one-off packs. Base API access (Site API) is free with a personal API
+  token; Orchestration generation is metered. Buzz costs per workflow vary by engine and step type.
+sources:
+  - https://civitai.com/pricing
+  - https://education.civitai.com/civitai-buzz-and-memberships/
+  - https://developer.civitai.com/
+plans:
+  - id: civitai-free
+    name: Free
+    type: subscription
+    description: Browse the catalog, download community models, and generate with a baseline daily Buzz allowance.
+    entries:
+      - label: Monthly cost
+        name: monthly_fee
+        type: flat
+        metric: user
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0'
+        userMultiplied: true
+      - label: Daily Buzz allowance
+        name: daily_buzz_yellow
+        type: included
+        metric: buzz
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '0'
+        userMultiplied: false
+    features:
+      - Browse the public model catalog
+      - Download community-shared models
+      - Personal API key for the Site API
+      - Limited daily generation Buzz allowance
+      - Community posting (Images, Posts, Articles)
+  - id: civitai-founder
+    name: Founder / Supporter
+    type: subscription
+    description: Entry-level membership with monthly Buzz allowance and supporter perks.
+    entries:
+      - label: Monthly cost
+        name: monthly_fee
+        type: flat
+        metric: user
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '5'
+        userMultiplied: true
+    features:
+      - Monthly Buzz stipend
+      - Supporter badge
+      - Increased rate limits
+  - id: civitai-bronze
+    name: Bronze
+    type: subscription
+    description: Standard creator membership with a meaningful monthly Buzz allowance.
+    entries:
+      - label: Monthly cost
+        name: monthly_fee
+        type: flat
+        metric: user
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '10'
+        userMultiplied: true
+    features:
+      - Monthly Buzz stipend
+      - Civitai Vault storage
+      - Bronze badge
+      - Priority generation queue
+  - id: civitai-silver
+    name: Silver
+    type: subscription
+    description: Power-creator membership with larger Buzz stipend and Vault quota.
+    entries:
+      - label: Monthly cost
+        name: monthly_fee
+        type: flat
+        metric: user
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '25'
+        userMultiplied: true
+    features:
+      - Larger monthly Buzz stipend
+      - Expanded Civitai Vault storage
+      - Silver badge
+      - Priority queue
+  - id: civitai-gold
+    name: Gold
+    type: subscription
+    description: Top-tier individual membership with highest Buzz stipend, Vault storage, and feature access.
+    entries:
+      - label: Monthly cost
+        name: monthly_fee
+        type: flat
+        metric: user
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '50'
+        userMultiplied: true
+    features:
+      - Largest monthly Buzz stipend
+      - Maximum Civitai Vault storage
+      - Gold badge
+      - Priority queue
+      - Early-access features
+  - id: civitai-buzz-pack
+    name: Buzz Pack (one-off purchase)
+    type: usage-based
+    description: One-off purchase of Buzz credits, redeemable for Orchestration generation.
+    entries:
+      - label: Buzz pack (illustrative; verify on civitai.com)
+        name: buzz_purchase
+        type: metered
+        metric: buzz
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 5000
+        price: '5'
+        userMultiplied: false
+    features:
+      - One-off Buzz top-up
+      - Spendable on any Orchestration recipe
+      - Never expires for the account holder
+  - id: civitai-orchestration-metered
+    name: Orchestration Generation (metered in Buzz)
+    type: usage-based
+    description: Per-workflow generation cost. Buzz cost varies per engine, resolution, step count, and quantity.
+    entries:
+      - label: SDXL image generation (typical)
+        name: imagegen_sdxl
+        type: metered
+        metric: buzz
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'variable'
+        userMultiplied: false
+      - label: Flux 2 Pro image generation (typical)
+        name: imagegen_flux2_pro
+        type: metered
+        metric: buzz
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'variable'
+        userMultiplied: false
+      - label: WAN / Kling / LTX2 / Vidu / Veo 3 / HunyuanVideo video generation
+        name: videogen
+        type: metered
+        metric: buzz
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'variable'
+        userMultiplied: false
+      - label: LoRA training job
+        name: training_lora
+        type: metered
+        metric: buzz
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'variable'
+        userMultiplied: false
+      - label: Vidu 2.0 (flat-rate recipe)
+        name: imagegen_vidu_2_0
+        type: metered
+        metric: buzz
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '600'
+        userMultiplied: false
+    features:
+      - Paid in Buzz; deducted from balance at workflow submit
+      - Insufficient balance returns HTTP 402
+      - Cost preview returned in `workflow.cost` field
