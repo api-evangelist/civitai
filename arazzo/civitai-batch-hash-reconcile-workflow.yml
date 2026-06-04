@@ -1,0 +1,92 @@
+arazzo: 1.0.1
+info:
+  title: Civitai Batch Hash Reconciliation
+  summary: Resolve many file hashes to version ids in bulk, then enrich the first match with model detail.
+  description: >-
+    Reconciles a local library of model files against the Civitai catalog in
+    bulk. The workflow posts an array of file hashes to resolve their version
+    ids, posts the same hashes to resolve full version records, and then fetches
+    the parent model for the first resolved version to add catalog context. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: civitaiSiteApi
+  url: ../openapi/civitai-site-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: batch-hash-reconcile
+  summary: Bulk-resolve file hashes to versions and enrich the first with model detail.
+  description: >-
+    Posts a hash array to get version ids, posts it again to get full version
+    records, and fetches the parent model for the first version.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - hashes
+    properties:
+      apiKey:
+        type: string
+        description: Civitai personal API token used as a Bearer credential.
+      hashes:
+        type: array
+        description: Array of model file hashes to reconcile in bulk.
+        items:
+          type: string
+  steps:
+  - stepId: resolveVersionIds
+    description: >-
+      Post the hash array to resolve each hash to a model version id.
+    operationId: getModelVersionIdsByHashes
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload: $inputs.hashes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      idMap: $response.body
+  - stepId: resolveVersions
+    description: >-
+      Post the same hash array to resolve full model version records and capture
+      the first version's model id.
+    operationId: getModelVersionsByHashes
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload: $inputs.hashes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstVersionId: $response.body#/0/id
+      firstModelId: $response.body#/0/modelId
+      firstAir: $response.body#/0/air
+  - stepId: enrichFirstModel
+    description: >-
+      Fetch the parent model for the first resolved version to add catalog
+      context.
+    operationId: getModel
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: id
+      in: path
+      value: $steps.resolveVersions.outputs.firstModelId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      modelName: $response.body#/name
+      modelType: $response.body#/type
+      creatorUsername: $response.body#/creator/username
+  outputs:
+    idMap: $steps.resolveVersionIds.outputs.idMap
+    firstVersionId: $steps.resolveVersions.outputs.firstVersionId
+    firstModelName: $steps.enrichFirstModel.outputs.modelName

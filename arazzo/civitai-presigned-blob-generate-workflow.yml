@@ -1,0 +1,136 @@
+arazzo: 1.0.1
+info:
+  title: Civitai Presigned Blob Upload Then Generate
+  summary: Request a presigned blob upload URL, reference the blob in a workflow with webhook callbacks, and poll.
+  description: >-
+    Uses the presigned-upload path to register a blob without streaming bytes
+    through the API, then drives a generation. The workflow requests a presigned
+    upload URL for a given mime type, submits an imageGen workflow that references
+    the returned blob id as an input image and configures webhook callbacks for
+    completion events, and polls the workflow until it finishes. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: civitaiOrchestrationApi
+  url: ../openapi/civitai-orchestration-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: presigned-blob-generate
+  summary: Get a presigned upload URL, submit a workflow referencing it, and poll.
+  description: >-
+    Requests a presigned blob upload URL, submits an imageGen workflow that
+    references the blob id with webhook callbacks, and polls to completion.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - mimeType
+    - engine
+    - prompt
+    - callbackUrl
+    properties:
+      apiKey:
+        type: string
+        description: Civitai personal API token used as a Bearer credential.
+      mimeType:
+        type: string
+        description: MIME type of the blob that will be uploaded to the presigned URL.
+      sizeBytes:
+        type: integer
+        description: Optional declared size of the blob in bytes.
+      engine:
+        type: string
+        description: Generation engine identifier (e.g. flux2, sdxl).
+      prompt:
+        type: string
+        description: The positive prompt steering the generation.
+      callbackUrl:
+        type: string
+        description: HTTPS callback URL for webhook delivery of workflow events.
+  steps:
+  - stepId: requestUploadUrl
+    description: >-
+      Request a presigned upload URL for the declared mime type and capture the
+      blob id the upload will populate.
+    operationId: getBlobUploadUrl
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: mimeType
+      in: query
+      value: $inputs.mimeType
+    - name: sizeBytes
+      in: query
+      value: $inputs.sizeBytes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      blobId: $response.body#/blobId
+      uploadUrl: $response.body#/uploadUrl
+      expiresAt: $response.body#/expiresAt
+  - stepId: submitWithCallback
+    description: >-
+      Submit an imageGen workflow that references the presigned blob id as an
+      input image and configures webhook callbacks for completion events.
+    operationId: submitWorkflow
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        callbackUrl: $inputs.callbackUrl
+        callbackEvents:
+        - workflow:succeeded
+        - workflow:failed
+        steps:
+        - $type: imageGen
+          name: generate
+          input:
+            engine: $inputs.engine
+            prompt: $inputs.prompt
+            images:
+            - $steps.requestUploadUrl.outputs.blobId
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      workflowId: $response.body#/id
+  - stepId: pollWorkflow
+    description: >-
+      Poll the workflow until it reaches a terminal state, looping while still
+      processing.
+    operationId: getWorkflow
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: workflowId
+      in: path
+      value: $steps.submitWithCallback.outputs.workflowId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      outputBlobUrl: $response.body#/steps/0/jobs/0/result/blobs/0/url
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollWorkflow
+      criteria:
+      - context: $response.body
+        condition: $.status == 'processing' || $.status == 'preparing' || $.status == 'unassigned'
+        type: jsonpath
+    - name: done
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == 'succeeded' || $.status == 'failed' || $.status == 'expired' || $.status == 'canceled'
+        type: jsonpath
+  outputs:
+    blobId: $steps.requestUploadUrl.outputs.blobId
+    uploadUrl: $steps.requestUploadUrl.outputs.uploadUrl
+    workflowId: $steps.submitWithCallback.outputs.workflowId
+    outputBlobUrl: $steps.pollWorkflow.outputs.outputBlobUrl

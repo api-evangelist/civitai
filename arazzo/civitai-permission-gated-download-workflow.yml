@@ -1,0 +1,108 @@
+arazzo: 1.0.1
+info:
+  title: Civitai Permission-Gated Version Download
+  summary: Resolve a model version, check the bearer's permissions, and branch on download rights.
+  description: >-
+    Enforces permission checks before exposing a download URL. The workflow
+    resolves a model version, runs a permission check for the current bearer
+    against that version, and then branches: when download is permitted it
+    reloads the version to surface the download URL, and when it is not it ends
+    the flow without exposing a link. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: civitaiSiteApi
+  url: ../openapi/civitai-site-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: permission-gated-download
+  summary: Check permissions on a model version and branch on download rights.
+  description: >-
+    Resolves a model version, checks the bearer's permissions, and either
+    surfaces the download URL or ends without it.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - modelVersionId
+    properties:
+      apiKey:
+        type: string
+        description: Civitai personal API token used as a Bearer credential.
+      modelVersionId:
+        type: integer
+        description: The model version id to evaluate for download.
+  steps:
+  - stepId: resolveVersion
+    description: >-
+      Resolve the model version so the permission check has a confirmed entity
+      id.
+    operationId: getModelVersion
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: id
+      in: path
+      value: $inputs.modelVersionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      versionId: $response.body#/id
+      versionName: $response.body#/name
+  - stepId: checkPermission
+    description: >-
+      Check the current bearer's permissions against the model version, then
+      branch on the download decision.
+    operationId: checkPermissions
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: entityType
+      in: query
+      value: ModelVersion
+    - name: entityId
+      in: query
+      value: $steps.resolveVersion.outputs.versionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      canDownload: $response.body#/canDownload
+      canView: $response.body#/canView
+    onSuccess:
+    - name: downloadAllowed
+      type: goto
+      stepId: surfaceDownload
+      criteria:
+      - context: $response.body
+        condition: $.canDownload == true
+        type: jsonpath
+    - name: downloadDenied
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.canDownload == false
+        type: jsonpath
+  - stepId: surfaceDownload
+    description: >-
+      Reload the model version to surface the download URL once download is
+      permitted.
+    operationId: getModelVersion
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: id
+      in: path
+      value: $steps.resolveVersion.outputs.versionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      downloadUrl: $response.body#/downloadUrl
+      air: $response.body#/air
+  outputs:
+    versionId: $steps.resolveVersion.outputs.versionId
+    canDownload: $steps.checkPermission.outputs.canDownload
+    downloadUrl: $steps.surfaceDownload.outputs.downloadUrl

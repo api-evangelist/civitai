@@ -154,6 +154,48 @@ kind: contract
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/civitai-batch-hash-reconcile-workflow.yml
+    name: Civitai Batch Hash Reconciliation
+    summary: Resolve many file hashes to version ids in bulk, then enrich the first match with model detail.
+  - url: arazzo/civitai-blob-upload-img2img-workflow.yml
+    name: Civitai Blob Upload and Image-to-Image Generation
+    summary: Upload a source image blob, run an img2img workflow against it, poll, and read the result.
+  - url: arazzo/civitai-creator-models-gallery-workflow.yml
+    name: Civitai Creator Models and Image Gallery
+    summary: Find a creator, list the models they publish, and pull a gallery of images for one model.
+  - url: arazzo/civitai-image-generation-poll-workflow.yml
+    name: Civitai Image Generation Submit and Poll
+    summary: Submit an image generation workflow, poll until it finishes, and collect the output blobs.
+  - url: arazzo/civitai-model-images-explorer-workflow.yml
+    name: Civitai Model Images Explorer
+    summary: Open a model, browse its community images, and resolve the version behind the top image.
+  - url: arazzo/civitai-model-version-by-hash-workflow.yml
+    name: Civitai Identify a Model From a File Hash
+    summary: Resolve a local model file's hash to its model version, then load the parent model.
+  - url: arazzo/civitai-model-version-to-generation-workflow.yml
+    name: Civitai Generate From a Catalog Model Version
+    summary: Resolve a catalog model version's AIR, generate an image with it, poll, and read the result.
+  - url: arazzo/civitai-permission-gated-download-workflow.yml
+    name: Civitai Permission-Gated Version Download
+    summary: Resolve a model version, check the bearer's permissions, and branch on download rights.
+  - url: arazzo/civitai-presigned-blob-generate-workflow.yml
+    name: Civitai Presigned Blob Upload Then Generate
+    summary: Request a presigned blob upload URL, reference the blob in a workflow with webhook callbacks, and poll.
+  - url: arazzo/civitai-search-models-detail-workflow.yml
+    name: Civitai Search Models and Drill Into a Version
+    summary: Search the model catalog, open the top matching model, and resolve one of its versions.
+  - url: arazzo/civitai-tag-models-discovery-workflow.yml
+    name: Civitai Tag-Driven Model Discovery
+    summary: Pick a tag from the taxonomy, list models carrying that tag, and open the top model.
+  - url: arazzo/civitai-vault-toggle-verify-workflow.yml
+    name: Civitai Vault Add and Verify
+    summary: Confirm the user, check vault capacity, add a model version to the vault, and verify storage.
+  - url: arazzo/civitai-workflow-query-cancel-workflow.yml
+    name: Civitai Query and Cancel a Running Workflow
+    summary: List active workflows, inspect the first one, cancel it, and confirm the canceled state.
 - type: LinkedIn
   url: https://www.linkedin.com/company/civitai
 - type: Twitter

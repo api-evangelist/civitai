@@ -1,0 +1,124 @@
+arazzo: 1.0.1
+info:
+  title: Civitai Search Models and Drill Into a Version
+  summary: Search the model catalog, open the top matching model, and resolve one of its versions.
+  description: >-
+    A foundational discovery flow over the Civitai catalog. The workflow runs a
+    keyword search across models with optional type, sort, and period filters,
+    selects the first matching model, fetches that model's full detail, and then
+    resolves a specific model version so a client has the files, hashes, and AIR
+    identifier needed to download or generate. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: civitaiSiteApi
+  url: ../openapi/civitai-site-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: search-models-detail
+  summary: Search models then fetch the top model and one of its versions.
+  description: >-
+    Searches the catalog for a query term, takes the first returned model,
+    retrieves its full detail, and then loads the first model version attached
+    to that model.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - query
+    properties:
+      apiKey:
+        type: string
+        description: Civitai personal API token used as a Bearer credential.
+      query:
+        type: string
+        description: Free-text search term to match against model names and metadata.
+      types:
+        type: string
+        description: Optional model type filter (e.g. Checkpoint, LORA, Controlnet).
+      sort:
+        type: string
+        description: Sort order, one of 'Highest Rated', 'Most Downloaded', 'Newest'.
+      period:
+        type: string
+        description: Time window for ranking (AllTime, Year, Month, Week, Day).
+      limit:
+        type: integer
+        description: Maximum number of models to return in the search page.
+  steps:
+  - stepId: searchModels
+    description: >-
+      Run a keyword search across the model catalog and capture the first
+      matching model id.
+    operationId: listModels
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: query
+      in: query
+      value: $inputs.query
+    - name: types
+      in: query
+      value: $inputs.types
+    - name: sort
+      in: query
+      value: $inputs.sort
+    - name: period
+      in: query
+      value: $inputs.period
+    - name: limit
+      in: query
+      value: $inputs.limit
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      topModelId: $response.body#/items/0/id
+      topModelVersionId: $response.body#/items/0/modelVersions/0/id
+      totalItems: $response.body#/metadata/totalItems
+  - stepId: getTopModel
+    description: >-
+      Fetch the full detail for the first model returned by the search,
+      including its stats, creator, tags, and version list.
+    operationId: getModel
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: id
+      in: path
+      value: $steps.searchModels.outputs.topModelId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      modelId: $response.body#/id
+      modelName: $response.body#/name
+      modelType: $response.body#/type
+      creatorUsername: $response.body#/creator/username
+  - stepId: getTopVersion
+    description: >-
+      Resolve the first model version attached to the matched model so files,
+      hashes, and the AIR identifier are available.
+    operationId: getModelVersion
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: id
+      in: path
+      value: $steps.searchModels.outputs.topModelVersionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      versionId: $response.body#/id
+      versionName: $response.body#/name
+      baseModel: $response.body#/baseModel
+      air: $response.body#/air
+      downloadUrl: $response.body#/downloadUrl
+  outputs:
+    modelId: $steps.getTopModel.outputs.modelId
+    modelName: $steps.getTopModel.outputs.modelName
+    versionId: $steps.getTopVersion.outputs.versionId
+    air: $steps.getTopVersion.outputs.air
+    downloadUrl: $steps.getTopVersion.outputs.downloadUrl

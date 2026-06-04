@@ -1,0 +1,109 @@
+arazzo: 1.0.1
+info:
+  title: Civitai Model Images Explorer
+  summary: Open a model, browse its community images, and resolve the version behind the top image.
+  description: >-
+    Explores the visual output associated with a single model. The workflow
+    loads a model by id, fetches a page of community images filtered to that
+    model, and then resolves the specific model version referenced by the model
+    so a client can connect generated imagery back to the exact weights used.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: civitaiSiteApi
+  url: ../openapi/civitai-site-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: model-images-explorer
+  summary: Load a model, list its images, and resolve its primary version.
+  description: >-
+    Fetches a model by id, lists community images for that model, and resolves
+    the model's first version for files and AIR.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - modelId
+    properties:
+      apiKey:
+        type: string
+        description: Civitai personal API token used as a Bearer credential.
+      modelId:
+        type: integer
+        description: The numeric id of the model to explore.
+      nsfw:
+        type: string
+        description: Image NSFW ceiling filter (None, Soft, Mature, X).
+      imageLimit:
+        type: integer
+        description: Maximum number of images to return.
+  steps:
+  - stepId: getModelDetail
+    description: >-
+      Load the target model and capture its first model version id for the
+      follow-up version lookup.
+    operationId: getModel
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: id
+      in: path
+      value: $inputs.modelId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      modelName: $response.body#/name
+      modelType: $response.body#/type
+      primaryVersionId: $response.body#/modelVersions/0/id
+  - stepId: listModelImages
+    description: >-
+      Fetch a page of community images filtered to the target model, ordered by
+      most reactions.
+    operationId: listImages
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: modelId
+      in: query
+      value: $inputs.modelId
+    - name: nsfw
+      in: query
+      value: $inputs.nsfw
+    - name: sort
+      in: query
+      value: Most Reactions
+    - name: limit
+      in: query
+      value: $inputs.imageLimit
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      topImageUrl: $response.body#/items/0/url
+      topImageId: $response.body#/items/0/id
+      totalImages: $response.body#/metadata/totalItems
+  - stepId: resolvePrimaryVersion
+    description: >-
+      Resolve the model's primary version to expose files, hashes, and the AIR
+      identifier behind the imagery.
+    operationId: getModelVersion
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: id
+      in: path
+      value: $steps.getModelDetail.outputs.primaryVersionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      versionName: $response.body#/name
+      baseModel: $response.body#/baseModel
+      air: $response.body#/air
+  outputs:
+    modelName: $steps.getModelDetail.outputs.modelName
+    topImageUrl: $steps.listModelImages.outputs.topImageUrl
+    primaryVersionId: $steps.getModelDetail.outputs.primaryVersionId
+    air: $steps.resolvePrimaryVersion.outputs.air

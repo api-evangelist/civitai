@@ -1,0 +1,146 @@
+arazzo: 1.0.1
+info:
+  title: Civitai Blob Upload and Image-to-Image Generation
+  summary: Upload a source image blob, run an img2img workflow against it, poll, and read the result.
+  description: >-
+    The image-to-image pattern on the Orchestration API. The workflow uploads a
+    source image as a blob with built-in moderation, submits an imageGen step
+    referencing that blob id as an input image, polls the workflow to completion,
+    and reads the resulting output blob URL. The poll step loops on itself while
+    the workflow is still processing. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: civitaiOrchestrationApi
+  url: ../openapi/civitai-orchestration-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: blob-upload-img2img
+  summary: Upload a blob, submit an img2img workflow, poll, and read the output.
+  description: >-
+    Uploads a source image blob, submits an imageGen workflow that references the
+    blob, polls to completion, and reads the output blob URL.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - file
+    - engine
+    - prompt
+    properties:
+      apiKey:
+        type: string
+        description: Civitai personal API token used as a Bearer credential.
+      file:
+        type: string
+        description: The binary source image to upload as a blob for img2img.
+      engine:
+        type: string
+        description: Generation engine identifier (e.g. flux2, sdxl).
+      prompt:
+        type: string
+        description: The positive prompt steering the image-to-image transformation.
+      moderate:
+        type: boolean
+        description: Whether to run NSFW moderation on the uploaded blob.
+  steps:
+  - stepId: uploadSource
+    description: >-
+      Upload the source image as a blob with moderation and capture its blob id.
+    operationId: uploadBlob
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    requestBody:
+      contentType: multipart/form-data
+      payload:
+        file: $inputs.file
+        moderate: $inputs.moderate
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      blobId: $response.body#/id
+      nsfwLevel: $response.body#/nsfwLevel
+  - stepId: submitImg2Img
+    description: >-
+      Submit an imageGen step that references the uploaded blob as an input
+      image and capture the new workflow id.
+    operationId: submitWorkflow
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        steps:
+        - $type: imageGen
+          name: img2img
+          input:
+            engine: $inputs.engine
+            prompt: $inputs.prompt
+            images:
+            - $steps.uploadSource.outputs.blobId
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      workflowId: $response.body#/id
+  - stepId: pollWorkflow
+    description: >-
+      Poll the workflow until it reaches a terminal state, looping while still
+      processing and continuing to read the output on success.
+    operationId: getWorkflow
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: workflowId
+      in: path
+      value: $steps.submitImg2Img.outputs.workflowId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollWorkflow
+      criteria:
+      - context: $response.body
+        condition: $.status == 'processing' || $.status == 'preparing' || $.status == 'unassigned'
+        type: jsonpath
+    - name: finished
+      type: goto
+      stepId: readResult
+      criteria:
+      - context: $response.body
+        condition: $.status == 'succeeded'
+        type: jsonpath
+    - name: failed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == 'failed' || $.status == 'expired' || $.status == 'canceled'
+        type: jsonpath
+  - stepId: readResult
+    description: >-
+      Read the completed workflow and collect the transformed output blob URL.
+    operationId: getWorkflow
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: workflowId
+      in: path
+      value: $steps.submitImg2Img.outputs.workflowId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      outputBlobUrl: $response.body#/steps/0/jobs/0/result/blobs/0/url
+      cost: $response.body#/cost/total
+  outputs:
+    sourceBlobId: $steps.uploadSource.outputs.blobId
+    workflowId: $steps.submitImg2Img.outputs.workflowId
+    outputBlobUrl: $steps.readResult.outputs.outputBlobUrl

@@ -1,0 +1,110 @@
+arazzo: 1.0.1
+info:
+  title: Civitai Query and Cancel a Running Workflow
+  summary: List active workflows, inspect the first one, cancel it, and confirm the canceled state.
+  description: >-
+    Operational housekeeping for the Orchestration API. The workflow queries the
+    consumer's workflows filtered to a processing status, inspects the first
+    returned workflow, issues an update that sets its status to canceled, and
+    re-reads the workflow to confirm cancellation took effect. Every step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: civitaiOrchestrationApi
+  url: ../openapi/civitai-orchestration-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: workflow-query-cancel
+  summary: Find a processing workflow, cancel it, and confirm the canceled state.
+  description: >-
+    Queries workflows by status, inspects the first match, updates it to
+    canceled, and re-reads it to confirm.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    properties:
+      apiKey:
+        type: string
+        description: Civitai personal API token used as a Bearer credential.
+      status:
+        type: string
+        description: Status filter for the query (e.g. processing, preparing).
+      take:
+        type: integer
+        description: Maximum number of workflows to return.
+  steps:
+  - stepId: queryRunning
+    description: >-
+      Query the consumer's workflows filtered by status and capture the first
+      workflow id.
+    operationId: queryWorkflows
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: status
+      in: query
+      value: $inputs.status
+    - name: take
+      in: query
+      value: $inputs.take
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstWorkflowId: $response.body#/items/0/id
+      nextCursor: $response.body#/nextCursor
+  - stepId: inspectWorkflow
+    description: >-
+      Inspect the first returned workflow to confirm its current status before
+      canceling.
+    operationId: getWorkflow
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: workflowId
+      in: path
+      value: $steps.queryRunning.outputs.firstWorkflowId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      currentStatus: $response.body#/status
+  - stepId: cancelWorkflow
+    description: >-
+      Update the workflow, setting its status to canceled.
+    operationId: updateWorkflow
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: workflowId
+      in: path
+      value: $steps.queryRunning.outputs.firstWorkflowId
+    requestBody:
+      contentType: application/json
+      payload:
+        status: canceled
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      statusAfterUpdate: $response.body#/status
+  - stepId: confirmCanceled
+    description: >-
+      Re-read the workflow to confirm it reports a canceled status.
+    operationId: getWorkflow
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: workflowId
+      in: path
+      value: $steps.queryRunning.outputs.firstWorkflowId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      finalStatus: $response.body#/status
+  outputs:
+    workflowId: $steps.queryRunning.outputs.firstWorkflowId
+    finalStatus: $steps.confirmCanceled.outputs.finalStatus

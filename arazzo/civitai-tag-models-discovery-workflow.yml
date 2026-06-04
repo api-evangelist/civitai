@@ -1,0 +1,100 @@
+arazzo: 1.0.1
+info:
+  title: Civitai Tag-Driven Model Discovery
+  summary: Pick a tag from the taxonomy, list models carrying that tag, and open the top model.
+  description: >-
+    Discovers models through the Civitai tag taxonomy. The workflow searches the
+    tag catalog for a term, selects the first matching tag, lists models filtered
+    to that tag sorted by popularity, and opens the highest-ranked model for full
+    detail. Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: civitaiSiteApi
+  url: ../openapi/civitai-site-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: tag-models-discovery
+  summary: Resolve a tag, list its models, and open the top-ranked model.
+  description: >-
+    Searches tags by query, lists models filtered to the chosen tag, and fetches
+    the first model's full detail.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - tagQuery
+    properties:
+      apiKey:
+        type: string
+        description: Civitai personal API token used as a Bearer credential.
+      tagQuery:
+        type: string
+        description: Search term used to find a tag in the catalog taxonomy.
+      sort:
+        type: string
+        description: Model sort order, one of 'Highest Rated', 'Most Downloaded', 'Newest'.
+  steps:
+  - stepId: findTag
+    description: >-
+      Search the tag catalog and capture the first matching tag name.
+    operationId: listTags
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: query
+      in: query
+      value: $inputs.tagQuery
+    - name: limit
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tagName: $response.body#/items/0/name
+      tagModelCount: $response.body#/items/0/modelCount
+  - stepId: listTaggedModels
+    description: >-
+      List models carrying the resolved tag, ordered by the requested sort, and
+      capture the top model id.
+    operationId: listModels
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: tag
+      in: query
+      value: $steps.findTag.outputs.tagName
+    - name: sort
+      in: query
+      value: $inputs.sort
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      topModelId: $response.body#/items/0/id
+      topModelName: $response.body#/items/0/name
+      totalItems: $response.body#/metadata/totalItems
+  - stepId: openTopModel
+    description: >-
+      Open the highest-ranked tagged model for full detail including versions and
+      creator.
+    operationId: getModel
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: id
+      in: path
+      value: $steps.listTaggedModels.outputs.topModelId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      modelType: $response.body#/type
+      creatorUsername: $response.body#/creator/username
+      primaryVersionId: $response.body#/modelVersions/0/id
+  outputs:
+    tagName: $steps.findTag.outputs.tagName
+    topModelId: $steps.listTaggedModels.outputs.topModelId
+    topModelName: $steps.listTaggedModels.outputs.topModelName
+    primaryVersionId: $steps.openTopModel.outputs.primaryVersionId

@@ -1,0 +1,101 @@
+arazzo: 1.0.1
+info:
+  title: Civitai Vault Add and Verify
+  summary: Confirm the user, check vault capacity, add a model version to the vault, and verify storage.
+  description: >-
+    Manages a membership user's saved-model vault. The workflow confirms the
+    authenticated user, checks the vault subscription and storage status, toggles
+    a model version into the vault, and then re-reads the vault item to confirm
+    the version was stored. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: civitaiSiteApi
+  url: ../openapi/civitai-site-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: vault-toggle-verify
+  summary: Verify the user and vault status, toggle a version in, and confirm storage.
+  description: >-
+    Reads the current user and vault status, toggles a model version into the
+    vault, and re-fetches the vault item to verify the result.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - modelVersionId
+    properties:
+      apiKey:
+        type: string
+        description: Civitai personal API token used as a Bearer credential.
+      modelVersionId:
+        type: integer
+        description: The model version id to toggle into the user's vault.
+  steps:
+  - stepId: confirmUser
+    description: >-
+      Confirm the authenticated user and capture their membership tier.
+    operationId: getCurrentUser
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      username: $response.body#/username
+      tier: $response.body#/tier
+  - stepId: checkVaultStatus
+    description: >-
+      Read the vault subscription and storage status before adding a new
+      version.
+    operationId: checkVault
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      subscribed: $response.body#/subscribed
+      storageUsedKb: $response.body#/storageUsedKb
+      storageLimitKb: $response.body#/storageLimitKb
+  - stepId: toggleVersion
+    description: >-
+      Toggle the requested model version into the vault.
+    operationId: toggleVaultVersion
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        modelVersionId: $inputs.modelVersionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      vaultItemId: $response.body#/id
+      toggledStatus: $response.body#/status
+  - stepId: verifyVaultItem
+    description: >-
+      Re-read the vault item for the model version to confirm it is stored or
+      pending.
+    operationId: getVaultItem
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: modelVersionId
+      in: query
+      value: $inputs.modelVersionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      addedAt: $response.body#/addedAt
+      sizeKb: $response.body#/sizeKb
+  outputs:
+    username: $steps.confirmUser.outputs.username
+    vaultItemId: $steps.toggleVersion.outputs.vaultItemId
+    status: $steps.verifyVaultItem.outputs.status

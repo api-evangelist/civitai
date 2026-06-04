@@ -1,0 +1,110 @@
+arazzo: 1.0.1
+info:
+  title: Civitai Creator Models and Image Gallery
+  summary: Find a creator, list the models they publish, and pull a gallery of images for one model.
+  description: >-
+    Builds a creator-centric view of the catalog. The workflow searches the
+    creator directory for a username, lists the models that creator publishes,
+    selects the first model, and then pulls a sorted gallery of community images
+    generated with that model. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: civitaiSiteApi
+  url: ../openapi/civitai-site-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: creator-models-gallery
+  summary: Resolve a creator, list their models, and gather images for one model.
+  description: >-
+    Searches creators by query, lists models for the chosen creator username,
+    and fetches an image gallery for the creator's first model.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - creatorQuery
+    properties:
+      apiKey:
+        type: string
+        description: Civitai personal API token used as a Bearer credential.
+      creatorQuery:
+        type: string
+        description: Search term used to find a creator in the creator directory.
+      imageSort:
+        type: string
+        description: Image sort order, one of 'Most Reactions', 'Most Comments', 'Newest'.
+      imageLimit:
+        type: integer
+        description: Maximum number of images to return for the model gallery.
+  steps:
+  - stepId: findCreator
+    description: >-
+      Search the creator directory and capture the first matching creator's
+      username.
+    operationId: listCreators
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: query
+      in: query
+      value: $inputs.creatorQuery
+    - name: limit
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      creatorUsername: $response.body#/items/0/username
+      creatorModelCount: $response.body#/items/0/modelCount
+  - stepId: listCreatorModels
+    description: >-
+      List the models published by the resolved creator and capture the first
+      model id.
+    operationId: listModels
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: username
+      in: query
+      value: $steps.findCreator.outputs.creatorUsername
+    - name: sort
+      in: query
+      value: Most Downloaded
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstModelId: $response.body#/items/0/id
+      firstModelName: $response.body#/items/0/name
+  - stepId: modelGallery
+    description: >-
+      Pull a gallery of community images generated with the creator's first
+      model.
+    operationId: listImages
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: modelId
+      in: query
+      value: $steps.listCreatorModels.outputs.firstModelId
+    - name: sort
+      in: query
+      value: $inputs.imageSort
+    - name: limit
+      in: query
+      value: $inputs.imageLimit
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      images: $response.body#/items
+      firstImageUrl: $response.body#/items/0/url
+      totalImages: $response.body#/metadata/totalItems
+  outputs:
+    creatorUsername: $steps.findCreator.outputs.creatorUsername
+    firstModelId: $steps.listCreatorModels.outputs.firstModelId
+    firstModelName: $steps.listCreatorModels.outputs.firstModelName
+    firstImageUrl: $steps.modelGallery.outputs.firstImageUrl

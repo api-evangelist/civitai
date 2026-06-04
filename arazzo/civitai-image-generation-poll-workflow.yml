@@ -1,0 +1,148 @@
+arazzo: 1.0.1
+info:
+  title: Civitai Image Generation Submit and Poll
+  summary: Submit an image generation workflow, poll until it finishes, and collect the output blobs.
+  description: >-
+    The core text-to-image generation pattern on the Orchestration API. The
+    workflow submits a single imageGen step with a prompt and engine, polls the
+    workflow status until it reaches a terminal state, and then reads the
+    completed workflow to collect the generated output blob URLs. The poll step
+    loops on itself while the workflow is still processing. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: civitaiOrchestrationApi
+  url: ../openapi/civitai-orchestration-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: image-generation-poll
+  summary: Submit an imageGen workflow, poll to completion, and read the outputs.
+  description: >-
+    Submits a text-to-image workflow step, polls the workflow until it succeeds
+    or fails, then reads the final workflow for output blob URLs.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - engine
+    - prompt
+    properties:
+      apiKey:
+        type: string
+        description: Civitai personal API token used as a Bearer credential.
+      engine:
+        type: string
+        description: Generation engine identifier (e.g. flux2, sdxl, sd1, z-image).
+      prompt:
+        type: string
+        description: The positive text prompt for the image.
+      negativePrompt:
+        type: string
+        description: Optional negative prompt.
+      width:
+        type: integer
+        description: Output image width in pixels.
+      height:
+        type: integer
+        description: Output image height in pixels.
+      steps:
+        type: integer
+        description: Number of sampling steps.
+      cfgScale:
+        type: number
+        description: Classifier-free guidance scale.
+      quantity:
+        type: integer
+        description: Number of images to generate (1-10).
+  steps:
+  - stepId: submitGeneration
+    description: >-
+      Submit a single imageGen step with the supplied prompt and engine and
+      capture the new workflow id.
+    operationId: submitWorkflow
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        steps:
+        - $type: imageGen
+          name: generate
+          input:
+            engine: $inputs.engine
+            prompt: $inputs.prompt
+            negativePrompt: $inputs.negativePrompt
+            width: $inputs.width
+            height: $inputs.height
+            steps: $inputs.steps
+            cfgScale: $inputs.cfgScale
+            quantity: $inputs.quantity
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      workflowId: $response.body#/id
+      submittedStatus: $response.body#/status
+  - stepId: pollWorkflow
+    description: >-
+      Poll the workflow until it reaches a terminal state. While the workflow is
+      still processing, loop back and poll again; on success continue to read the
+      outputs.
+    operationId: getWorkflow
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: workflowId
+      in: path
+      value: $steps.submitGeneration.outputs.workflowId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollWorkflow
+      criteria:
+      - context: $response.body
+        condition: $.status == 'processing' || $.status == 'preparing' || $.status == 'unassigned'
+        type: jsonpath
+    - name: finished
+      type: goto
+      stepId: readOutputs
+      criteria:
+      - context: $response.body
+        condition: $.status == 'succeeded'
+        type: jsonpath
+    - name: failed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == 'failed' || $.status == 'expired' || $.status == 'canceled'
+        type: jsonpath
+  - stepId: readOutputs
+    description: >-
+      Read the completed workflow and collect the generated output blob URLs from
+      the first step's first job.
+    operationId: getWorkflow
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: workflowId
+      in: path
+      value: $steps.submitGeneration.outputs.workflowId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      firstBlobUrl: $response.body#/steps/0/jobs/0/result/blobs/0/url
+      cost: $response.body#/cost/total
+  outputs:
+    workflowId: $steps.submitGeneration.outputs.workflowId
+    status: $steps.readOutputs.outputs.status
+    firstBlobUrl: $steps.readOutputs.outputs.firstBlobUrl
+    cost: $steps.readOutputs.outputs.cost

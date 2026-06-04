@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: Civitai Identify a Model From a File Hash
+  summary: Resolve a local model file's hash to its model version, then load the parent model.
+  description: >-
+    A common client-side reconciliation pattern. Given the hash of a model file
+    on disk, the workflow looks up the matching model version, then walks back to
+    the parent model for full catalog detail, and finally re-fetches the version
+    to expose the complete file list and AIR identifier. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: civitaiSiteApi
+  url: ../openapi/civitai-site-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: model-version-by-hash
+  summary: Resolve a file hash to a model version and its parent model.
+  description: >-
+    Looks up a model version by file hash, fetches the parent model for catalog
+    context, and reloads the version detail for files and AIR.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - hash
+    properties:
+      apiKey:
+        type: string
+        description: Civitai personal API token used as a Bearer credential.
+      hash:
+        type: string
+        description: AutoV1, AutoV2, SHA256, CRC32, or Blake3 hash of the model file.
+  steps:
+  - stepId: lookupByHash
+    description: >-
+      Resolve the model version that owns the file matching the supplied hash.
+    operationId: getModelVersionByHash
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: hash
+      in: path
+      value: $inputs.hash
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      versionId: $response.body#/id
+      modelId: $response.body#/modelId
+      baseModel: $response.body#/baseModel
+      air: $response.body#/air
+  - stepId: getParentModel
+    description: >-
+      Fetch the parent model for the resolved version to expose name, type,
+      creator, and tags.
+    operationId: getModel
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: id
+      in: path
+      value: $steps.lookupByHash.outputs.modelId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      modelName: $response.body#/name
+      modelType: $response.body#/type
+      creatorUsername: $response.body#/creator/username
+  - stepId: reloadVersion
+    description: >-
+      Reload the model version detail to expose the full file list, hashes, and
+      download URL for the matched file.
+    operationId: getModelVersion
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: id
+      in: path
+      value: $steps.lookupByHash.outputs.versionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      downloadUrl: $response.body#/downloadUrl
+      files: $response.body#/files
+      air: $response.body#/air
+  outputs:
+    versionId: $steps.lookupByHash.outputs.versionId
+    modelId: $steps.lookupByHash.outputs.modelId
+    modelName: $steps.getParentModel.outputs.modelName
+    downloadUrl: $steps.reloadVersion.outputs.downloadUrl
+    air: $steps.reloadVersion.outputs.air

@@ -1,0 +1,152 @@
+arazzo: 1.0.1
+info:
+  title: Civitai Generate From a Catalog Model Version
+  summary: Resolve a catalog model version's AIR, generate an image with it, poll, and read the result.
+  description: >-
+    Bridges the Site catalog and the Orchestration generator. The workflow
+    resolves a model version from the Site API to obtain its AIR identifier, then
+    submits an imageGen workflow on the Orchestration API that references that AIR
+    as the model, polls the workflow to completion, and reads the generated
+    output blob URL. Because operation ids are unique across both specs they are
+    referenced bare, while two source descriptions are declared. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: civitaiSiteApi
+  url: ../openapi/civitai-site-api-openapi.yml
+  type: openapi
+- name: civitaiOrchestrationApi
+  url: ../openapi/civitai-orchestration-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: model-version-to-generation
+  summary: Resolve a model version AIR, generate with it, poll, and read the result.
+  description: >-
+    Fetches a model version from the catalog for its AIR, submits an imageGen
+    workflow using that AIR, polls to completion, and reads the output blob URL.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - modelVersionId
+    - engine
+    - prompt
+    properties:
+      apiKey:
+        type: string
+        description: Civitai personal API token used as a Bearer credential.
+      modelVersionId:
+        type: integer
+        description: The catalog model version id to generate with.
+      engine:
+        type: string
+        description: Generation engine identifier (e.g. flux2, sdxl, sd1).
+      prompt:
+        type: string
+        description: The positive text prompt for the image.
+      quantity:
+        type: integer
+        description: Number of images to generate (1-10).
+  steps:
+  - stepId: resolveVersionAir
+    description: >-
+      Resolve the catalog model version to obtain its AIR identifier and base
+      model for generation.
+    operationId: getModelVersion
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: id
+      in: path
+      value: $inputs.modelVersionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      air: $response.body#/air
+      baseModel: $response.body#/baseModel
+      versionName: $response.body#/name
+  - stepId: submitGeneration
+    description: >-
+      Submit an imageGen workflow that uses the resolved AIR as the model and
+      capture the new workflow id.
+    operationId: submitWorkflow
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        steps:
+        - $type: imageGen
+          name: generate
+          input:
+            engine: $inputs.engine
+            model: $steps.resolveVersionAir.outputs.air
+            prompt: $inputs.prompt
+            quantity: $inputs.quantity
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      workflowId: $response.body#/id
+  - stepId: pollWorkflow
+    description: >-
+      Poll the generation workflow until it reaches a terminal state, looping
+      while still processing and continuing on success.
+    operationId: getWorkflow
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: workflowId
+      in: path
+      value: $steps.submitGeneration.outputs.workflowId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollWorkflow
+      criteria:
+      - context: $response.body
+        condition: $.status == 'processing' || $.status == 'preparing' || $.status == 'unassigned'
+        type: jsonpath
+    - name: finished
+      type: goto
+      stepId: readResult
+      criteria:
+      - context: $response.body
+        condition: $.status == 'succeeded'
+        type: jsonpath
+    - name: failed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == 'failed' || $.status == 'expired' || $.status == 'canceled'
+        type: jsonpath
+  - stepId: readResult
+    description: >-
+      Read the completed workflow and collect the generated output blob URL and
+      Buzz cost.
+    operationId: getWorkflow
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: workflowId
+      in: path
+      value: $steps.submitGeneration.outputs.workflowId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      outputBlobUrl: $response.body#/steps/0/jobs/0/result/blobs/0/url
+      cost: $response.body#/cost/total
+  outputs:
+    air: $steps.resolveVersionAir.outputs.air
+    workflowId: $steps.submitGeneration.outputs.workflowId
+    outputBlobUrl: $steps.readResult.outputs.outputBlobUrl
+    cost: $steps.readResult.outputs.cost
