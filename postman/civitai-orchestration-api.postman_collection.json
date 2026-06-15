@@ -1,0 +1,1530 @@
+{
+  "info": {
+    "_postman_id": "56b6de8d-d394-425d-962c-de15de8794b5",
+    "name": "Civitai Orchestration API",
+    "description": "Submit AI generation workflows \u2014 image, video, audio, language, and LoRA training \u2014 through a single\ncontract. The Orchestration API races multiple providers and engines behind one workflow surface and\ndelivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.\n\n\nContact Support:\n Name: Civitai Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:06:47.000Z",
+    "updatedAt": "2026-06-05T15:06:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-56b6de8d-d394-425d-962c-de15de8794b5"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "consumer",
+          "item": [
+            {
+              "name": "workflows",
+              "item": [
+                {
+                  "name": "{workflowId}",
+                  "item": [
+                    {
+                      "name": "Get Workflow",
+                      "id": "9dacd9a9-8a25-4861-accb-81ca54c22785",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/consumer/workflows/:workflowId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "consumer",
+                            "workflows",
+                            ":workflowId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7c06f502-4881-45b7-b779-0be7ac9c67dd",
+                              "key": "workflowId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "aa16ae26-80b1-4bfc-b685-05bdae6e70ee",
+                          "name": "Workflow status and outputs.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/consumer/workflows/:workflowId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "consumer",
+                                "workflows",
+                                ":workflowId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workflowId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"unassigned\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"createdAt\": \"<dateTime>\",\n  \"startedAt\": \"<dateTime>\",\n  \"completedAt\": \"<dateTime>\",\n  \"cost\": {\n    \"base\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"currency\": \"BUZZ\"\n  },\n  \"steps\": [\n    {\n      \"name\": \"<string>\",\n      \"$type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"completedAt\": \"<dateTime>\",\n      \"jobs\": [\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              },\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              },\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"$type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"completedAt\": \"<dateTime>\",\n      \"jobs\": [\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              },\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              },\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:06:48.000Z",
+                          "updatedAt": "2026-06-05T15:06:48.000Z",
+                          "uid": "35240-aa16ae26-80b1-4bfc-b685-05bdae6e70ee"
+                        },
+                        {
+                          "id": "b3df723a-cdfa-407b-bf88-f81192b70b8e",
+                          "name": "Resource not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/consumer/workflows/:workflowId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "consumer",
+                                "workflows",
+                                ":workflowId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workflowId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"traceId\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:06:48.000Z",
+                          "updatedAt": "2026-06-05T15:06:48.000Z",
+                          "uid": "35240-b3df723a-cdfa-407b-bf88-f81192b70b8e"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:06:48.000Z",
+                      "updatedAt": "2026-06-05T15:06:48.000Z",
+                      "uid": "35240-9dacd9a9-8a25-4861-accb-81ca54c22785"
+                    },
+                    {
+                      "name": "Update Workflow",
+                      "id": "e7154202-af7e-407c-8080-b8bd438a695b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"canceled\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/consumer/workflows/:workflowId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "consumer",
+                            "workflows",
+                            ":workflowId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4d37cf2d-72b8-4f7c-a255-b2a45e9584d5",
+                              "key": "workflowId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "107ed998-8756-49c4-a297-0ac9ab9f2201",
+                          "name": "Updated workflow.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"canceled\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/consumer/workflows/:workflowId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "consumer",
+                                "workflows",
+                                ":workflowId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workflowId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"unassigned\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"createdAt\": \"<dateTime>\",\n  \"startedAt\": \"<dateTime>\",\n  \"completedAt\": \"<dateTime>\",\n  \"cost\": {\n    \"base\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"currency\": \"BUZZ\"\n  },\n  \"steps\": [\n    {\n      \"name\": \"<string>\",\n      \"$type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"completedAt\": \"<dateTime>\",\n      \"jobs\": [\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              },\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              },\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"$type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"completedAt\": \"<dateTime>\",\n      \"jobs\": [\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              },\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              },\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:06:48.000Z",
+                          "updatedAt": "2026-06-05T15:06:48.000Z",
+                          "uid": "35240-107ed998-8756-49c4-a297-0ac9ab9f2201"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:06:48.000Z",
+                      "updatedAt": "2026-06-05T15:06:48.000Z",
+                      "uid": "35240-e7154202-af7e-407c-8080-b8bd438a695b"
+                    },
+                    {
+                      "name": "Patch Workflow",
+                      "id": "2d01992d-9a38-4820-872c-cddf50142f70",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json-patch+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/consumer/workflows/:workflowId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "consumer",
+                            "workflows",
+                            ":workflowId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "47776e4f-df99-4b35-a9ad-9220ef209e7c",
+                              "key": "workflowId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "b9b750d0-5f89-4892-bad5-ba670cf9ba76",
+                          "name": "Patched workflow.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json-patch+json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/consumer/workflows/:workflowId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "consumer",
+                                "workflows",
+                                ":workflowId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workflowId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"unassigned\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"createdAt\": \"<dateTime>\",\n  \"startedAt\": \"<dateTime>\",\n  \"completedAt\": \"<dateTime>\",\n  \"cost\": {\n    \"base\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"currency\": \"BUZZ\"\n  },\n  \"steps\": [\n    {\n      \"name\": \"<string>\",\n      \"$type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"completedAt\": \"<dateTime>\",\n      \"jobs\": [\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              },\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              },\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"$type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"completedAt\": \"<dateTime>\",\n      \"jobs\": [\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              },\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              },\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:06:48.000Z",
+                          "updatedAt": "2026-06-05T15:06:48.000Z",
+                          "uid": "35240-b9b750d0-5f89-4892-bad5-ba670cf9ba76"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:06:48.000Z",
+                      "updatedAt": "2026-06-05T15:06:48.000Z",
+                      "uid": "35240-2d01992d-9a38-4820-872c-cddf50142f70"
+                    },
+                    {
+                      "name": "Delete Workflow",
+                      "id": "ac2388e2-9af9-42f1-8313-e417be82bde9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/consumer/workflows/:workflowId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "consumer",
+                            "workflows",
+                            ":workflowId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "1f1ef0e3-9a44-4c8c-8431-e9a0c360ff19",
+                              "key": "workflowId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "69f6c111-4c8d-4b2e-9301-4a5746675ee2",
+                          "name": "Deleted.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/consumer/workflows/:workflowId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "consumer",
+                                "workflows",
+                                ":workflowId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workflowId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:06:48.000Z",
+                          "updatedAt": "2026-06-05T15:06:48.000Z",
+                          "uid": "35240-69f6c111-4c8d-4b2e-9301-4a5746675ee2"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:06:48.000Z",
+                      "updatedAt": "2026-06-05T15:06:48.000Z",
+                      "uid": "35240-ac2388e2-9af9-42f1-8313-e417be82bde9"
+                    }
+                  ],
+                  "id": "8f518f69-805e-4d63-a886-e524e26fbd26",
+                  "createdAt": "2026-06-05T15:06:48.000Z",
+                  "updatedAt": "2026-06-05T15:06:48.000Z",
+                  "uid": "35240-8f518f69-805e-4d63-a886-e524e26fbd26"
+                },
+                {
+                  "name": "Submit Workflow",
+                  "id": "a483248b-83be-45f6-b4f6-bd4b37f29f4a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"steps\": [\n    {\n      \"$type\": \"comfy\",\n      \"input\": {\n        \"engine\": \"<string>\",\n        \"model\": \"<string>\",\n        \"prompt\": \"<string>\",\n        \"negativePrompt\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"aspectRatio\": \"<string>\",\n        \"steps\": \"<integer>\",\n        \"cfgScale\": \"<number>\",\n        \"sampler\": \"<string>\",\n        \"seed\": \"<integer>\",\n        \"clipSkip\": \"<integer>\",\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          },\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          }\n        ],\n        \"images\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"duration\": \"<number>\",\n        \"fps\": \"<integer>\",\n        \"upscaler\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"priority\": \"high\"\n    },\n    {\n      \"$type\": \"videoGen\",\n      \"input\": {\n        \"engine\": \"<string>\",\n        \"model\": \"<string>\",\n        \"prompt\": \"<string>\",\n        \"negativePrompt\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"aspectRatio\": \"<string>\",\n        \"steps\": \"<integer>\",\n        \"cfgScale\": \"<number>\",\n        \"sampler\": \"<string>\",\n        \"seed\": \"<integer>\",\n        \"clipSkip\": \"<integer>\",\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          },\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          }\n        ],\n        \"images\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"duration\": \"<number>\",\n        \"fps\": \"<integer>\",\n        \"upscaler\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"priority\": \"low\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"callbackUrl\": \"<uri>\",\n  \"callbackEvents\": [\n    \"workflow:succeeded\",\n    \"job:*\"\n  ],\n  \"detailed\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/consumer/workflows",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "consumer",
+                        "workflows"
+                      ]
+                    },
+                    "description": "Submit a new workflow composed of one or more steps. Each step references a recipe such as an image, video, audio, or training generator."
+                  },
+                  "response": [
+                    {
+                      "id": "e48a9923-56d0-409d-9014-df23940cbb24",
+                      "name": "Workflow accepted for processing.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"steps\": [\n    {\n      \"$type\": \"comfy\",\n      \"input\": {\n        \"engine\": \"<string>\",\n        \"model\": \"<string>\",\n        \"prompt\": \"<string>\",\n        \"negativePrompt\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"aspectRatio\": \"<string>\",\n        \"steps\": \"<integer>\",\n        \"cfgScale\": \"<number>\",\n        \"sampler\": \"<string>\",\n        \"seed\": \"<integer>\",\n        \"clipSkip\": \"<integer>\",\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          },\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          }\n        ],\n        \"images\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"duration\": \"<number>\",\n        \"fps\": \"<integer>\",\n        \"upscaler\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"priority\": \"high\"\n    },\n    {\n      \"$type\": \"videoGen\",\n      \"input\": {\n        \"engine\": \"<string>\",\n        \"model\": \"<string>\",\n        \"prompt\": \"<string>\",\n        \"negativePrompt\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"aspectRatio\": \"<string>\",\n        \"steps\": \"<integer>\",\n        \"cfgScale\": \"<number>\",\n        \"sampler\": \"<string>\",\n        \"seed\": \"<integer>\",\n        \"clipSkip\": \"<integer>\",\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          },\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          }\n        ],\n        \"images\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"duration\": \"<number>\",\n        \"fps\": \"<integer>\",\n        \"upscaler\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"priority\": \"low\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"callbackUrl\": \"<uri>\",\n  \"callbackEvents\": [\n    \"workflow:succeeded\",\n    \"job:*\"\n  ],\n  \"detailed\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/consumer/workflows",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "consumer",
+                            "workflows"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"unassigned\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"createdAt\": \"<dateTime>\",\n  \"startedAt\": \"<dateTime>\",\n  \"completedAt\": \"<dateTime>\",\n  \"cost\": {\n    \"base\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"currency\": \"BUZZ\"\n  },\n  \"steps\": [\n    {\n      \"name\": \"<string>\",\n      \"$type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"completedAt\": \"<dateTime>\",\n      \"jobs\": [\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              },\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              },\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"$type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"completedAt\": \"<dateTime>\",\n      \"jobs\": [\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              },\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              },\n              {\n                \"blobId\": \"<string>\",\n                \"url\": \"<uri>\",\n                \"mimeType\": \"<string>\",\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\",\n                \"durationMs\": \"<integer>\",\n                \"nsfwLevel\": \"<integer>\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:06:48.000Z",
+                      "updatedAt": "2026-06-05T15:06:48.000Z",
+                      "uid": "35240-e48a9923-56d0-409d-9014-df23940cbb24"
+                    },
+                    {
+                      "id": "25fd7444-541c-4c41-91a8-9f684ee9af98",
+                      "name": "Invalid request.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"steps\": [\n    {\n      \"$type\": \"comfy\",\n      \"input\": {\n        \"engine\": \"<string>\",\n        \"model\": \"<string>\",\n        \"prompt\": \"<string>\",\n        \"negativePrompt\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"aspectRatio\": \"<string>\",\n        \"steps\": \"<integer>\",\n        \"cfgScale\": \"<number>\",\n        \"sampler\": \"<string>\",\n        \"seed\": \"<integer>\",\n        \"clipSkip\": \"<integer>\",\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          },\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          }\n        ],\n        \"images\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"duration\": \"<number>\",\n        \"fps\": \"<integer>\",\n        \"upscaler\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"priority\": \"high\"\n    },\n    {\n      \"$type\": \"videoGen\",\n      \"input\": {\n        \"engine\": \"<string>\",\n        \"model\": \"<string>\",\n        \"prompt\": \"<string>\",\n        \"negativePrompt\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"aspectRatio\": \"<string>\",\n        \"steps\": \"<integer>\",\n        \"cfgScale\": \"<number>\",\n        \"sampler\": \"<string>\",\n        \"seed\": \"<integer>\",\n        \"clipSkip\": \"<integer>\",\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          },\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          }\n        ],\n        \"images\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"duration\": \"<number>\",\n        \"fps\": \"<integer>\",\n        \"upscaler\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"priority\": \"low\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"callbackUrl\": \"<uri>\",\n  \"callbackEvents\": [\n    \"workflow:succeeded\",\n    \"job:*\"\n  ],\n  \"detailed\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/consumer/workflows",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "consumer",
+                            "workflows"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"traceId\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:06:48.000Z",
+                      "updatedAt": "2026-06-05T15:06:48.000Z",
+                      "uid": "35240-25fd7444-541c-4c41-91a8-9f684ee9af98"
+                    },
+                    {
+                      "id": "d1881066-491f-40a3-a918-10c660ea9c82",
+                      "name": "Missing or invalid bearer token.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"steps\": [\n    {\n      \"$type\": \"comfy\",\n      \"input\": {\n        \"engine\": \"<string>\",\n        \"model\": \"<string>\",\n        \"prompt\": \"<string>\",\n        \"negativePrompt\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"aspectRatio\": \"<string>\",\n        \"steps\": \"<integer>\",\n        \"cfgScale\": \"<number>\",\n        \"sampler\": \"<string>\",\n        \"seed\": \"<integer>\",\n        \"clipSkip\": \"<integer>\",\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          },\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          }\n        ],\n        \"images\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"duration\": \"<number>\",\n        \"fps\": \"<integer>\",\n        \"upscaler\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"priority\": \"high\"\n    },\n    {\n      \"$type\": \"videoGen\",\n      \"input\": {\n        \"engine\": \"<string>\",\n        \"model\": \"<string>\",\n        \"prompt\": \"<string>\",\n        \"negativePrompt\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"aspectRatio\": \"<string>\",\n        \"steps\": \"<integer>\",\n        \"cfgScale\": \"<number>\",\n        \"sampler\": \"<string>\",\n        \"seed\": \"<integer>\",\n        \"clipSkip\": \"<integer>\",\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          },\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          }\n        ],\n        \"images\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"duration\": \"<number>\",\n        \"fps\": \"<integer>\",\n        \"upscaler\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"priority\": \"low\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"callbackUrl\": \"<uri>\",\n  \"callbackEvents\": [\n    \"workflow:succeeded\",\n    \"job:*\"\n  ],\n  \"detailed\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/consumer/workflows",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "consumer",
+                            "workflows"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"traceId\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:06:48.000Z",
+                      "updatedAt": "2026-06-05T15:06:48.000Z",
+                      "uid": "35240-d1881066-491f-40a3-a918-10c660ea9c82"
+                    },
+                    {
+                      "id": "c67fa7bc-ba0e-435e-813b-4229521827dc",
+                      "name": "Insufficient Buzz balance.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"steps\": [\n    {\n      \"$type\": \"comfy\",\n      \"input\": {\n        \"engine\": \"<string>\",\n        \"model\": \"<string>\",\n        \"prompt\": \"<string>\",\n        \"negativePrompt\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"aspectRatio\": \"<string>\",\n        \"steps\": \"<integer>\",\n        \"cfgScale\": \"<number>\",\n        \"sampler\": \"<string>\",\n        \"seed\": \"<integer>\",\n        \"clipSkip\": \"<integer>\",\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          },\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          }\n        ],\n        \"images\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"duration\": \"<number>\",\n        \"fps\": \"<integer>\",\n        \"upscaler\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"priority\": \"high\"\n    },\n    {\n      \"$type\": \"videoGen\",\n      \"input\": {\n        \"engine\": \"<string>\",\n        \"model\": \"<string>\",\n        \"prompt\": \"<string>\",\n        \"negativePrompt\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"aspectRatio\": \"<string>\",\n        \"steps\": \"<integer>\",\n        \"cfgScale\": \"<number>\",\n        \"sampler\": \"<string>\",\n        \"seed\": \"<integer>\",\n        \"clipSkip\": \"<integer>\",\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          },\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          }\n        ],\n        \"images\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"duration\": \"<number>\",\n        \"fps\": \"<integer>\",\n        \"upscaler\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"priority\": \"low\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"callbackUrl\": \"<uri>\",\n  \"callbackEvents\": [\n    \"workflow:succeeded\",\n    \"job:*\"\n  ],\n  \"detailed\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/consumer/workflows",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "consumer",
+                            "workflows"
+                          ]
+                        }
+                      },
+                      "status": "Payment Required",
+                      "code": 402,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"traceId\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:06:48.000Z",
+                      "updatedAt": "2026-06-05T15:06:48.000Z",
+                      "uid": "35240-c67fa7bc-ba0e-435e-813b-4229521827dc"
+                    },
+                    {
+                      "id": "c3263a74-56c1-41f8-a0c5-7e11cdf7fad2",
+                      "name": "Too many requests.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"steps\": [\n    {\n      \"$type\": \"comfy\",\n      \"input\": {\n        \"engine\": \"<string>\",\n        \"model\": \"<string>\",\n        \"prompt\": \"<string>\",\n        \"negativePrompt\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"aspectRatio\": \"<string>\",\n        \"steps\": \"<integer>\",\n        \"cfgScale\": \"<number>\",\n        \"sampler\": \"<string>\",\n        \"seed\": \"<integer>\",\n        \"clipSkip\": \"<integer>\",\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          },\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          }\n        ],\n        \"images\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"duration\": \"<number>\",\n        \"fps\": \"<integer>\",\n        \"upscaler\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"priority\": \"high\"\n    },\n    {\n      \"$type\": \"videoGen\",\n      \"input\": {\n        \"engine\": \"<string>\",\n        \"model\": \"<string>\",\n        \"prompt\": \"<string>\",\n        \"negativePrompt\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"aspectRatio\": \"<string>\",\n        \"steps\": \"<integer>\",\n        \"cfgScale\": \"<number>\",\n        \"sampler\": \"<string>\",\n        \"seed\": \"<integer>\",\n        \"clipSkip\": \"<integer>\",\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          },\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          }\n        ],\n        \"images\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"duration\": \"<number>\",\n        \"fps\": \"<integer>\",\n        \"upscaler\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"priority\": \"low\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"callbackUrl\": \"<uri>\",\n  \"callbackEvents\": [\n    \"workflow:succeeded\",\n    \"job:*\"\n  ],\n  \"detailed\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/consumer/workflows",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "consumer",
+                            "workflows"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"traceId\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:06:48.000Z",
+                      "updatedAt": "2026-06-05T15:06:48.000Z",
+                      "uid": "35240-c3263a74-56c1-41f8-a0c5-7e11cdf7fad2"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:06:48.000Z",
+                  "updatedAt": "2026-06-05T15:06:48.000Z",
+                  "uid": "35240-a483248b-83be-45f6-b4f6-bd4b37f29f4a"
+                },
+                {
+                  "name": "Query Workflows",
+                  "id": "b672f9aa-be26-4641-8d5a-48323b68357c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/consumer/workflows?take=20&cursor=<string>&tags=<string>&tags=<string>&status=canceled",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "consumer",
+                        "workflows"
+                      ],
+                      "query": [
+                        {
+                          "key": "take",
+                          "value": "20"
+                        },
+                        {
+                          "key": "cursor",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "tags",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "tags",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "canceled"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "07c2cc15-60d4-4817-a6d6-7593ced3f0d8",
+                      "name": "Page of workflows.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/consumer/workflows?take=20&cursor=<string>&tags=<string>&status=canceled",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "consumer",
+                            "workflows"
+                          ],
+                          "query": [
+                            {
+                              "key": "take",
+                              "value": "20"
+                            },
+                            {
+                              "key": "cursor",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "tags",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "status",
+                              "value": "canceled"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"status\": \"canceled\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"createdAt\": \"<dateTime>\",\n      \"startedAt\": \"<dateTime>\",\n      \"completedAt\": \"<dateTime>\",\n      \"cost\": {\n        \"base\": \"<integer>\",\n        \"total\": \"<integer>\",\n        \"currency\": \"BUZZ\"\n      },\n      \"steps\": [\n        {\n          \"name\": \"<string>\",\n          \"$type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"jobs\": [\n            {\n              \"id\": \"<string>\",\n              \"status\": \"<string>\",\n              \"startedAt\": \"<dateTime>\",\n              \"completedAt\": \"<dateTime>\",\n              \"result\": {\n                \"blobs\": [\n                  {\n                    \"blobId\": \"<string>\",\n                    \"url\": \"<uri>\",\n                    \"mimeType\": \"<string>\",\n                    \"width\": \"<integer>\",\n                    \"height\": \"<integer>\",\n                    \"durationMs\": \"<integer>\",\n                    \"nsfwLevel\": \"<integer>\"\n                  },\n                  {\n                    \"blobId\": \"<string>\",\n                    \"url\": \"<uri>\",\n                    \"mimeType\": \"<string>\",\n                    \"width\": \"<integer>\",\n                    \"height\": \"<integer>\",\n                    \"durationMs\": \"<integer>\",\n                    \"nsfwLevel\": \"<integer>\"\n                  }\n                ]\n              }\n            },\n            {\n              \"id\": \"<string>\",\n              \"status\": \"<string>\",\n              \"startedAt\": \"<dateTime>\",\n              \"completedAt\": \"<dateTime>\",\n              \"result\": {\n                \"blobs\": [\n                  {\n                    \"blobId\": \"<string>\",\n                    \"url\": \"<uri>\",\n                    \"mimeType\": \"<string>\",\n                    \"width\": \"<integer>\",\n                    \"height\": \"<integer>\",\n                    \"durationMs\": \"<integer>\",\n                    \"nsfwLevel\": \"<integer>\"\n                  },\n                  {\n                    \"blobId\": \"<string>\",\n                    \"url\": \"<uri>\",\n                    \"mimeType\": \"<string>\",\n                    \"width\": \"<integer>\",\n                    \"height\": \"<integer>\",\n                    \"durationMs\": \"<integer>\",\n                    \"nsfwLevel\": \"<integer>\"\n                  }\n                ]\n              }\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"$type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"jobs\": [\n            {\n              \"id\": \"<string>\",\n              \"status\": \"<string>\",\n              \"startedAt\": \"<dateTime>\",\n              \"completedAt\": \"<dateTime>\",\n              \"result\": {\n                \"blobs\": [\n                  {\n                    \"blobId\": \"<string>\",\n                    \"url\": \"<uri>\",\n                    \"mimeType\": \"<string>\",\n                    \"width\": \"<integer>\",\n                    \"height\": \"<integer>\",\n                    \"durationMs\": \"<integer>\",\n                    \"nsfwLevel\": \"<integer>\"\n                  },\n                  {\n                    \"blobId\": \"<string>\",\n                    \"url\": \"<uri>\",\n                    \"mimeType\": \"<string>\",\n                    \"width\": \"<integer>\",\n                    \"height\": \"<integer>\",\n                    \"durationMs\": \"<integer>\",\n                    \"nsfwLevel\": \"<integer>\"\n                  }\n                ]\n              }\n            },\n            {\n              \"id\": \"<string>\",\n              \"status\": \"<string>\",\n              \"startedAt\": \"<dateTime>\",\n              \"completedAt\": \"<dateTime>\",\n              \"result\": {\n                \"blobs\": [\n                  {\n                    \"blobId\": \"<string>\",\n                    \"url\": \"<uri>\",\n                    \"mimeType\": \"<string>\",\n                    \"width\": \"<integer>\",\n                    \"height\": \"<integer>\",\n                    \"durationMs\": \"<integer>\",\n                    \"nsfwLevel\": \"<integer>\"\n                  },\n                  {\n                    \"blobId\": \"<string>\",\n                    \"url\": \"<uri>\",\n                    \"mimeType\": \"<string>\",\n                    \"width\": \"<integer>\",\n                    \"height\": \"<integer>\",\n                    \"durationMs\": \"<integer>\",\n                    \"nsfwLevel\": \"<integer>\"\n                  }\n                ]\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"status\": \"failed\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"createdAt\": \"<dateTime>\",\n      \"startedAt\": \"<dateTime>\",\n      \"completedAt\": \"<dateTime>\",\n      \"cost\": {\n        \"base\": \"<integer>\",\n        \"total\": \"<integer>\",\n        \"currency\": \"BUZZ\"\n      },\n      \"steps\": [\n        {\n          \"name\": \"<string>\",\n          \"$type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"jobs\": [\n            {\n              \"id\": \"<string>\",\n              \"status\": \"<string>\",\n              \"startedAt\": \"<dateTime>\",\n              \"completedAt\": \"<dateTime>\",\n              \"result\": {\n                \"blobs\": [\n                  {\n                    \"blobId\": \"<string>\",\n                    \"url\": \"<uri>\",\n                    \"mimeType\": \"<string>\",\n                    \"width\": \"<integer>\",\n                    \"height\": \"<integer>\",\n                    \"durationMs\": \"<integer>\",\n                    \"nsfwLevel\": \"<integer>\"\n                  },\n                  {\n                    \"blobId\": \"<string>\",\n                    \"url\": \"<uri>\",\n                    \"mimeType\": \"<string>\",\n                    \"width\": \"<integer>\",\n                    \"height\": \"<integer>\",\n                    \"durationMs\": \"<integer>\",\n                    \"nsfwLevel\": \"<integer>\"\n                  }\n                ]\n              }\n            },\n            {\n              \"id\": \"<string>\",\n              \"status\": \"<string>\",\n              \"startedAt\": \"<dateTime>\",\n              \"completedAt\": \"<dateTime>\",\n              \"result\": {\n                \"blobs\": [\n                  {\n                    \"blobId\": \"<string>\",\n                    \"url\": \"<uri>\",\n                    \"mimeType\": \"<string>\",\n                    \"width\": \"<integer>\",\n                    \"height\": \"<integer>\",\n                    \"durationMs\": \"<integer>\",\n                    \"nsfwLevel\": \"<integer>\"\n                  },\n                  {\n                    \"blobId\": \"<string>\",\n                    \"url\": \"<uri>\",\n                    \"mimeType\": \"<string>\",\n                    \"width\": \"<integer>\",\n                    \"height\": \"<integer>\",\n                    \"durationMs\": \"<integer>\",\n                    \"nsfwLevel\": \"<integer>\"\n                  }\n                ]\n              }\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"$type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startedAt\": \"<dateTime>\",\n          \"completedAt\": \"<dateTime>\",\n          \"jobs\": [\n            {\n              \"id\": \"<string>\",\n              \"status\": \"<string>\",\n              \"startedAt\": \"<dateTime>\",\n              \"completedAt\": \"<dateTime>\",\n              \"result\": {\n                \"blobs\": [\n                  {\n                    \"blobId\": \"<string>\",\n                    \"url\": \"<uri>\",\n                    \"mimeType\": \"<string>\",\n                    \"width\": \"<integer>\",\n                    \"height\": \"<integer>\",\n                    \"durationMs\": \"<integer>\",\n                    \"nsfwLevel\": \"<integer>\"\n                  },\n                  {\n                    \"blobId\": \"<string>\",\n                    \"url\": \"<uri>\",\n                    \"mimeType\": \"<string>\",\n                    \"width\": \"<integer>\",\n                    \"height\": \"<integer>\",\n                    \"durationMs\": \"<integer>\",\n                    \"nsfwLevel\": \"<integer>\"\n                  }\n                ]\n              }\n            },\n            {\n              \"id\": \"<string>\",\n              \"status\": \"<string>\",\n              \"startedAt\": \"<dateTime>\",\n              \"completedAt\": \"<dateTime>\",\n              \"result\": {\n                \"blobs\": [\n                  {\n                    \"blobId\": \"<string>\",\n                    \"url\": \"<uri>\",\n                    \"mimeType\": \"<string>\",\n                    \"width\": \"<integer>\",\n                    \"height\": \"<integer>\",\n                    \"durationMs\": \"<integer>\",\n                    \"nsfwLevel\": \"<integer>\"\n                  },\n                  {\n                    \"blobId\": \"<string>\",\n                    \"url\": \"<uri>\",\n                    \"mimeType\": \"<string>\",\n                    \"width\": \"<integer>\",\n                    \"height\": \"<integer>\",\n                    \"durationMs\": \"<integer>\",\n                    \"nsfwLevel\": \"<integer>\"\n                  }\n                ]\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"nextCursor\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:06:48.000Z",
+                      "updatedAt": "2026-06-05T15:06:48.000Z",
+                      "uid": "35240-07c2cc15-60d4-4817-a6d6-7593ced3f0d8"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:06:48.000Z",
+                  "updatedAt": "2026-06-05T15:06:48.000Z",
+                  "uid": "35240-b672f9aa-be26-4641-8d5a-48323b68357c"
+                }
+              ],
+              "id": "5fb1c1a6-e561-4a43-9510-ed2826667453",
+              "createdAt": "2026-06-05T15:06:48.000Z",
+              "updatedAt": "2026-06-05T15:06:48.000Z",
+              "uid": "35240-5fb1c1a6-e561-4a43-9510-ed2826667453"
+            },
+            {
+              "name": "blobs",
+              "item": [
+                {
+                  "name": "upload-url",
+                  "item": [
+                    {
+                      "name": "Get Blob Upload URL",
+                      "id": "512585fb-cc93-4677-98f6-f233946d194c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/consumer/blobs/upload-url?mimeType=<string>&sizeBytes=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "consumer",
+                            "blobs",
+                            "upload-url"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "mimeType",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "sizeBytes",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "cd1ccd77-5c58-4a77-90f7-28355703f222",
+                          "name": "Presigned upload URL.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/consumer/blobs/upload-url?mimeType=<string>&sizeBytes=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "consumer",
+                                "blobs",
+                                "upload-url"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "mimeType",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "sizeBytes",
+                                  "value": "<integer>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"blobId\": \"<string>\",\n  \"uploadUrl\": \"<uri>\",\n  \"expiresAt\": \"<dateTime>\",\n  \"headers\": {\n    \"ut_bd\": \"<string>\",\n    \"in_df\": \"<string>\",\n    \"proidenta5\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-06-05T15:06:48.000Z",
+                          "updatedAt": "2026-06-05T15:06:48.000Z",
+                          "uid": "35240-cd1ccd77-5c58-4a77-90f7-28355703f222"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:06:48.000Z",
+                      "updatedAt": "2026-06-05T15:06:48.000Z",
+                      "uid": "35240-512585fb-cc93-4677-98f6-f233946d194c"
+                    }
+                  ],
+                  "id": "54275f2c-19c2-4e81-a61e-e863679e3f10",
+                  "createdAt": "2026-06-05T15:06:48.000Z",
+                  "updatedAt": "2026-06-05T15:06:48.000Z",
+                  "uid": "35240-54275f2c-19c2-4e81-a61e-e863679e3f10"
+                },
+                {
+                  "name": "{blobId}",
+                  "item": [
+                    {
+                      "name": "refresh",
+                      "item": [
+                        {
+                          "name": "Refresh Blob URL",
+                          "id": "43eb0737-bed7-4560-896b-6cf651bdfca2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/consumer/blobs/:blobId/refresh",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "consumer",
+                                "blobs",
+                                ":blobId",
+                                "refresh"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "dd6ecba1-8e23-4edc-9f5a-8e95b839603a",
+                                  "key": "blobId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "4135895a-2fcc-4f02-8667-497d74075638",
+                              "name": "Refreshed blob with new signed URL.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/consumer/blobs/:blobId/refresh",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "consumer",
+                                    "blobs",
+                                    ":blobId",
+                                    "refresh"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "blobId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"mimeType\": \"<string>\",\n  \"sizeBytes\": \"<integer>\",\n  \"url\": \"<uri>\",\n  \"urlExpiresAt\": \"<dateTime>\",\n  \"sha256\": \"<string>\",\n  \"nsfwLevel\": \"<integer>\",\n  \"nsfwReason\": \"<string>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-06-05T15:06:48.000Z",
+                              "updatedAt": "2026-06-05T15:06:48.000Z",
+                              "uid": "35240-4135895a-2fcc-4f02-8667-497d74075638"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:06:48.000Z",
+                          "updatedAt": "2026-06-05T15:06:48.000Z",
+                          "uid": "35240-43eb0737-bed7-4560-896b-6cf651bdfca2"
+                        }
+                      ],
+                      "id": "a67ae973-4469-4b8e-b2a9-7ae0a7212a60",
+                      "createdAt": "2026-06-05T15:06:48.000Z",
+                      "updatedAt": "2026-06-05T15:06:48.000Z",
+                      "uid": "35240-a67ae973-4469-4b8e-b2a9-7ae0a7212a60"
+                    },
+                    {
+                      "name": "Get Blob",
+                      "id": "5540780e-48ad-4c06-9fe6-31a59addcea2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/consumer/blobs/:blobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "consumer",
+                            "blobs",
+                            ":blobId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9bd9b0ae-9afa-40f6-afce-c725381448a4",
+                              "key": "blobId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "5cc517ac-24e4-476c-95dd-3ee3bb19f632",
+                          "name": "Blob metadata and download URL.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/consumer/blobs/:blobId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "consumer",
+                                "blobs",
+                                ":blobId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "blobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"mimeType\": \"<string>\",\n  \"sizeBytes\": \"<integer>\",\n  \"url\": \"<uri>\",\n  \"urlExpiresAt\": \"<dateTime>\",\n  \"sha256\": \"<string>\",\n  \"nsfwLevel\": \"<integer>\",\n  \"nsfwReason\": \"<string>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:06:48.000Z",
+                          "updatedAt": "2026-06-05T15:06:48.000Z",
+                          "uid": "35240-5cc517ac-24e4-476c-95dd-3ee3bb19f632"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:06:48.000Z",
+                      "updatedAt": "2026-06-05T15:06:48.000Z",
+                      "uid": "35240-5540780e-48ad-4c06-9fe6-31a59addcea2"
+                    },
+                    {
+                      "name": "Head Blob",
+                      "id": "c19aca69-b4b6-49fa-a914-8b8a4af7dcd0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "HEAD",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/consumer/blobs/:blobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "consumer",
+                            "blobs",
+                            ":blobId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "21a18ad9-6212-433c-b19c-d9a6fb385932",
+                              "key": "blobId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Check blob existence and moderation status without downloading metadata."
+                      },
+                      "response": [
+                        {
+                          "id": "52c5fb1d-fbc9-4be6-a47f-f0fbf7069f3b",
+                          "name": "Blob exists.",
+                          "originalRequest": {
+                            "method": "HEAD",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/consumer/blobs/:blobId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "consumer",
+                                "blobs",
+                                ":blobId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "blobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:06:48.000Z",
+                          "updatedAt": "2026-06-05T15:06:48.000Z",
+                          "uid": "35240-52c5fb1d-fbc9-4be6-a47f-f0fbf7069f3b"
+                        },
+                        {
+                          "id": "79dff82a-4d05-4d12-af47-afb133768912",
+                          "name": "Blob not found.",
+                          "originalRequest": {
+                            "method": "HEAD",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/consumer/blobs/:blobId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "consumer",
+                                "blobs",
+                                ":blobId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "blobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:06:48.000Z",
+                          "updatedAt": "2026-06-05T15:06:48.000Z",
+                          "uid": "35240-79dff82a-4d05-4d12-af47-afb133768912"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:06:48.000Z",
+                      "updatedAt": "2026-06-05T15:06:48.000Z",
+                      "uid": "35240-c19aca69-b4b6-49fa-a914-8b8a4af7dcd0"
+                    }
+                  ],
+                  "id": "f2c15931-0bc8-484b-a201-af913e81aa37",
+                  "createdAt": "2026-06-05T15:06:48.000Z",
+                  "updatedAt": "2026-06-05T15:06:48.000Z",
+                  "uid": "35240-f2c15931-0bc8-484b-a201-af913e81aa37"
+                },
+                {
+                  "name": "Upload Blob",
+                  "id": "4494fb53-a6e7-4419-8fb8-24cbb9174c0a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) ",
+                          "key": "file",
+                          "type": "file",
+                          "value": null
+                        },
+                        {
+                          "key": "moderate",
+                          "value": "true",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/consumer/blobs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "consumer",
+                        "blobs"
+                      ]
+                    },
+                    "description": "Upload a blob (image, video, audio) with built-in NSFW moderation."
+                  },
+                  "response": [
+                    {
+                      "id": "60303945-7a0b-41d4-b32c-92e581157d42",
+                      "name": "Uploaded blob.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required) ",
+                              "key": "file",
+                              "type": "file"
+                            },
+                            {
+                              "key": "moderate",
+                              "value": "true",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/consumer/blobs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "consumer",
+                            "blobs"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"mimeType\": \"<string>\",\n  \"sizeBytes\": \"<integer>\",\n  \"url\": \"<uri>\",\n  \"urlExpiresAt\": \"<dateTime>\",\n  \"sha256\": \"<string>\",\n  \"nsfwLevel\": \"<integer>\",\n  \"nsfwReason\": \"<string>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T15:06:48.000Z",
+                      "updatedAt": "2026-06-05T15:06:48.000Z",
+                      "uid": "35240-60303945-7a0b-41d4-b32c-92e581157d42"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:06:48.000Z",
+                  "updatedAt": "2026-06-05T15:06:48.000Z",
+                  "uid": "35240-4494fb53-a6e7-4419-8fb8-24cbb9174c0a"
+                }
+              ],
+              "id": "b6b53131-8fc6-4ddd-a7b1-66c711f5d0af",
+              "createdAt": "2026-06-05T15:06:48.000Z",
+              "updatedAt": "2026-06-05T15:06:48.000Z",
+              "uid": "35240-b6b53131-8fc6-4ddd-a7b1-66c711f5d0af"
+            }
+          ],
+          "id": "08ed198e-2679-40d2-a665-875c814f7948",
+          "createdAt": "2026-06-05T15:06:48.000Z",
+          "updatedAt": "2026-06-05T15:06:48.000Z",
+          "uid": "35240-08ed198e-2679-40d2-a665-875c814f7948"
+        }
+      ],
+      "id": "5fd46760-03e9-4e65-9971-d3cf3eefd407",
+      "createdAt": "2026-06-05T15:06:48.000Z",
+      "updatedAt": "2026-06-05T15:06:48.000Z",
+      "uid": "35240-5fd46760-03e9-4e65-9971-d3cf3eefd407"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://orchestration.civitai.com"
+    }
+  ]
+}

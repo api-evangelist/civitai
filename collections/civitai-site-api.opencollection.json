@@ -1,0 +1,510 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Civitai Site API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://civitai.com/api/v1/models",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nsfw",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Models"
+        },
+        {
+          "info": {
+            "name": "Get Model",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://civitai.com/api/v1/models/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Model"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ModelVersions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Model Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://civitai.com/api/v1/model-versions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Model Version"
+        },
+        {
+          "info": {
+            "name": "Get Model Version Mini",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://civitai.com/api/v1/model-versions/mini/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lightweight model-version payload optimized for client tools."
+        },
+        {
+          "info": {
+            "name": "Get Model Version By Hash",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://civitai.com/api/v1/model-versions/by-hash/:hash",
+            "params": [
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "AutoV1, AutoV2, SHA256, CRC32, or Blake3 hash of the model file."
+              }
+            ]
+          },
+          "docs": "Get Model Version By Hash"
+        },
+        {
+          "info": {
+            "name": "Get Model Versions By Hashes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://civitai.com/api/v1/model-versions/by-hash",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get Model Versions By Hashes"
+        },
+        {
+          "info": {
+            "name": "Get Model Version IDs By Hashes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://civitai.com/api/v1/model-versions/by-hash/ids",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get Model Version IDs By Hashes"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://civitai.com/api/v1/images",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "postId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "modelVersionId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nsfw",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Images"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Creators",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Creators",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://civitai.com/api/v1/creators",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Creators"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://civitai.com/api/v1/tags",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Tags"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Current User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://civitai.com/api/v1/me",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Current User"
+        },
+        {
+          "info": {
+            "name": "List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://civitai.com/api/v1/users",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Users"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://civitai.com/api/v1/permissions/check",
+            "params": [
+              {
+                "name": "entityType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Check Permissions"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Vault",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Vault Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://civitai.com/api/v1/vault/get",
+            "params": [
+              {
+                "name": "modelVersionId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Vault Item"
+        },
+        {
+          "info": {
+            "name": "Get All Vault Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://civitai.com/api/v1/vault/all",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get All Vault Items"
+        },
+        {
+          "info": {
+            "name": "Check Vault Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://civitai.com/api/v1/vault/check-vault",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Check Vault Status"
+        },
+        {
+          "info": {
+            "name": "Toggle Vault Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://civitai.com/api/v1/vault/toggle-version",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Toggle Vault Version"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Enums",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Enums",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://civitai.com/api/v1/enums"
+          },
+          "docs": "Get Enums"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

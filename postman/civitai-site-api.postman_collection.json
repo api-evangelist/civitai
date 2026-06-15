@@ -1,0 +1,2366 @@
+{
+  "info": {
+    "_postman_id": "d25b000b-34fe-4cf4-8c51-ea25a54faeed",
+    "name": "Civitai Site API",
+    "description": "Browse and search the Civitai public catalog of Stable Diffusion, SDXL, Flux, and video models.\nExposes models, model versions, images, creators, tags, users, permissions, and the user vault.\nPublic read endpoints are cached; authenticated endpoints are not. Authenticate with a personal\nAPI key issued at civitai.com using a Bearer token.\n\n\nContact Support:\n Name: Civitai Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:06:46.000Z",
+    "updatedAt": "2026-06-05T15:06:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d25b000b-34fe-4cf4-8c51-ea25a54faeed"
+  },
+  "item": [
+    {
+      "name": "models",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Get Model",
+              "id": "866723c0-ae3a-4ec1-9251-78b7fd5129de",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/models/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "models",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e902ebf6-d781-4427-ab91-3f09a63140a9",
+                      "key": "id",
+                      "value": "<integer>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "06a4a965-2960-46f5-b700-bc6753beb7f0",
+                  "name": "Model detail.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/models/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "models",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"LoCon\",\n  \"nsfw\": \"<boolean>\",\n  \"nsfwLevel\": \"<integer>\",\n  \"allowNoCredit\": \"<boolean>\",\n  \"allowCommercialUse\": [\n    \"Rent\",\n    \"Rent\"\n  ],\n  \"allowDerivatives\": \"<boolean>\",\n  \"allowDifferentLicense\": \"<boolean>\",\n  \"stats\": {\n    \"downloadCount\": \"<integer>\",\n    \"favoriteCount\": \"<integer>\",\n    \"commentCount\": \"<integer>\",\n    \"ratingCount\": \"<integer>\",\n    \"rating\": \"<number>\",\n    \"thumbsUpCount\": \"<integer>\",\n    \"thumbsDownCount\": \"<integer>\"\n  },\n  \"creator\": {\n    \"username\": \"<string>\",\n    \"image\": \"<uri>\",\n    \"modelCount\": \"<integer>\",\n    \"link\": \"<uri>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"modelVersions\": [\n    {\n      \"id\": \"<integer>\",\n      \"modelId\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"baseModel\": \"<string>\",\n      \"baseModelType\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"publishedAt\": \"<dateTime>\",\n      \"trainedWords\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"air\": \"<string>\",\n      \"downloadUrl\": \"<uri>\",\n      \"files\": [\n        {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"sizeKB\": \"<number>\",\n          \"type\": \"VAE\",\n          \"format\": \"SafeTensor\",\n          \"pickleScanResult\": \"<string>\",\n          \"virusScanResult\": \"<string>\",\n          \"scannedAt\": \"<dateTime>\",\n          \"downloadUrl\": \"<uri>\",\n          \"hashes\": {\n            \"AutoV1\": \"<string>\",\n            \"AutoV2\": \"<string>\",\n            \"SHA256\": \"<string>\",\n            \"CRC32\": \"<string>\",\n            \"Blake3\": \"<string>\"\n          }\n        },\n        {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"sizeKB\": \"<number>\",\n          \"type\": \"Model\",\n          \"format\": \"SafeTensor\",\n          \"pickleScanResult\": \"<string>\",\n          \"virusScanResult\": \"<string>\",\n          \"scannedAt\": \"<dateTime>\",\n          \"downloadUrl\": \"<uri>\",\n          \"hashes\": {\n            \"AutoV1\": \"<string>\",\n            \"AutoV2\": \"<string>\",\n            \"SHA256\": \"<string>\",\n            \"CRC32\": \"<string>\",\n            \"Blake3\": \"<string>\"\n          }\n        }\n      ],\n      \"images\": [\n        {\n          \"id\": \"<integer>\",\n          \"url\": \"<uri>\",\n          \"hash\": \"<string>\",\n          \"width\": \"<integer>\",\n          \"height\": \"<integer>\",\n          \"nsfwLevel\": \"<integer>\",\n          \"nsfw\": \"<boolean>\",\n          \"createdAt\": \"<dateTime>\",\n          \"postId\": \"<integer>\",\n          \"stats\": {\n            \"downloadCount\": \"<integer>\",\n            \"favoriteCount\": \"<integer>\",\n            \"commentCount\": \"<integer>\",\n            \"ratingCount\": \"<integer>\",\n            \"rating\": \"<number>\",\n            \"thumbsUpCount\": \"<integer>\",\n            \"thumbsDownCount\": \"<integer>\"\n          },\n          \"meta\": {\n            \"id_2e\": false,\n            \"fugiatf15\": -23307177\n          },\n          \"username\": \"<string>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"url\": \"<uri>\",\n          \"hash\": \"<string>\",\n          \"width\": \"<integer>\",\n          \"height\": \"<integer>\",\n          \"nsfwLevel\": \"<integer>\",\n          \"nsfw\": \"<boolean>\",\n          \"createdAt\": \"<dateTime>\",\n          \"postId\": \"<integer>\",\n          \"stats\": {\n            \"downloadCount\": \"<integer>\",\n            \"favoriteCount\": \"<integer>\",\n            \"commentCount\": \"<integer>\",\n            \"ratingCount\": \"<integer>\",\n            \"rating\": \"<number>\",\n            \"thumbsUpCount\": \"<integer>\",\n            \"thumbsDownCount\": \"<integer>\"\n          },\n          \"meta\": {\n            \"sint_ef\": \"magna deserunt Ut\",\n            \"reprehenderit_eb\": -17839696\n          },\n          \"username\": \"<string>\"\n        }\n      ],\n      \"stats\": {\n        \"downloadCount\": \"<integer>\",\n        \"favoriteCount\": \"<integer>\",\n        \"commentCount\": \"<integer>\",\n        \"ratingCount\": \"<integer>\",\n        \"rating\": \"<number>\",\n        \"thumbsUpCount\": \"<integer>\",\n        \"thumbsDownCount\": \"<integer>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"modelId\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"baseModel\": \"<string>\",\n      \"baseModelType\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"publishedAt\": \"<dateTime>\",\n      \"trainedWords\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"air\": \"<string>\",\n      \"downloadUrl\": \"<uri>\",\n      \"files\": [\n        {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"sizeKB\": \"<number>\",\n          \"type\": \"Config\",\n          \"format\": \"SafeTensor\",\n          \"pickleScanResult\": \"<string>\",\n          \"virusScanResult\": \"<string>\",\n          \"scannedAt\": \"<dateTime>\",\n          \"downloadUrl\": \"<uri>\",\n          \"hashes\": {\n            \"AutoV1\": \"<string>\",\n            \"AutoV2\": \"<string>\",\n            \"SHA256\": \"<string>\",\n            \"CRC32\": \"<string>\",\n            \"Blake3\": \"<string>\"\n          }\n        },\n        {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"sizeKB\": \"<number>\",\n          \"type\": \"Negative\",\n          \"format\": \"Other\",\n          \"pickleScanResult\": \"<string>\",\n          \"virusScanResult\": \"<string>\",\n          \"scannedAt\": \"<dateTime>\",\n          \"downloadUrl\": \"<uri>\",\n          \"hashes\": {\n            \"AutoV1\": \"<string>\",\n            \"AutoV2\": \"<string>\",\n            \"SHA256\": \"<string>\",\n            \"CRC32\": \"<string>\",\n            \"Blake3\": \"<string>\"\n          }\n        }\n      ],\n      \"images\": [\n        {\n          \"id\": \"<integer>\",\n          \"url\": \"<uri>\",\n          \"hash\": \"<string>\",\n          \"width\": \"<integer>\",\n          \"height\": \"<integer>\",\n          \"nsfwLevel\": \"<integer>\",\n          \"nsfw\": \"<boolean>\",\n          \"createdAt\": \"<dateTime>\",\n          \"postId\": \"<integer>\",\n          \"stats\": {\n            \"downloadCount\": \"<integer>\",\n            \"favoriteCount\": \"<integer>\",\n            \"commentCount\": \"<integer>\",\n            \"ratingCount\": \"<integer>\",\n            \"rating\": \"<number>\",\n            \"thumbsUpCount\": \"<integer>\",\n            \"thumbsDownCount\": \"<integer>\"\n          },\n          \"meta\": {\n            \"voluptate_0\": true,\n            \"tempordd9\": \"eiusmod ex reprehenderit Lorem\"\n          },\n          \"username\": \"<string>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"url\": \"<uri>\",\n          \"hash\": \"<string>\",\n          \"width\": \"<integer>\",\n          \"height\": \"<integer>\",\n          \"nsfwLevel\": \"<integer>\",\n          \"nsfw\": \"<boolean>\",\n          \"createdAt\": \"<dateTime>\",\n          \"postId\": \"<integer>\",\n          \"stats\": {\n            \"downloadCount\": \"<integer>\",\n            \"favoriteCount\": \"<integer>\",\n            \"commentCount\": \"<integer>\",\n            \"ratingCount\": \"<integer>\",\n            \"rating\": \"<number>\",\n            \"thumbsUpCount\": \"<integer>\",\n            \"thumbsDownCount\": \"<integer>\"\n          },\n          \"meta\": {\n            \"velit_580\": \"officia nulla\",\n            \"dolor1d\": true,\n            \"aute_738\": \"id ut in\",\n            \"in_48\": -96331756.09318388,\n            \"officia_3\": 37662080.696864605\n          },\n          \"username\": \"<string>\"\n        }\n      ],\n      \"stats\": {\n        \"downloadCount\": \"<integer>\",\n        \"favoriteCount\": \"<integer>\",\n        \"commentCount\": \"<integer>\",\n        \"ratingCount\": \"<integer>\",\n        \"rating\": \"<number>\",\n        \"thumbsUpCount\": \"<integer>\",\n        \"thumbsDownCount\": \"<integer>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:06:47.000Z",
+                  "updatedAt": "2026-06-05T15:06:47.000Z",
+                  "uid": "35240-06a4a965-2960-46f5-b700-bc6753beb7f0"
+                },
+                {
+                  "id": "7201d098-2a1d-470d-bfc1-74e2bcdd6aa9",
+                  "name": "Resource not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/models/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "models",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:06:47.000Z",
+                  "updatedAt": "2026-06-05T15:06:47.000Z",
+                  "uid": "35240-7201d098-2a1d-470d-bfc1-74e2bcdd6aa9"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-866723c0-ae3a-4ec1-9251-78b7fd5129de"
+            }
+          ],
+          "id": "738a65af-26ae-4a41-9a27-167629b20f0c",
+          "createdAt": "2026-06-05T15:06:47.000Z",
+          "updatedAt": "2026-06-05T15:06:47.000Z",
+          "uid": "35240-738a65af-26ae-4a41-9a27-167629b20f0c"
+        },
+        {
+          "name": "List Models",
+          "id": "9f1b04a9-31eb-43de-ac05-e767388fc4e7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/models?limit=100&page=<integer>&query=<string>&tag=<string>&username=<string>&types=Poses&types=Controlnet&sort=Most Downloaded&period=AllTime&nsfw=<boolean>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "models"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "query",
+                  "value": "<string>"
+                },
+                {
+                  "key": "tag",
+                  "value": "<string>"
+                },
+                {
+                  "key": "username",
+                  "value": "<string>"
+                },
+                {
+                  "key": "types",
+                  "value": "Poses"
+                },
+                {
+                  "key": "types",
+                  "value": "Controlnet"
+                },
+                {
+                  "key": "sort",
+                  "value": "Most Downloaded"
+                },
+                {
+                  "key": "period",
+                  "value": "AllTime"
+                },
+                {
+                  "key": "nsfw",
+                  "value": "<boolean>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e4862131-fefe-499d-9266-ad0c847ca003",
+              "name": "Page of models.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/models?limit=100&page=<integer>&query=<string>&tag=<string>&username=<string>&types=Controlnet&sort=Most Downloaded&period=AllTime&nsfw=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "models"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types",
+                      "value": "Controlnet"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "Most Downloaded"
+                    },
+                    {
+                      "key": "period",
+                      "value": "AllTime"
+                    },
+                    {
+                      "key": "nsfw",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"TextualInversion\",\n      \"nsfw\": \"<boolean>\",\n      \"nsfwLevel\": \"<integer>\",\n      \"allowNoCredit\": \"<boolean>\",\n      \"allowCommercialUse\": [\n        \"Rent\",\n        \"RentCivit\"\n      ],\n      \"allowDerivatives\": \"<boolean>\",\n      \"allowDifferentLicense\": \"<boolean>\",\n      \"stats\": {\n        \"downloadCount\": \"<integer>\",\n        \"favoriteCount\": \"<integer>\",\n        \"commentCount\": \"<integer>\",\n        \"ratingCount\": \"<integer>\",\n        \"rating\": \"<number>\",\n        \"thumbsUpCount\": \"<integer>\",\n        \"thumbsDownCount\": \"<integer>\"\n      },\n      \"creator\": {\n        \"username\": \"<string>\",\n        \"image\": \"<uri>\",\n        \"modelCount\": \"<integer>\",\n        \"link\": \"<uri>\"\n      },\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"modelVersions\": [\n        {\n          \"id\": \"<integer>\",\n          \"modelId\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"baseModel\": \"<string>\",\n          \"baseModelType\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"updatedAt\": \"<dateTime>\",\n          \"publishedAt\": \"<dateTime>\",\n          \"trainedWords\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"air\": \"<string>\",\n          \"downloadUrl\": \"<uri>\",\n          \"files\": [\n            {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"sizeKB\": \"<number>\",\n              \"type\": \"Other\",\n              \"format\": \"SafeTensor\",\n              \"pickleScanResult\": \"<string>\",\n              \"virusScanResult\": \"<string>\",\n              \"scannedAt\": \"<dateTime>\",\n              \"downloadUrl\": \"<uri>\",\n              \"hashes\": {\n                \"AutoV1\": \"<string>\",\n                \"AutoV2\": \"<string>\",\n                \"SHA256\": \"<string>\",\n                \"CRC32\": \"<string>\",\n                \"Blake3\": \"<string>\"\n              }\n            },\n            {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"sizeKB\": \"<number>\",\n              \"type\": \"Training Data\",\n              \"format\": \"PickleTensor\",\n              \"pickleScanResult\": \"<string>\",\n              \"virusScanResult\": \"<string>\",\n              \"scannedAt\": \"<dateTime>\",\n              \"downloadUrl\": \"<uri>\",\n              \"hashes\": {\n                \"AutoV1\": \"<string>\",\n                \"AutoV2\": \"<string>\",\n                \"SHA256\": \"<string>\",\n                \"CRC32\": \"<string>\",\n                \"Blake3\": \"<string>\"\n              }\n            }\n          ],\n          \"images\": [\n            {\n              \"id\": \"<integer>\",\n              \"url\": \"<uri>\",\n              \"hash\": \"<string>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"nsfwLevel\": \"<integer>\",\n              \"nsfw\": \"<boolean>\",\n              \"createdAt\": \"<dateTime>\",\n              \"postId\": \"<integer>\",\n              \"stats\": {\n                \"downloadCount\": \"<integer>\",\n                \"favoriteCount\": \"<integer>\",\n                \"commentCount\": \"<integer>\",\n                \"ratingCount\": \"<integer>\",\n                \"rating\": \"<number>\",\n                \"thumbsUpCount\": \"<integer>\",\n                \"thumbsDownCount\": \"<integer>\"\n              },\n              \"meta\": {\n                \"eu_7_\": 18500586.4078788,\n                \"in1b2\": -67749873,\n                \"ipsum_568\": -49271676.876004465\n              },\n              \"username\": \"<string>\"\n            },\n            {\n              \"id\": \"<integer>\",\n              \"url\": \"<uri>\",\n              \"hash\": \"<string>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"nsfwLevel\": \"<integer>\",\n              \"nsfw\": \"<boolean>\",\n              \"createdAt\": \"<dateTime>\",\n              \"postId\": \"<integer>\",\n              \"stats\": {\n                \"downloadCount\": \"<integer>\",\n                \"favoriteCount\": \"<integer>\",\n                \"commentCount\": \"<integer>\",\n                \"ratingCount\": \"<integer>\",\n                \"rating\": \"<number>\",\n                \"thumbsUpCount\": \"<integer>\",\n                \"thumbsDownCount\": \"<integer>\"\n              },\n              \"meta\": {\n                \"Excepteur_19\": -6759042,\n                \"irureee8\": 724920,\n                \"deserunte\": false,\n                \"sint_3b\": -12897457.703324735\n              },\n              \"username\": \"<string>\"\n            }\n          ],\n          \"stats\": {\n            \"downloadCount\": \"<integer>\",\n            \"favoriteCount\": \"<integer>\",\n            \"commentCount\": \"<integer>\",\n            \"ratingCount\": \"<integer>\",\n            \"rating\": \"<number>\",\n            \"thumbsUpCount\": \"<integer>\",\n            \"thumbsDownCount\": \"<integer>\"\n          }\n        },\n        {\n          \"id\": \"<integer>\",\n          \"modelId\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"baseModel\": \"<string>\",\n          \"baseModelType\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"updatedAt\": \"<dateTime>\",\n          \"publishedAt\": \"<dateTime>\",\n          \"trainedWords\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"air\": \"<string>\",\n          \"downloadUrl\": \"<uri>\",\n          \"files\": [\n            {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"sizeKB\": \"<number>\",\n              \"type\": \"Other\",\n              \"format\": \"PickleTensor\",\n              \"pickleScanResult\": \"<string>\",\n              \"virusScanResult\": \"<string>\",\n              \"scannedAt\": \"<dateTime>\",\n              \"downloadUrl\": \"<uri>\",\n              \"hashes\": {\n                \"AutoV1\": \"<string>\",\n                \"AutoV2\": \"<string>\",\n                \"SHA256\": \"<string>\",\n                \"CRC32\": \"<string>\",\n                \"Blake3\": \"<string>\"\n              }\n            },\n            {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"sizeKB\": \"<number>\",\n              \"type\": \"Other\",\n              \"format\": \"Other\",\n              \"pickleScanResult\": \"<string>\",\n              \"virusScanResult\": \"<string>\",\n              \"scannedAt\": \"<dateTime>\",\n              \"downloadUrl\": \"<uri>\",\n              \"hashes\": {\n                \"AutoV1\": \"<string>\",\n                \"AutoV2\": \"<string>\",\n                \"SHA256\": \"<string>\",\n                \"CRC32\": \"<string>\",\n                \"Blake3\": \"<string>\"\n              }\n            }\n          ],\n          \"images\": [\n            {\n              \"id\": \"<integer>\",\n              \"url\": \"<uri>\",\n              \"hash\": \"<string>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"nsfwLevel\": \"<integer>\",\n              \"nsfw\": \"<boolean>\",\n              \"createdAt\": \"<dateTime>\",\n              \"postId\": \"<integer>\",\n              \"stats\": {\n                \"downloadCount\": \"<integer>\",\n                \"favoriteCount\": \"<integer>\",\n                \"commentCount\": \"<integer>\",\n                \"ratingCount\": \"<integer>\",\n                \"rating\": \"<number>\",\n                \"thumbsUpCount\": \"<integer>\",\n                \"thumbsDownCount\": \"<integer>\"\n              },\n              \"meta\": {\n                \"laborum_f_7\": true\n              },\n              \"username\": \"<string>\"\n            },\n            {\n              \"id\": \"<integer>\",\n              \"url\": \"<uri>\",\n              \"hash\": \"<string>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"nsfwLevel\": \"<integer>\",\n              \"nsfw\": \"<boolean>\",\n              \"createdAt\": \"<dateTime>\",\n              \"postId\": \"<integer>\",\n              \"stats\": {\n                \"downloadCount\": \"<integer>\",\n                \"favoriteCount\": \"<integer>\",\n                \"commentCount\": \"<integer>\",\n                \"ratingCount\": \"<integer>\",\n                \"rating\": \"<number>\",\n                \"thumbsUpCount\": \"<integer>\",\n                \"thumbsDownCount\": \"<integer>\"\n              },\n              \"meta\": {\n                \"Excepteured2\": \"non aute cillum velit fugiat\",\n                \"dolorc58\": \"esse\"\n              },\n              \"username\": \"<string>\"\n            }\n          ],\n          \"stats\": {\n            \"downloadCount\": \"<integer>\",\n            \"favoriteCount\": \"<integer>\",\n            \"commentCount\": \"<integer>\",\n            \"ratingCount\": \"<integer>\",\n            \"rating\": \"<number>\",\n            \"thumbsUpCount\": \"<integer>\",\n            \"thumbsDownCount\": \"<integer>\"\n          }\n        }\n      ]\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"Hypernetwork\",\n      \"nsfw\": \"<boolean>\",\n      \"nsfwLevel\": \"<integer>\",\n      \"allowNoCredit\": \"<boolean>\",\n      \"allowCommercialUse\": [\n        \"None\",\n        \"Rent\"\n      ],\n      \"allowDerivatives\": \"<boolean>\",\n      \"allowDifferentLicense\": \"<boolean>\",\n      \"stats\": {\n        \"downloadCount\": \"<integer>\",\n        \"favoriteCount\": \"<integer>\",\n        \"commentCount\": \"<integer>\",\n        \"ratingCount\": \"<integer>\",\n        \"rating\": \"<number>\",\n        \"thumbsUpCount\": \"<integer>\",\n        \"thumbsDownCount\": \"<integer>\"\n      },\n      \"creator\": {\n        \"username\": \"<string>\",\n        \"image\": \"<uri>\",\n        \"modelCount\": \"<integer>\",\n        \"link\": \"<uri>\"\n      },\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"modelVersions\": [\n        {\n          \"id\": \"<integer>\",\n          \"modelId\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"baseModel\": \"<string>\",\n          \"baseModelType\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"updatedAt\": \"<dateTime>\",\n          \"publishedAt\": \"<dateTime>\",\n          \"trainedWords\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"air\": \"<string>\",\n          \"downloadUrl\": \"<uri>\",\n          \"files\": [\n            {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"sizeKB\": \"<number>\",\n              \"type\": \"VAE\",\n              \"format\": \"PickleTensor\",\n              \"pickleScanResult\": \"<string>\",\n              \"virusScanResult\": \"<string>\",\n              \"scannedAt\": \"<dateTime>\",\n              \"downloadUrl\": \"<uri>\",\n              \"hashes\": {\n                \"AutoV1\": \"<string>\",\n                \"AutoV2\": \"<string>\",\n                \"SHA256\": \"<string>\",\n                \"CRC32\": \"<string>\",\n                \"Blake3\": \"<string>\"\n              }\n            },\n            {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"sizeKB\": \"<number>\",\n              \"type\": \"Negative\",\n              \"format\": \"Other\",\n              \"pickleScanResult\": \"<string>\",\n              \"virusScanResult\": \"<string>\",\n              \"scannedAt\": \"<dateTime>\",\n              \"downloadUrl\": \"<uri>\",\n              \"hashes\": {\n                \"AutoV1\": \"<string>\",\n                \"AutoV2\": \"<string>\",\n                \"SHA256\": \"<string>\",\n                \"CRC32\": \"<string>\",\n                \"Blake3\": \"<string>\"\n              }\n            }\n          ],\n          \"images\": [\n            {\n              \"id\": \"<integer>\",\n              \"url\": \"<uri>\",\n              \"hash\": \"<string>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"nsfwLevel\": \"<integer>\",\n              \"nsfw\": \"<boolean>\",\n              \"createdAt\": \"<dateTime>\",\n              \"postId\": \"<integer>\",\n              \"stats\": {\n                \"downloadCount\": \"<integer>\",\n                \"favoriteCount\": \"<integer>\",\n                \"commentCount\": \"<integer>\",\n                \"ratingCount\": \"<integer>\",\n                \"rating\": \"<number>\",\n                \"thumbsUpCount\": \"<integer>\",\n                \"thumbsDownCount\": \"<integer>\"\n              },\n              \"meta\": {\n                \"veniam6c3\": 66938224.0592888,\n                \"proident_f\": 17833512.113427833\n              },\n              \"username\": \"<string>\"\n            },\n            {\n              \"id\": \"<integer>\",\n              \"url\": \"<uri>\",\n              \"hash\": \"<string>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"nsfwLevel\": \"<integer>\",\n              \"nsfw\": \"<boolean>\",\n              \"createdAt\": \"<dateTime>\",\n              \"postId\": \"<integer>\",\n              \"stats\": {\n                \"downloadCount\": \"<integer>\",\n                \"favoriteCount\": \"<integer>\",\n                \"commentCount\": \"<integer>\",\n                \"ratingCount\": \"<integer>\",\n                \"rating\": \"<number>\",\n                \"thumbsUpCount\": \"<integer>\",\n                \"thumbsDownCount\": \"<integer>\"\n              },\n              \"meta\": {\n                \"consequat_2\": \"in\",\n                \"dolor_9d6\": 97219775\n              },\n              \"username\": \"<string>\"\n            }\n          ],\n          \"stats\": {\n            \"downloadCount\": \"<integer>\",\n            \"favoriteCount\": \"<integer>\",\n            \"commentCount\": \"<integer>\",\n            \"ratingCount\": \"<integer>\",\n            \"rating\": \"<number>\",\n            \"thumbsUpCount\": \"<integer>\",\n            \"thumbsDownCount\": \"<integer>\"\n          }\n        },\n        {\n          \"id\": \"<integer>\",\n          \"modelId\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"baseModel\": \"<string>\",\n          \"baseModelType\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"updatedAt\": \"<dateTime>\",\n          \"publishedAt\": \"<dateTime>\",\n          \"trainedWords\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"air\": \"<string>\",\n          \"downloadUrl\": \"<uri>\",\n          \"files\": [\n            {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"sizeKB\": \"<number>\",\n              \"type\": \"Training Data\",\n              \"format\": \"SafeTensor\",\n              \"pickleScanResult\": \"<string>\",\n              \"virusScanResult\": \"<string>\",\n              \"scannedAt\": \"<dateTime>\",\n              \"downloadUrl\": \"<uri>\",\n              \"hashes\": {\n                \"AutoV1\": \"<string>\",\n                \"AutoV2\": \"<string>\",\n                \"SHA256\": \"<string>\",\n                \"CRC32\": \"<string>\",\n                \"Blake3\": \"<string>\"\n              }\n            },\n            {\n              \"id\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"sizeKB\": \"<number>\",\n              \"type\": \"VAE\",\n              \"format\": \"SafeTensor\",\n              \"pickleScanResult\": \"<string>\",\n              \"virusScanResult\": \"<string>\",\n              \"scannedAt\": \"<dateTime>\",\n              \"downloadUrl\": \"<uri>\",\n              \"hashes\": {\n                \"AutoV1\": \"<string>\",\n                \"AutoV2\": \"<string>\",\n                \"SHA256\": \"<string>\",\n                \"CRC32\": \"<string>\",\n                \"Blake3\": \"<string>\"\n              }\n            }\n          ],\n          \"images\": [\n            {\n              \"id\": \"<integer>\",\n              \"url\": \"<uri>\",\n              \"hash\": \"<string>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"nsfwLevel\": \"<integer>\",\n              \"nsfw\": \"<boolean>\",\n              \"createdAt\": \"<dateTime>\",\n              \"postId\": \"<integer>\",\n              \"stats\": {\n                \"downloadCount\": \"<integer>\",\n                \"favoriteCount\": \"<integer>\",\n                \"commentCount\": \"<integer>\",\n                \"ratingCount\": \"<integer>\",\n                \"rating\": \"<number>\",\n                \"thumbsUpCount\": \"<integer>\",\n                \"thumbsDownCount\": \"<integer>\"\n              },\n              \"meta\": {\n                \"esse_ae8\": -18026357,\n                \"ind\": -9260803.100992024,\n                \"voluptate__0\": false\n              },\n              \"username\": \"<string>\"\n            },\n            {\n              \"id\": \"<integer>\",\n              \"url\": \"<uri>\",\n              \"hash\": \"<string>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"nsfwLevel\": \"<integer>\",\n              \"nsfw\": \"<boolean>\",\n              \"createdAt\": \"<dateTime>\",\n              \"postId\": \"<integer>\",\n              \"stats\": {\n                \"downloadCount\": \"<integer>\",\n                \"favoriteCount\": \"<integer>\",\n                \"commentCount\": \"<integer>\",\n                \"ratingCount\": \"<integer>\",\n                \"rating\": \"<number>\",\n                \"thumbsUpCount\": \"<integer>\",\n                \"thumbsDownCount\": \"<integer>\"\n              },\n              \"meta\": {\n                \"non_907\": 73966182.18040743,\n                \"consequat_5\": true\n              },\n              \"username\": \"<string>\"\n            }\n          ],\n          \"stats\": {\n            \"downloadCount\": \"<integer>\",\n            \"favoriteCount\": \"<integer>\",\n            \"commentCount\": \"<integer>\",\n            \"ratingCount\": \"<integer>\",\n            \"rating\": \"<number>\",\n            \"thumbsUpCount\": \"<integer>\",\n            \"thumbsDownCount\": \"<integer>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"nextPage\": \"<string>\",\n    \"prevPage\": \"<string>\",\n    \"totalItems\": \"<integer>\",\n    \"totalPages\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-e4862131-fefe-499d-9266-ad0c847ca003"
+            },
+            {
+              "id": "ce277de1-5b2f-4f7e-aa51-6d9bf40b039a",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/models?limit=100&page=<integer>&query=<string>&tag=<string>&username=<string>&types=Controlnet&sort=Most Downloaded&period=AllTime&nsfw=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "models"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types",
+                      "value": "Controlnet"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "Most Downloaded"
+                    },
+                    {
+                      "key": "period",
+                      "value": "AllTime"
+                    },
+                    {
+                      "key": "nsfw",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-ce277de1-5b2f-4f7e-aa51-6d9bf40b039a"
+            },
+            {
+              "id": "6bcfe9d7-9d0e-45f0-85e1-452d82523b12",
+              "name": "Too many requests.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/models?limit=100&page=<integer>&query=<string>&tag=<string>&username=<string>&types=Controlnet&sort=Most Downloaded&period=AllTime&nsfw=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "models"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types",
+                      "value": "Controlnet"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "Most Downloaded"
+                    },
+                    {
+                      "key": "period",
+                      "value": "AllTime"
+                    },
+                    {
+                      "key": "nsfw",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-6bcfe9d7-9d0e-45f0-85e1-452d82523b12"
+            }
+          ],
+          "createdAt": "2026-06-05T15:06:47.000Z",
+          "updatedAt": "2026-06-05T15:06:47.000Z",
+          "uid": "35240-9f1b04a9-31eb-43de-ac05-e767388fc4e7"
+        }
+      ],
+      "id": "4a435359-224c-446b-8a17-075236f76f56",
+      "createdAt": "2026-06-05T15:06:47.000Z",
+      "updatedAt": "2026-06-05T15:06:47.000Z",
+      "uid": "35240-4a435359-224c-446b-8a17-075236f76f56"
+    },
+    {
+      "name": "model-versions",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Get Model Version",
+              "id": "cae88573-0f0f-4ca1-979d-9e58908e4542",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/model-versions/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "model-versions",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2f538c57-6d8a-47eb-aa66-da155ce8654a",
+                      "key": "id",
+                      "value": "<integer>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "96bf6040-551e-4429-a3d4-f3d8756af6ee",
+                  "name": "Model version detail.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/model-versions/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "model-versions",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"modelId\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"baseModel\": \"<string>\",\n  \"baseModelType\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"publishedAt\": \"<dateTime>\",\n  \"trainedWords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"air\": \"<string>\",\n  \"downloadUrl\": \"<uri>\",\n  \"files\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"sizeKB\": \"<number>\",\n      \"type\": \"Training Data\",\n      \"format\": \"PickleTensor\",\n      \"pickleScanResult\": \"<string>\",\n      \"virusScanResult\": \"<string>\",\n      \"scannedAt\": \"<dateTime>\",\n      \"downloadUrl\": \"<uri>\",\n      \"hashes\": {\n        \"AutoV1\": \"<string>\",\n        \"AutoV2\": \"<string>\",\n        \"SHA256\": \"<string>\",\n        \"CRC32\": \"<string>\",\n        \"Blake3\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"sizeKB\": \"<number>\",\n      \"type\": \"Model\",\n      \"format\": \"Other\",\n      \"pickleScanResult\": \"<string>\",\n      \"virusScanResult\": \"<string>\",\n      \"scannedAt\": \"<dateTime>\",\n      \"downloadUrl\": \"<uri>\",\n      \"hashes\": {\n        \"AutoV1\": \"<string>\",\n        \"AutoV2\": \"<string>\",\n        \"SHA256\": \"<string>\",\n        \"CRC32\": \"<string>\",\n        \"Blake3\": \"<string>\"\n      }\n    }\n  ],\n  \"images\": [\n    {\n      \"id\": \"<integer>\",\n      \"url\": \"<uri>\",\n      \"hash\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"nsfwLevel\": \"<integer>\",\n      \"nsfw\": \"<boolean>\",\n      \"createdAt\": \"<dateTime>\",\n      \"postId\": \"<integer>\",\n      \"stats\": {\n        \"downloadCount\": \"<integer>\",\n        \"favoriteCount\": \"<integer>\",\n        \"commentCount\": \"<integer>\",\n        \"ratingCount\": \"<integer>\",\n        \"rating\": \"<number>\",\n        \"thumbsUpCount\": \"<integer>\",\n        \"thumbsDownCount\": \"<integer>\"\n      },\n      \"meta\": {\n        \"Excepteur0_\": false\n      },\n      \"username\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"url\": \"<uri>\",\n      \"hash\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"nsfwLevel\": \"<integer>\",\n      \"nsfw\": \"<boolean>\",\n      \"createdAt\": \"<dateTime>\",\n      \"postId\": \"<integer>\",\n      \"stats\": {\n        \"downloadCount\": \"<integer>\",\n        \"favoriteCount\": \"<integer>\",\n        \"commentCount\": \"<integer>\",\n        \"ratingCount\": \"<integer>\",\n        \"rating\": \"<number>\",\n        \"thumbsUpCount\": \"<integer>\",\n        \"thumbsDownCount\": \"<integer>\"\n      },\n      \"meta\": {\n        \"in_a_\": -20326572,\n        \"velit0d\": true,\n        \"ea_4\": \"ex velit tempor pariatur culpa\",\n        \"eudb0\": true,\n        \"consectetura\": \"dolor sint id qui\"\n      },\n      \"username\": \"<string>\"\n    }\n  ],\n  \"stats\": {\n    \"downloadCount\": \"<integer>\",\n    \"favoriteCount\": \"<integer>\",\n    \"commentCount\": \"<integer>\",\n    \"ratingCount\": \"<integer>\",\n    \"rating\": \"<number>\",\n    \"thumbsUpCount\": \"<integer>\",\n    \"thumbsDownCount\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:06:47.000Z",
+                  "updatedAt": "2026-06-05T15:06:47.000Z",
+                  "uid": "35240-96bf6040-551e-4429-a3d4-f3d8756af6ee"
+                },
+                {
+                  "id": "0cf08b83-156c-421b-888d-9c253d241643",
+                  "name": "Resource not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/model-versions/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "model-versions",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:06:47.000Z",
+                  "updatedAt": "2026-06-05T15:06:47.000Z",
+                  "uid": "35240-0cf08b83-156c-421b-888d-9c253d241643"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-cae88573-0f0f-4ca1-979d-9e58908e4542"
+            }
+          ],
+          "id": "c6ada289-f5e0-490b-bac7-fa629bd136d6",
+          "createdAt": "2026-06-05T15:06:47.000Z",
+          "updatedAt": "2026-06-05T15:06:47.000Z",
+          "uid": "35240-c6ada289-f5e0-490b-bac7-fa629bd136d6"
+        },
+        {
+          "name": "mini",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Get Model Version Mini",
+                  "id": "ef6ee81f-c18b-481f-ba6d-d593cd29517d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/model-versions/mini/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "model-versions",
+                        "mini",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e901871b-c283-4cd1-b7bb-d4ec17d1b160",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Lightweight model-version payload optimized for client tools."
+                  },
+                  "response": [
+                    {
+                      "id": "c6dd0408-4162-4c3a-a2f4-232b5696cfbb",
+                      "name": "Lightweight model version.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/model-versions/mini/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "model-versions",
+                            "mini",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"modelId\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"baseModel\": \"<string>\",\n  \"air\": \"<string>\",\n  \"downloadUrl\": \"<uri>\"\n}",
+                      "createdAt": "2026-06-05T15:06:47.000Z",
+                      "updatedAt": "2026-06-05T15:06:47.000Z",
+                      "uid": "35240-c6dd0408-4162-4c3a-a2f4-232b5696cfbb"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:06:47.000Z",
+                  "updatedAt": "2026-06-05T15:06:47.000Z",
+                  "uid": "35240-ef6ee81f-c18b-481f-ba6d-d593cd29517d"
+                }
+              ],
+              "id": "37998a01-2528-4d5c-b190-0824540053f5",
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-37998a01-2528-4d5c-b190-0824540053f5"
+            }
+          ],
+          "id": "fac2a5c0-3efb-4cc3-a10d-897c1123531e",
+          "createdAt": "2026-06-05T15:06:47.000Z",
+          "updatedAt": "2026-06-05T15:06:47.000Z",
+          "uid": "35240-fac2a5c0-3efb-4cc3-a10d-897c1123531e"
+        },
+        {
+          "name": "by-hash",
+          "item": [
+            {
+              "name": "{hash}",
+              "item": [
+                {
+                  "name": "Get Model Version By Hash",
+                  "id": "f642a0d3-e3a6-4734-8d38-f6ca18f9e08e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/model-versions/by-hash/:hash",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "model-versions",
+                        "by-hash",
+                        ":hash"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3456b272-adcd-4c03-884f-3e0a2ae9e272",
+                          "key": "hash",
+                          "value": "<string>",
+                          "description": "(Required) AutoV1, AutoV2, SHA256, CRC32, or Blake3 hash of the model file."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "784b1d37-82e4-43ca-860b-6cf7defa4e28",
+                      "name": "Model version matching the file hash.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/model-versions/by-hash/:hash",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "model-versions",
+                            "by-hash",
+                            ":hash"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hash"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"modelId\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"baseModel\": \"<string>\",\n  \"baseModelType\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"publishedAt\": \"<dateTime>\",\n  \"trainedWords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"air\": \"<string>\",\n  \"downloadUrl\": \"<uri>\",\n  \"files\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"sizeKB\": \"<number>\",\n      \"type\": \"Training Data\",\n      \"format\": \"PickleTensor\",\n      \"pickleScanResult\": \"<string>\",\n      \"virusScanResult\": \"<string>\",\n      \"scannedAt\": \"<dateTime>\",\n      \"downloadUrl\": \"<uri>\",\n      \"hashes\": {\n        \"AutoV1\": \"<string>\",\n        \"AutoV2\": \"<string>\",\n        \"SHA256\": \"<string>\",\n        \"CRC32\": \"<string>\",\n        \"Blake3\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"sizeKB\": \"<number>\",\n      \"type\": \"Model\",\n      \"format\": \"Other\",\n      \"pickleScanResult\": \"<string>\",\n      \"virusScanResult\": \"<string>\",\n      \"scannedAt\": \"<dateTime>\",\n      \"downloadUrl\": \"<uri>\",\n      \"hashes\": {\n        \"AutoV1\": \"<string>\",\n        \"AutoV2\": \"<string>\",\n        \"SHA256\": \"<string>\",\n        \"CRC32\": \"<string>\",\n        \"Blake3\": \"<string>\"\n      }\n    }\n  ],\n  \"images\": [\n    {\n      \"id\": \"<integer>\",\n      \"url\": \"<uri>\",\n      \"hash\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"nsfwLevel\": \"<integer>\",\n      \"nsfw\": \"<boolean>\",\n      \"createdAt\": \"<dateTime>\",\n      \"postId\": \"<integer>\",\n      \"stats\": {\n        \"downloadCount\": \"<integer>\",\n        \"favoriteCount\": \"<integer>\",\n        \"commentCount\": \"<integer>\",\n        \"ratingCount\": \"<integer>\",\n        \"rating\": \"<number>\",\n        \"thumbsUpCount\": \"<integer>\",\n        \"thumbsDownCount\": \"<integer>\"\n      },\n      \"meta\": {\n        \"Excepteur0_\": false\n      },\n      \"username\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"url\": \"<uri>\",\n      \"hash\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"nsfwLevel\": \"<integer>\",\n      \"nsfw\": \"<boolean>\",\n      \"createdAt\": \"<dateTime>\",\n      \"postId\": \"<integer>\",\n      \"stats\": {\n        \"downloadCount\": \"<integer>\",\n        \"favoriteCount\": \"<integer>\",\n        \"commentCount\": \"<integer>\",\n        \"ratingCount\": \"<integer>\",\n        \"rating\": \"<number>\",\n        \"thumbsUpCount\": \"<integer>\",\n        \"thumbsDownCount\": \"<integer>\"\n      },\n      \"meta\": {\n        \"in_a_\": -20326572,\n        \"velit0d\": true,\n        \"ea_4\": \"ex velit tempor pariatur culpa\",\n        \"eudb0\": true,\n        \"consectetura\": \"dolor sint id qui\"\n      },\n      \"username\": \"<string>\"\n    }\n  ],\n  \"stats\": {\n    \"downloadCount\": \"<integer>\",\n    \"favoriteCount\": \"<integer>\",\n    \"commentCount\": \"<integer>\",\n    \"ratingCount\": \"<integer>\",\n    \"rating\": \"<number>\",\n    \"thumbsUpCount\": \"<integer>\",\n    \"thumbsDownCount\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:06:47.000Z",
+                      "updatedAt": "2026-06-05T15:06:47.000Z",
+                      "uid": "35240-784b1d37-82e4-43ca-860b-6cf7defa4e28"
+                    },
+                    {
+                      "id": "a468e4df-f48b-4256-aa0d-c35bcf39e542",
+                      "name": "Resource not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/model-versions/by-hash/:hash",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "model-versions",
+                            "by-hash",
+                            ":hash"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hash"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:06:47.000Z",
+                      "updatedAt": "2026-06-05T15:06:47.000Z",
+                      "uid": "35240-a468e4df-f48b-4256-aa0d-c35bcf39e542"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:06:47.000Z",
+                  "updatedAt": "2026-06-05T15:06:47.000Z",
+                  "uid": "35240-f642a0d3-e3a6-4734-8d38-f6ca18f9e08e"
+                }
+              ],
+              "id": "68955e55-5f70-4a61-8d63-319cb754b948",
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-68955e55-5f70-4a61-8d63-319cb754b948"
+            },
+            {
+              "name": "ids",
+              "item": [
+                {
+                  "name": "Get Model Version IDs By Hashes",
+                  "id": "5fa7dc70-2b7c-4ed7-b012-10ec692525aa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/model-versions/by-hash/ids",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "model-versions",
+                        "by-hash",
+                        "ids"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "8f14da85-f8f6-4ee6-a430-e1d644bcee2f",
+                      "name": "Map of hash to model version ID.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/model-versions/by-hash/ids",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "model-versions",
+                            "by-hash",
+                            "ids"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"nulla__7b\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:06:47.000Z",
+                      "updatedAt": "2026-06-05T15:06:47.000Z",
+                      "uid": "35240-8f14da85-f8f6-4ee6-a430-e1d644bcee2f"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:06:47.000Z",
+                  "updatedAt": "2026-06-05T15:06:47.000Z",
+                  "uid": "35240-5fa7dc70-2b7c-4ed7-b012-10ec692525aa"
+                }
+              ],
+              "id": "c9bd9b1e-8328-45b9-87d6-3c38d31940cb",
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-c9bd9b1e-8328-45b9-87d6-3c38d31940cb"
+            },
+            {
+              "name": "Get Model Versions By Hashes",
+              "id": "622afd20-2b15-4c81-8096-c9b86b09feac",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/model-versions/by-hash",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "model-versions",
+                    "by-hash"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "5be682fc-3b68-4829-b9c2-e006b329fa18",
+                  "name": "Map of hash to model version.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/model-versions/by-hash",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "model-versions",
+                        "by-hash"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"modelId\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"baseModel\": \"<string>\",\n    \"baseModelType\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"publishedAt\": \"<dateTime>\",\n    \"trainedWords\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"air\": \"<string>\",\n    \"downloadUrl\": \"<uri>\",\n    \"files\": [\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"sizeKB\": \"<number>\",\n        \"type\": \"Negative\",\n        \"format\": \"PickleTensor\",\n        \"pickleScanResult\": \"<string>\",\n        \"virusScanResult\": \"<string>\",\n        \"scannedAt\": \"<dateTime>\",\n        \"downloadUrl\": \"<uri>\",\n        \"hashes\": {\n          \"AutoV1\": \"<string>\",\n          \"AutoV2\": \"<string>\",\n          \"SHA256\": \"<string>\",\n          \"CRC32\": \"<string>\",\n          \"Blake3\": \"<string>\"\n        }\n      },\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"sizeKB\": \"<number>\",\n        \"type\": \"Other\",\n        \"format\": \"Other\",\n        \"pickleScanResult\": \"<string>\",\n        \"virusScanResult\": \"<string>\",\n        \"scannedAt\": \"<dateTime>\",\n        \"downloadUrl\": \"<uri>\",\n        \"hashes\": {\n          \"AutoV1\": \"<string>\",\n          \"AutoV2\": \"<string>\",\n          \"SHA256\": \"<string>\",\n          \"CRC32\": \"<string>\",\n          \"Blake3\": \"<string>\"\n        }\n      }\n    ],\n    \"images\": [\n      {\n        \"id\": \"<integer>\",\n        \"url\": \"<uri>\",\n        \"hash\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"nsfwLevel\": \"<integer>\",\n        \"nsfw\": \"<boolean>\",\n        \"createdAt\": \"<dateTime>\",\n        \"postId\": \"<integer>\",\n        \"stats\": {\n          \"downloadCount\": \"<integer>\",\n          \"favoriteCount\": \"<integer>\",\n          \"commentCount\": \"<integer>\",\n          \"ratingCount\": \"<integer>\",\n          \"rating\": \"<number>\",\n          \"thumbsUpCount\": \"<integer>\",\n          \"thumbsDownCount\": \"<integer>\"\n        },\n        \"meta\": {\n          \"eu__8\": -74477320.87412007\n        },\n        \"username\": \"<string>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"url\": \"<uri>\",\n        \"hash\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"nsfwLevel\": \"<integer>\",\n        \"nsfw\": \"<boolean>\",\n        \"createdAt\": \"<dateTime>\",\n        \"postId\": \"<integer>\",\n        \"stats\": {\n          \"downloadCount\": \"<integer>\",\n          \"favoriteCount\": \"<integer>\",\n          \"commentCount\": \"<integer>\",\n          \"ratingCount\": \"<integer>\",\n          \"rating\": \"<number>\",\n          \"thumbsUpCount\": \"<integer>\",\n          \"thumbsDownCount\": \"<integer>\"\n        },\n        \"meta\": {\n          \"irure36\": \"non in enim\",\n          \"dolore_5\": 42339703.1669808\n        },\n        \"username\": \"<string>\"\n      }\n    ],\n    \"stats\": {\n      \"downloadCount\": \"<integer>\",\n      \"favoriteCount\": \"<integer>\",\n      \"commentCount\": \"<integer>\",\n      \"ratingCount\": \"<integer>\",\n      \"rating\": \"<number>\",\n      \"thumbsUpCount\": \"<integer>\",\n      \"thumbsDownCount\": \"<integer>\"\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"modelId\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"baseModel\": \"<string>\",\n    \"baseModelType\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"publishedAt\": \"<dateTime>\",\n    \"trainedWords\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"air\": \"<string>\",\n    \"downloadUrl\": \"<uri>\",\n    \"files\": [\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"sizeKB\": \"<number>\",\n        \"type\": \"Config\",\n        \"format\": \"SafeTensor\",\n        \"pickleScanResult\": \"<string>\",\n        \"virusScanResult\": \"<string>\",\n        \"scannedAt\": \"<dateTime>\",\n        \"downloadUrl\": \"<uri>\",\n        \"hashes\": {\n          \"AutoV1\": \"<string>\",\n          \"AutoV2\": \"<string>\",\n          \"SHA256\": \"<string>\",\n          \"CRC32\": \"<string>\",\n          \"Blake3\": \"<string>\"\n        }\n      },\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"sizeKB\": \"<number>\",\n        \"type\": \"Training Data\",\n        \"format\": \"SafeTensor\",\n        \"pickleScanResult\": \"<string>\",\n        \"virusScanResult\": \"<string>\",\n        \"scannedAt\": \"<dateTime>\",\n        \"downloadUrl\": \"<uri>\",\n        \"hashes\": {\n          \"AutoV1\": \"<string>\",\n          \"AutoV2\": \"<string>\",\n          \"SHA256\": \"<string>\",\n          \"CRC32\": \"<string>\",\n          \"Blake3\": \"<string>\"\n        }\n      }\n    ],\n    \"images\": [\n      {\n        \"id\": \"<integer>\",\n        \"url\": \"<uri>\",\n        \"hash\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"nsfwLevel\": \"<integer>\",\n        \"nsfw\": \"<boolean>\",\n        \"createdAt\": \"<dateTime>\",\n        \"postId\": \"<integer>\",\n        \"stats\": {\n          \"downloadCount\": \"<integer>\",\n          \"favoriteCount\": \"<integer>\",\n          \"commentCount\": \"<integer>\",\n          \"ratingCount\": \"<integer>\",\n          \"rating\": \"<number>\",\n          \"thumbsUpCount\": \"<integer>\",\n          \"thumbsDownCount\": \"<integer>\"\n        },\n        \"meta\": {\n          \"fugiat_c6\": -18039829.09849471,\n          \"anim_d\": \"laborum Duis nostrud\",\n          \"ullamco_f23\": 40698457.82009286\n        },\n        \"username\": \"<string>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"url\": \"<uri>\",\n        \"hash\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"nsfwLevel\": \"<integer>\",\n        \"nsfw\": \"<boolean>\",\n        \"createdAt\": \"<dateTime>\",\n        \"postId\": \"<integer>\",\n        \"stats\": {\n          \"downloadCount\": \"<integer>\",\n          \"favoriteCount\": \"<integer>\",\n          \"commentCount\": \"<integer>\",\n          \"ratingCount\": \"<integer>\",\n          \"rating\": \"<number>\",\n          \"thumbsUpCount\": \"<integer>\",\n          \"thumbsDownCount\": \"<integer>\"\n        },\n        \"meta\": {\n          \"veniam49f\": true,\n          \"Duis_42\": 41756554,\n          \"sitd7\": -54936931.760471456\n        },\n        \"username\": \"<string>\"\n      }\n    ],\n    \"stats\": {\n      \"downloadCount\": \"<integer>\",\n      \"favoriteCount\": \"<integer>\",\n      \"commentCount\": \"<integer>\",\n      \"ratingCount\": \"<integer>\",\n      \"rating\": \"<number>\",\n      \"thumbsUpCount\": \"<integer>\",\n      \"thumbsDownCount\": \"<integer>\"\n    }\n  }\n]",
+                  "createdAt": "2026-06-05T15:06:47.000Z",
+                  "updatedAt": "2026-06-05T15:06:47.000Z",
+                  "uid": "35240-5be682fc-3b68-4829-b9c2-e006b329fa18"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-622afd20-2b15-4c81-8096-c9b86b09feac"
+            }
+          ],
+          "id": "14dc5c19-559d-4080-aeee-0ceada0e3611",
+          "createdAt": "2026-06-05T15:06:47.000Z",
+          "updatedAt": "2026-06-05T15:06:47.000Z",
+          "uid": "35240-14dc5c19-559d-4080-aeee-0ceada0e3611"
+        }
+      ],
+      "id": "020262bb-baba-4658-8d12-80242d9299aa",
+      "createdAt": "2026-06-05T15:06:47.000Z",
+      "updatedAt": "2026-06-05T15:06:47.000Z",
+      "uid": "35240-020262bb-baba-4658-8d12-80242d9299aa"
+    },
+    {
+      "name": "images",
+      "item": [
+        {
+          "name": "List Images",
+          "id": "b703bb95-3660-4890-a972-475d8d8414ba",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/images?limit=100&postId=<integer>&modelId=<integer>&modelVersionId=<integer>&username=<string>&nsfw=None&sort=Most Reactions&period=AllTime&page=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "images"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "key": "postId",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "modelId",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "modelVersionId",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "username",
+                  "value": "<string>"
+                },
+                {
+                  "key": "nsfw",
+                  "value": "None"
+                },
+                {
+                  "key": "sort",
+                  "value": "Most Reactions"
+                },
+                {
+                  "key": "period",
+                  "value": "AllTime"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3a885a7c-a511-41a1-8f61-d9c9aa709acd",
+              "name": "Page of images.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/images?limit=100&postId=<integer>&modelId=<integer>&modelVersionId=<integer>&username=<string>&nsfw=None&sort=Most Reactions&period=AllTime&page=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "images"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "postId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "modelId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "modelVersionId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsfw",
+                      "value": "None"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "Most Reactions"
+                    },
+                    {
+                      "key": "period",
+                      "value": "AllTime"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<integer>\",\n      \"url\": \"<uri>\",\n      \"hash\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"nsfwLevel\": \"<integer>\",\n      \"nsfw\": \"<boolean>\",\n      \"createdAt\": \"<dateTime>\",\n      \"postId\": \"<integer>\",\n      \"stats\": {\n        \"downloadCount\": \"<integer>\",\n        \"favoriteCount\": \"<integer>\",\n        \"commentCount\": \"<integer>\",\n        \"ratingCount\": \"<integer>\",\n        \"rating\": \"<number>\",\n        \"thumbsUpCount\": \"<integer>\",\n        \"thumbsDownCount\": \"<integer>\"\n      },\n      \"meta\": {\n        \"enim_b58\": \"anim reprehenderit elit voluptate\"\n      },\n      \"username\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"url\": \"<uri>\",\n      \"hash\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"nsfwLevel\": \"<integer>\",\n      \"nsfw\": \"<boolean>\",\n      \"createdAt\": \"<dateTime>\",\n      \"postId\": \"<integer>\",\n      \"stats\": {\n        \"downloadCount\": \"<integer>\",\n        \"favoriteCount\": \"<integer>\",\n        \"commentCount\": \"<integer>\",\n        \"ratingCount\": \"<integer>\",\n        \"rating\": \"<number>\",\n        \"thumbsUpCount\": \"<integer>\",\n        \"thumbsDownCount\": \"<integer>\"\n      },\n      \"meta\": {\n        \"in_813\": -94231568,\n        \"elit_30\": true\n      },\n      \"username\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"nextPage\": \"<string>\",\n    \"prevPage\": \"<string>\",\n    \"totalItems\": \"<integer>\",\n    \"totalPages\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-3a885a7c-a511-41a1-8f61-d9c9aa709acd"
+            }
+          ],
+          "createdAt": "2026-06-05T15:06:47.000Z",
+          "updatedAt": "2026-06-05T15:06:47.000Z",
+          "uid": "35240-b703bb95-3660-4890-a972-475d8d8414ba"
+        }
+      ],
+      "id": "df08a667-bf9d-4d13-9dff-58b8aba14268",
+      "createdAt": "2026-06-05T15:06:47.000Z",
+      "updatedAt": "2026-06-05T15:06:47.000Z",
+      "uid": "35240-df08a667-bf9d-4d13-9dff-58b8aba14268"
+    },
+    {
+      "name": "creators",
+      "item": [
+        {
+          "name": "List Creators",
+          "id": "dc4b4e7d-74e3-4bfa-80a5-4c8bfb917edb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/creators?limit=20&page=<integer>&query=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "creators"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "query",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "59b845ec-9f32-4c42-b760-e9d39cfebcf3",
+              "name": "Page of creators.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/creators?limit=20&page=<integer>&query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "creators"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"username\": \"<string>\",\n      \"image\": \"<uri>\",\n      \"modelCount\": \"<integer>\",\n      \"link\": \"<uri>\"\n    },\n    {\n      \"username\": \"<string>\",\n      \"image\": \"<uri>\",\n      \"modelCount\": \"<integer>\",\n      \"link\": \"<uri>\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"nextPage\": \"<string>\",\n    \"prevPage\": \"<string>\",\n    \"totalItems\": \"<integer>\",\n    \"totalPages\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-59b845ec-9f32-4c42-b760-e9d39cfebcf3"
+            }
+          ],
+          "createdAt": "2026-06-05T15:06:47.000Z",
+          "updatedAt": "2026-06-05T15:06:47.000Z",
+          "uid": "35240-dc4b4e7d-74e3-4bfa-80a5-4c8bfb917edb"
+        }
+      ],
+      "id": "ddd33288-5add-43ee-bf31-b7331ffc7a66",
+      "createdAt": "2026-06-05T15:06:47.000Z",
+      "updatedAt": "2026-06-05T15:06:47.000Z",
+      "uid": "35240-ddd33288-5add-43ee-bf31-b7331ffc7a66"
+    },
+    {
+      "name": "tags",
+      "item": [
+        {
+          "name": "List Tags",
+          "id": "c65798fa-0604-4bec-bf03-a6951f84c05e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tags?limit=20&page=<integer>&query=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tags"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "query",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "334efa22-104c-4dbf-a4b8-c66ce2d40f18",
+              "name": "Page of tags.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tags?limit=20&page=<integer>&query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tags"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"modelCount\": \"<integer>\",\n      \"link\": \"<uri>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"modelCount\": \"<integer>\",\n      \"link\": \"<uri>\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"nextPage\": \"<string>\",\n    \"prevPage\": \"<string>\",\n    \"totalItems\": \"<integer>\",\n    \"totalPages\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-334efa22-104c-4dbf-a4b8-c66ce2d40f18"
+            }
+          ],
+          "createdAt": "2026-06-05T15:06:47.000Z",
+          "updatedAt": "2026-06-05T15:06:47.000Z",
+          "uid": "35240-c65798fa-0604-4bec-bf03-a6951f84c05e"
+        }
+      ],
+      "id": "e0676e31-8420-4f9c-9ff2-6d3db3469ca1",
+      "createdAt": "2026-06-05T15:06:47.000Z",
+      "updatedAt": "2026-06-05T15:06:47.000Z",
+      "uid": "35240-e0676e31-8420-4f9c-9ff2-6d3db3469ca1"
+    },
+    {
+      "name": "me",
+      "item": [
+        {
+          "name": "Get Current User",
+          "id": "961e7b01-6f72-4014-8aa0-0cab24f65fbd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7ac151ee-820d-4b72-bbfd-60c32f447c8f",
+              "name": "Authenticated user profile.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "me"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<integer>\",\n  \"username\": \"<string>\",\n  \"email\": \"<string>\",\n  \"image\": \"<uri>\",\n  \"tier\": \"Founder\",\n  \"createdAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-7ac151ee-820d-4b72-bbfd-60c32f447c8f"
+            },
+            {
+              "id": "386fd4c0-a1fd-4049-8e7b-a0993b777676",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "me"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-386fd4c0-a1fd-4049-8e7b-a0993b777676"
+            }
+          ],
+          "createdAt": "2026-06-05T15:06:47.000Z",
+          "updatedAt": "2026-06-05T15:06:47.000Z",
+          "uid": "35240-961e7b01-6f72-4014-8aa0-0cab24f65fbd"
+        }
+      ],
+      "id": "baeaed3a-300a-47df-b0d9-b7d3b4feed51",
+      "createdAt": "2026-06-05T15:06:47.000Z",
+      "updatedAt": "2026-06-05T15:06:47.000Z",
+      "uid": "35240-baeaed3a-300a-47df-b0d9-b7d3b4feed51"
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "List Users",
+          "id": "fa0063e5-4b92-4b48-964a-8515fcd4a214",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users?username=<string>&limit=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "username",
+                  "value": "<string>"
+                },
+                {
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "11fa1451-68e2-46e5-ace5-340821b357d3",
+              "name": "Matching users.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users?username=<string>&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"username\": \"<string>\",\n    \"email\": \"<string>\",\n    \"image\": \"<uri>\",\n    \"tier\": \"Free\",\n    \"createdAt\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"username\": \"<string>\",\n    \"email\": \"<string>\",\n    \"image\": \"<uri>\",\n    \"tier\": \"Gold\",\n    \"createdAt\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-11fa1451-68e2-46e5-ace5-340821b357d3"
+            }
+          ],
+          "createdAt": "2026-06-05T15:06:47.000Z",
+          "updatedAt": "2026-06-05T15:06:47.000Z",
+          "uid": "35240-fa0063e5-4b92-4b48-964a-8515fcd4a214"
+        }
+      ],
+      "id": "ede8350a-0733-4eaa-8ccc-ab502e96a286",
+      "createdAt": "2026-06-05T15:06:47.000Z",
+      "updatedAt": "2026-06-05T15:06:47.000Z",
+      "uid": "35240-ede8350a-0733-4eaa-8ccc-ab502e96a286"
+    },
+    {
+      "name": "permissions",
+      "item": [
+        {
+          "name": "check",
+          "item": [
+            {
+              "name": "Check Permissions",
+              "id": "2998776a-0dec-424a-8c07-11091e1b73e9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/permissions/check?entityType=Post&entityId=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "permissions",
+                    "check"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "entityType",
+                      "value": "Post"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "entityId",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "05977dd5-8305-45c3-aca3-e00120be92e2",
+                  "name": "Permission decisions for the current bearer.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/permissions/check?entityType=Post&entityId=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "permissions",
+                        "check"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "entityType",
+                          "value": "Post"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "entityId",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"entityType\": \"<string>\",\n  \"entityId\": \"<integer>\",\n  \"canView\": \"<boolean>\",\n  \"canEdit\": \"<boolean>\",\n  \"canDelete\": \"<boolean>\",\n  \"canDownload\": \"<boolean>\"\n}",
+                  "createdAt": "2026-06-05T15:06:47.000Z",
+                  "updatedAt": "2026-06-05T15:06:47.000Z",
+                  "uid": "35240-05977dd5-8305-45c3-aca3-e00120be92e2"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-2998776a-0dec-424a-8c07-11091e1b73e9"
+            }
+          ],
+          "id": "fa96be77-41a6-44df-a0c1-1b61a812b822",
+          "createdAt": "2026-06-05T15:06:47.000Z",
+          "updatedAt": "2026-06-05T15:06:47.000Z",
+          "uid": "35240-fa96be77-41a6-44df-a0c1-1b61a812b822"
+        }
+      ],
+      "id": "ce12be8b-87c1-43e2-8ce6-ae0abef32788",
+      "createdAt": "2026-06-05T15:06:47.000Z",
+      "updatedAt": "2026-06-05T15:06:47.000Z",
+      "uid": "35240-ce12be8b-87c1-43e2-8ce6-ae0abef32788"
+    },
+    {
+      "name": "vault",
+      "item": [
+        {
+          "name": "get",
+          "item": [
+            {
+              "name": "Get Vault Item",
+              "id": "657901bc-2146-4311-bd04-f98d3f3e6fa9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/vault/get?modelVersionId=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vault",
+                    "get"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "modelVersionId",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "0e141c60-3d33-4846-b34b-642a33c88ffc",
+                  "name": "Vault item.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/vault/get?modelVersionId=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vault",
+                        "get"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "modelVersionId",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"modelVersionId\": \"<integer>\",\n  \"modelId\": \"<integer>\",\n  \"addedAt\": \"<dateTime>\",\n  \"status\": \"Failed\",\n  \"sizeKb\": \"<number>\"\n}",
+                  "createdAt": "2026-06-05T15:06:47.000Z",
+                  "updatedAt": "2026-06-05T15:06:47.000Z",
+                  "uid": "35240-0e141c60-3d33-4846-b34b-642a33c88ffc"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-657901bc-2146-4311-bd04-f98d3f3e6fa9"
+            }
+          ],
+          "id": "3abb788f-67f8-44e8-a2a3-ccb7f35fa328",
+          "createdAt": "2026-06-05T15:06:47.000Z",
+          "updatedAt": "2026-06-05T15:06:47.000Z",
+          "uid": "35240-3abb788f-67f8-44e8-a2a3-ccb7f35fa328"
+        },
+        {
+          "name": "all",
+          "item": [
+            {
+              "name": "Get All Vault Items",
+              "id": "0210e9c7-4db9-46fb-8181-419a763973fb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/vault/all",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vault",
+                    "all"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "a0d5530c-9297-46b2-a396-ef58b9ddf93c",
+                  "name": "All vault items for the current user.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/vault/all",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vault",
+                        "all"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"modelVersionId\": \"<integer>\",\n    \"modelId\": \"<integer>\",\n    \"addedAt\": \"<dateTime>\",\n    \"status\": \"Pending\",\n    \"sizeKb\": \"<number>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"modelVersionId\": \"<integer>\",\n    \"modelId\": \"<integer>\",\n    \"addedAt\": \"<dateTime>\",\n    \"status\": \"Pending\",\n    \"sizeKb\": \"<number>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:06:47.000Z",
+                  "updatedAt": "2026-06-05T15:06:47.000Z",
+                  "uid": "35240-a0d5530c-9297-46b2-a396-ef58b9ddf93c"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-0210e9c7-4db9-46fb-8181-419a763973fb"
+            }
+          ],
+          "id": "bc61b27c-db6b-49d6-8e1d-43317ad41e13",
+          "createdAt": "2026-06-05T15:06:47.000Z",
+          "updatedAt": "2026-06-05T15:06:47.000Z",
+          "uid": "35240-bc61b27c-db6b-49d6-8e1d-43317ad41e13"
+        },
+        {
+          "name": "check-vault",
+          "item": [
+            {
+              "name": "Check Vault Status",
+              "id": "54a3221d-f41e-4d15-bdca-8490dbc4de89",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/vault/check-vault",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vault",
+                    "check-vault"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "296536ed-38b0-4258-8540-e899d1e26b5e",
+                  "name": "Vault subscription/storage status.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/vault/check-vault",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vault",
+                        "check-vault"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"subscribed\": \"<boolean>\",\n  \"storageUsedKb\": \"<number>\",\n  \"storageLimitKb\": \"<number>\",\n  \"tier\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:06:47.000Z",
+                  "updatedAt": "2026-06-05T15:06:47.000Z",
+                  "uid": "35240-296536ed-38b0-4258-8540-e899d1e26b5e"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-54a3221d-f41e-4d15-bdca-8490dbc4de89"
+            }
+          ],
+          "id": "132180fd-d0bf-4ace-a14b-fad2bcb42e27",
+          "createdAt": "2026-06-05T15:06:47.000Z",
+          "updatedAt": "2026-06-05T15:06:47.000Z",
+          "uid": "35240-132180fd-d0bf-4ace-a14b-fad2bcb42e27"
+        },
+        {
+          "name": "toggle-version",
+          "item": [
+            {
+              "name": "Toggle Vault Version",
+              "id": "5cdf82ff-29aa-47d7-94d2-6e766a9464a0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"modelVersionId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/vault/toggle-version",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vault",
+                    "toggle-version"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "14bbffbe-7221-43e9-9989-80d7530c45fd",
+                  "name": "Vault item after toggle.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"modelVersionId\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/vault/toggle-version",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vault",
+                        "toggle-version"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"modelVersionId\": \"<integer>\",\n  \"modelId\": \"<integer>\",\n  \"addedAt\": \"<dateTime>\",\n  \"status\": \"Failed\",\n  \"sizeKb\": \"<number>\"\n}",
+                  "createdAt": "2026-06-05T15:06:47.000Z",
+                  "updatedAt": "2026-06-05T15:06:47.000Z",
+                  "uid": "35240-14bbffbe-7221-43e9-9989-80d7530c45fd"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-5cdf82ff-29aa-47d7-94d2-6e766a9464a0"
+            }
+          ],
+          "id": "4a359317-a9a5-4a14-8940-bc57369c107f",
+          "createdAt": "2026-06-05T15:06:47.000Z",
+          "updatedAt": "2026-06-05T15:06:47.000Z",
+          "uid": "35240-4a359317-a9a5-4a14-8940-bc57369c107f"
+        }
+      ],
+      "id": "dab116ff-6dea-4f68-8341-3dfecf506382",
+      "createdAt": "2026-06-05T15:06:47.000Z",
+      "updatedAt": "2026-06-05T15:06:47.000Z",
+      "uid": "35240-dab116ff-6dea-4f68-8341-3dfecf506382"
+    },
+    {
+      "name": "enums",
+      "item": [
+        {
+          "name": "Get Enums",
+          "id": "6c02e24d-aea4-4f60-b49d-6f8d5fa09ef0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/enums",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "enums"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c3d74e12-fe1b-4905-b0d7-26c4b404527e",
+              "name": "Enumeration values used by the API.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/enums",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "enums"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"quisf\": \"nostrud occaecat dolore\",\n  \"ea__41\": 51007606\n}",
+              "createdAt": "2026-06-05T15:06:47.000Z",
+              "updatedAt": "2026-06-05T15:06:47.000Z",
+              "uid": "35240-c3d74e12-fe1b-4905-b0d7-26c4b404527e"
+            }
+          ],
+          "createdAt": "2026-06-05T15:06:47.000Z",
+          "updatedAt": "2026-06-05T15:06:47.000Z",
+          "uid": "35240-6c02e24d-aea4-4f60-b49d-6f8d5fa09ef0"
+        }
+      ],
+      "id": "1ef97921-85ef-4a95-b7be-3dd4aea7a8d6",
+      "createdAt": "2026-06-05T15:06:47.000Z",
+      "updatedAt": "2026-06-05T15:06:47.000Z",
+      "uid": "35240-1ef97921-85ef-4a95-b7be-3dd4aea7a8d6"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://civitai.com/api/v1"
+    }
+  ]
+}

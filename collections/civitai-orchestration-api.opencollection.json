@@ -1,0 +1,263 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Civitai Orchestration API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://orchestration.civitai.com/v2/consumer/workflows",
+            "params": [
+              {
+                "name": "take",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query Workflows"
+        },
+        {
+          "info": {
+            "name": "Submit Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://orchestration.civitai.com/v2/consumer/workflows",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a new workflow composed of one or more steps. Each step references a recipe such as an image, video, audio, or training generator."
+        },
+        {
+          "info": {
+            "name": "Get Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://orchestration.civitai.com/v2/consumer/workflows/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Workflow"
+        },
+        {
+          "info": {
+            "name": "Update Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://orchestration.civitai.com/v2/consumer/workflows/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Workflow"
+        },
+        {
+          "info": {
+            "name": "Patch Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://orchestration.civitai.com/v2/consumer/workflows/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Workflow"
+        },
+        {
+          "info": {
+            "name": "Delete Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://orchestration.civitai.com/v2/consumer/workflows/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Workflow"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Blobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload Blob",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://orchestration.civitai.com/v2/consumer/blobs",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "moderate",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a blob (image, video, audio) with built-in NSFW moderation."
+        },
+        {
+          "info": {
+            "name": "Get Blob Upload URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://orchestration.civitai.com/v2/consumer/blobs/upload-url",
+            "params": [
+              {
+                "name": "mimeType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sizeBytes",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Blob Upload URL"
+        },
+        {
+          "info": {
+            "name": "Get Blob",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://orchestration.civitai.com/v2/consumer/blobs/:blobId",
+            "params": [
+              {
+                "name": "blobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Blob"
+        },
+        {
+          "info": {
+            "name": "Head Blob",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://orchestration.civitai.com/v2/consumer/blobs/:blobId",
+            "params": [
+              {
+                "name": "blobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Check blob existence and moderation status without downloading metadata."
+        },
+        {
+          "info": {
+            "name": "Refresh Blob URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://orchestration.civitai.com/v2/consumer/blobs/:blobId/refresh",
+            "params": [
+              {
+                "name": "blobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Refresh Blob URL"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

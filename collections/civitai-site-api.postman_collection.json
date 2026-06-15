@@ -1,0 +1,2340 @@
+{
+  "item": [
+    {
+      "id": "4ef89eb2-8b8c-447d-928b-4c61a509fc9a",
+      "name": "Models",
+      "description": {
+        "content": "Catalog of model checkpoints, LoRAs, embeddings, and VAEs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f9077161-5109-4a97-b83b-623bc8d08ace",
+          "name": "List Models",
+          "request": {
+            "name": "List Models",
+            "description": {},
+            "url": {
+              "path": [
+                "models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "username",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "types",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "types",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "period",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsfw",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "686b03f6-78f6-4aec-be0f-3e3889aaabb3",
+              "name": "Page of models.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsfw",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": 6775,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"Checkpoint\",\n      \"nsfw\": false,\n      \"nsfwLevel\": 9352,\n      \"allowNoCredit\": false,\n      \"allowCommercialUse\": [\n        \"None\",\n        \"RentCivit\"\n      ],\n      \"allowDerivatives\": true,\n      \"allowDifferentLicense\": false,\n      \"stats\": {\n        \"downloadCount\": 7813,\n        \"favoriteCount\": 6892,\n        \"commentCount\": 7932,\n        \"ratingCount\": 3216,\n        \"rating\": 146.53726028671542,\n        \"thumbsUpCount\": 3037,\n        \"thumbsDownCount\": 1896\n      },\n      \"creator\": {\n        \"username\": \"string\",\n        \"image\": \"https://mblIkugCfSanXZXbTRxVIPYOZxlQB.fsmDtXLJFRncF3qZjR5\",\n        \"modelCount\": 6333,\n        \"link\": \"https://elRKyYzLfzsWwUP.rdxp.\"\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"modelVersions\": [\n        {\n          \"id\": 1891,\n          \"modelId\": 8198,\n          \"name\": \"string\",\n          \"baseModel\": \"string\",\n          \"baseModelType\": \"string\",\n          \"createdAt\": \"2002-08-10T18:12:51.324Z\",\n          \"updatedAt\": \"1980-10-23T05:10:06.146Z\",\n          \"publishedAt\": \"2009-12-08T18:12:01.047Z\",\n          \"trainedWords\": [\n            \"string\",\n            \"string\"\n          ],\n          \"air\": \"string\",\n          \"downloadUrl\": \"http://siHUSXXhx.gihitglbFtHOyDWdxHL3rPrx6JbD9GgL-f8wndf\",\n          \"files\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sizeKB\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"format\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pickleScanResult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"virusScanResult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scannedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"downloadUrl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hashes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sizeKB\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"format\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pickleScanResult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"virusScanResult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scannedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"downloadUrl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hashes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"images\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hash\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"nsfwLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"nsfw\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"postId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"stats\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"meta\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hash\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"nsfwLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"nsfw\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"postId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"stats\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"meta\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"stats\": {\n            \"downloadCount\": 9611,\n            \"favoriteCount\": 9418,\n            \"commentCount\": 1409,\n            \"ratingCount\": 3843,\n            \"rating\": 5251.344917441086,\n            \"thumbsUpCount\": 9634,\n            \"thumbsDownCount\": 1446\n          }\n        },\n        {\n          \"id\": 7077,\n          \"modelId\": 2574,\n          \"name\": \"string\",\n          \"baseModel\": \"string\",\n          \"baseModelType\": \"string\",\n          \"createdAt\": \"1985-01-29T13:45:08.506Z\",\n          \"updatedAt\": \"1981-06-03T23:11:58.400Z\",\n          \"publishedAt\": \"2006-12-31T19:48:36.846Z\",\n          \"trainedWords\": [\n            \"string\",\n            \"string\"\n          ],\n          \"air\": \"string\",\n          \"downloadUrl\": \"http://HDjm.vyipT,zGML,6X8AfhQjdCOwYcopwzBdKz,pSROS0zMH9i2j\",\n          \"files\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sizeKB\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"format\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pickleScanResult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"virusScanResult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scannedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"downloadUrl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hashes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sizeKB\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"format\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pickleScanResult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"virusScanResult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scannedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"downloadUrl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hashes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"images\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hash\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"nsfwLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"nsfw\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"postId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"stats\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"meta\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hash\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"nsfwLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"nsfw\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"postId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"stats\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"meta\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"stats\": {\n            \"downloadCount\": 9729,\n            \"favoriteCount\": 5514,\n            \"commentCount\": 2320,\n            \"ratingCount\": 5181,\n            \"rating\": 2052.290126767475,\n            \"thumbsUpCount\": 8225,\n            \"thumbsDownCount\": 3265\n          }\n        }\n      ]\n    },\n    {\n      \"id\": 8066,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"Hypernetwork\",\n      \"nsfw\": true,\n      \"nsfwLevel\": 4212,\n      \"allowNoCredit\": true,\n      \"allowCommercialUse\": [\n        \"Sell\",\n        \"Rent\"\n      ],\n      \"allowDerivatives\": false,\n      \"allowDifferentLicense\": false,\n      \"stats\": {\n        \"downloadCount\": 5521,\n        \"favoriteCount\": 1935,\n        \"commentCount\": 2474,\n        \"ratingCount\": 8479,\n        \"rating\": 3347.5293682813444,\n        \"thumbsUpCount\": 6882,\n        \"thumbsDownCount\": 9754\n      },\n      \"creator\": {\n        \"username\": \"string\",\n        \"image\": \"http://rShoxwZJUiAV.dwqIz5\",\n        \"modelCount\": 4234,\n        \"link\": \"https://SFYOkShkUUP.ntimCII59D6desa8AH4QtCsAE,+l-FeJdX0Cp324OuKx09DSAhcb2\"\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"modelVersions\": [\n        {\n          \"id\": 3154,\n          \"modelId\": 6342,\n          \"name\": \"string\",\n          \"baseModel\": \"string\",\n          \"baseModelType\": \"string\",\n          \"createdAt\": \"2023-07-22T23:42:49.936Z\",\n          \"updatedAt\": \"1979-10-08T10:45:46.131Z\",\n          \"publishedAt\": \"1996-02-03T20:55:28.862Z\",\n          \"trainedWords\": [\n            \"string\",\n            \"string\"\n          ],\n          \"air\": \"string\",\n          \"downloadUrl\": \"http://oYXKiVSU.qxojqTq68W0le\",\n          \"files\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sizeKB\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"format\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pickleScanResult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"virusScanResult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scannedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"downloadUrl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hashes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sizeKB\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"format\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pickleScanResult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"virusScanResult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scannedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"downloadUrl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hashes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"images\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hash\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"nsfwLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"nsfw\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"postId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"stats\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"meta\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hash\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"nsfwLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"nsfw\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"postId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"stats\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"meta\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"stats\": {\n            \"downloadCount\": 4389,\n            \"favoriteCount\": 4339,\n            \"commentCount\": 1431,\n            \"ratingCount\": 9962,\n            \"rating\": 5002.172611994018,\n            \"thumbsUpCount\": 8811,\n            \"thumbsDownCount\": 4371\n          }\n        },\n        {\n          \"id\": 1435,\n          \"modelId\": 3749,\n          \"name\": \"string\",\n          \"baseModel\": \"string\",\n          \"baseModelType\": \"string\",\n          \"createdAt\": \"2006-11-21T20:04:35.706Z\",\n          \"updatedAt\": \"2002-09-01T14:26:37.079Z\",\n          \"publishedAt\": \"1993-02-24T16:01:09.032Z\",\n          \"trainedWords\": [\n            \"string\",\n            \"string\"\n          ],\n          \"air\": \"string\",\n          \"downloadUrl\": \"http://tExeAetSAvERSrEQJXcVEzXhoDDvIce.byrvF3kLvcru77QM3NY,inN0JsaG1L3T4PhlMRUzbWgD1U\",\n          \"files\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sizeKB\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"format\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pickleScanResult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"virusScanResult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scannedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"downloadUrl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hashes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sizeKB\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"format\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pickleScanResult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"virusScanResult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scannedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"downloadUrl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hashes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"images\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hash\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"nsfwLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"nsfw\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"postId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"stats\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"meta\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hash\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"nsfwLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"nsfw\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"postId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"stats\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"meta\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"stats\": {\n            \"downloadCount\": 9630,\n            \"favoriteCount\": 212,\n            \"commentCount\": 8546,\n            \"ratingCount\": 57,\n            \"rating\": 8810.124451345107,\n            \"thumbsUpCount\": 3698,\n            \"thumbsDownCount\": 3584\n          }\n        }\n      ]\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": 6059,\n    \"pageSize\": 2797,\n    \"nextPage\": \"string\",\n    \"prevPage\": \"string\",\n    \"totalItems\": 8005,\n    \"totalPages\": 7542\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5f75126-adf5-4f33-8bde-12ef2ca5dce8",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsfw",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee467227-bcc8-4119-9bb8-2e3c2e5391c1",
+              "name": "Too many requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsfw",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2e64df6-c534-45ba-bddc-ab43a37cc9b1",
+          "name": "Get Model",
+          "request": {
+            "name": "Get Model",
+            "description": {},
+            "url": {
+              "path": [
+                "models",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0034ff2-b8d0-456f-b15a-7443b910ea71",
+              "name": "Model detail.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6129,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"type\": \"Other\",\n  \"nsfw\": true,\n  \"nsfwLevel\": 5623,\n  \"allowNoCredit\": true,\n  \"allowCommercialUse\": [\n    \"RentCivit\",\n    \"Image\"\n  ],\n  \"allowDerivatives\": true,\n  \"allowDifferentLicense\": false,\n  \"stats\": {\n    \"downloadCount\": 2113,\n    \"favoriteCount\": 2240,\n    \"commentCount\": 3125,\n    \"ratingCount\": 416,\n    \"rating\": 6987.185115444112,\n    \"thumbsUpCount\": 581,\n    \"thumbsDownCount\": 255\n  },\n  \"creator\": {\n    \"username\": \"string\",\n    \"image\": \"https://AMuECQbWOoDRpnxaZJecQrWsSGiG.evrwLxt\",\n    \"modelCount\": 1284,\n    \"link\": \"http://bfCYtihQzUnKUfTcI.ewecrkWQnlpOgBz764faUMP9MB7Liiep7ahLDL9\"\n  },\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"modelVersions\": [\n    {\n      \"id\": 4647,\n      \"modelId\": 4425,\n      \"name\": \"string\",\n      \"baseModel\": \"string\",\n      \"baseModelType\": \"string\",\n      \"createdAt\": \"1968-02-23T06:10:17.055Z\",\n      \"updatedAt\": \"1977-08-14T04:32:37.544Z\",\n      \"publishedAt\": \"1998-03-02T12:46:52.146Z\",\n      \"trainedWords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"air\": \"string\",\n      \"downloadUrl\": \"http://DImAylYbuJ.amSq6\",\n      \"files\": [\n        {\n          \"id\": 2761,\n          \"name\": \"string\",\n          \"sizeKB\": 9465.79565337093,\n          \"type\": \"VAE\",\n          \"format\": \"Other\",\n          \"pickleScanResult\": \"string\",\n          \"virusScanResult\": \"string\",\n          \"scannedAt\": \"1999-03-11T21:44:45.795Z\",\n          \"downloadUrl\": \"http://kwhARHfJFzTdcEKMuPFkeGQzlwzcxVjA.vryOAYYMgv7PrVwZ\",\n          \"hashes\": {\n            \"AutoV1\": \"string\",\n            \"AutoV2\": \"string\",\n            \"SHA256\": \"string\",\n            \"CRC32\": \"string\",\n            \"Blake3\": \"string\"\n          }\n        },\n        {\n          \"id\": 144,\n          \"name\": \"string\",\n          \"sizeKB\": 1396.4065825455252,\n          \"type\": \"Negative\",\n          \"format\": \"Other\",\n          \"pickleScanResult\": \"string\",\n          \"virusScanResult\": \"string\",\n          \"scannedAt\": \"2016-01-19T21:28:35.352Z\",\n          \"downloadUrl\": \"http://HORVhpwhggsaQfkrJMwbBaMIlo.iutvDXjEmdDC-Q5b4.uTKIzcqL31cAFZXNvtBYAO-HxxBRcs-QwH5Sm8A95\",\n          \"hashes\": {\n            \"AutoV1\": \"string\",\n            \"AutoV2\": \"string\",\n            \"SHA256\": \"string\",\n            \"CRC32\": \"string\",\n            \"Blake3\": \"string\"\n          }\n        }\n      ],\n      \"images\": [\n        {\n          \"id\": 6881,\n          \"url\": \"https://pSFzHgezBXICYottbhJr.zbilTQYB8Eu21yM9MDFfuEvMExkCkGE\",\n          \"hash\": \"string\",\n          \"width\": 1959,\n          \"height\": 1020,\n          \"nsfwLevel\": 6919,\n          \"nsfw\": true,\n          \"createdAt\": \"2019-07-11T23:28:47.622Z\",\n          \"postId\": 2713,\n          \"stats\": {\n            \"downloadCount\": 476,\n            \"favoriteCount\": 3174,\n            \"commentCount\": 6950,\n            \"ratingCount\": 4483,\n            \"rating\": 9236.614412642208,\n            \"thumbsUpCount\": 1933,\n            \"thumbsDownCount\": 2791\n          },\n          \"meta\": {\n            \"key_0\": true,\n            \"key_1\": 8783\n          },\n          \"username\": \"string\"\n        },\n        {\n          \"id\": 4040,\n          \"url\": \"https://jUGxgyaDYhyEVaLKnOoXwGRQySNopLOR.alnV06qc3HmZwcv4eKNqLFwRNMrQBqZwxEu89vry4-WC\",\n          \"hash\": \"string\",\n          \"width\": 4902,\n          \"height\": 9952,\n          \"nsfwLevel\": 9134,\n          \"nsfw\": true,\n          \"createdAt\": \"2000-07-18T09:31:15.211Z\",\n          \"postId\": 7199,\n          \"stats\": {\n            \"downloadCount\": 6585,\n            \"favoriteCount\": 2830,\n            \"commentCount\": 8448,\n            \"ratingCount\": 3873,\n            \"rating\": 9046.781137011425,\n            \"thumbsUpCount\": 9741,\n            \"thumbsDownCount\": 6842\n          },\n          \"meta\": {\n            \"key_0\": true,\n            \"key_1\": \"string\"\n          },\n          \"username\": \"string\"\n        }\n      ],\n      \"stats\": {\n        \"downloadCount\": 2626,\n        \"favoriteCount\": 2630,\n        \"commentCount\": 4450,\n        \"ratingCount\": 968,\n        \"rating\": 7923.8993437837225,\n        \"thumbsUpCount\": 125,\n        \"thumbsDownCount\": 6374\n      }\n    },\n    {\n      \"id\": 2802,\n      \"modelId\": 9429,\n      \"name\": \"string\",\n      \"baseModel\": \"string\",\n      \"baseModelType\": \"string\",\n      \"createdAt\": \"1957-06-12T18:58:01.520Z\",\n      \"updatedAt\": \"1947-08-09T08:00:18.955Z\",\n      \"publishedAt\": \"2025-05-24T12:15:15.614Z\",\n      \"trainedWords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"air\": \"string\",\n      \"downloadUrl\": \"https://qAzuACaEGRfdtDzEgCMdkUfkNdpc.emCgNUyi962Y+ArftGy9Qst\",\n      \"files\": [\n        {\n          \"id\": 5695,\n          \"name\": \"string\",\n          \"sizeKB\": 1188.3066058320057,\n          \"type\": \"Config\",\n          \"format\": \"PickleTensor\",\n          \"pickleScanResult\": \"string\",\n          \"virusScanResult\": \"string\",\n          \"scannedAt\": \"2007-01-03T04:50:52.249Z\",\n          \"downloadUrl\": \"https://msJ.xnikn1QpXr1EHhQU2DFQVmGCDpaQppY6\",\n          \"hashes\": {\n            \"AutoV1\": \"string\",\n            \"AutoV2\": \"string\",\n            \"SHA256\": \"string\",\n            \"CRC32\": \"string\",\n            \"Blake3\": \"string\"\n          }\n        },\n        {\n          \"id\": 8572,\n          \"name\": \"string\",\n          \"sizeKB\": 6647.6074804497275,\n          \"type\": \"VAE\",\n          \"format\": \"PickleTensor\",\n          \"pickleScanResult\": \"string\",\n          \"virusScanResult\": \"string\",\n          \"scannedAt\": \"1981-01-18T02:54:46.375Z\",\n          \"downloadUrl\": \"http://MpPiGvBruXBNmJVYvONDFI.kwzW.DtOBzIwTuAbfDIl4FM0uO\",\n          \"hashes\": {\n            \"AutoV1\": \"string\",\n            \"AutoV2\": \"string\",\n            \"SHA256\": \"string\",\n            \"CRC32\": \"string\",\n            \"Blake3\": \"string\"\n          }\n        }\n      ],\n      \"images\": [\n        {\n          \"id\": 9300,\n          \"url\": \"http://UdYQxXqn.aiPcSTT3LepeZo-fGS\",\n          \"hash\": \"string\",\n          \"width\": 1193,\n          \"height\": 3990,\n          \"nsfwLevel\": 6116,\n          \"nsfw\": true,\n          \"createdAt\": \"2010-06-20T16:37:24.684Z\",\n          \"postId\": 2624,\n          \"stats\": {\n            \"downloadCount\": 3497,\n            \"favoriteCount\": 8013,\n            \"commentCount\": 4282,\n            \"ratingCount\": 7791,\n            \"rating\": 2813.3826739587853,\n            \"thumbsUpCount\": 5878,\n            \"thumbsDownCount\": 5163\n          },\n          \"meta\": {\n            \"key_0\": 9003\n          },\n          \"username\": \"string\"\n        },\n        {\n          \"id\": 6247,\n          \"url\": \"http://YnUwiEyCszYLXmzlPbgBIqxlkWpGyp.latzivTApn2idWT3+tTwKER18xbmggzFaHzTTL2O7\",\n          \"hash\": \"string\",\n          \"width\": 2999,\n          \"height\": 6300,\n          \"nsfwLevel\": 6564,\n          \"nsfw\": false,\n          \"createdAt\": \"1964-05-26T14:48:07.038Z\",\n          \"postId\": 147,\n          \"stats\": {\n            \"downloadCount\": 3139,\n            \"favoriteCount\": 6281,\n            \"commentCount\": 3278,\n            \"ratingCount\": 9731,\n            \"rating\": 9070.621796087413,\n            \"thumbsUpCount\": 8502,\n            \"thumbsDownCount\": 2159\n          },\n          \"meta\": {\n            \"key_0\": false,\n            \"key_1\": 9908\n          },\n          \"username\": \"string\"\n        }\n      ],\n      \"stats\": {\n        \"downloadCount\": 6365,\n        \"favoriteCount\": 725,\n        \"commentCount\": 3506,\n        \"ratingCount\": 8810,\n        \"rating\": 603.9900715220492,\n        \"thumbsUpCount\": 4265,\n        \"thumbsDownCount\": 3142\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "525fc287-c7f2-4415-8bf3-f87571e0ed18",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b91d7339-4039-4ce0-93da-ea310a324d8d",
+      "name": "ModelVersions",
+      "description": {
+        "content": "Specific versions of a model with files, hashes, and AIR identifiers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9ca11836-5548-4673-9ef3-2c05ef5da0f0",
+          "name": "Get Model Version",
+          "request": {
+            "name": "Get Model Version",
+            "description": {},
+            "url": {
+              "path": [
+                "model-versions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c1a6a9a-ff72-42ea-817d-dc6690968689",
+              "name": "Model version detail.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-versions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4925,\n  \"modelId\": 5564,\n  \"name\": \"string\",\n  \"baseModel\": \"string\",\n  \"baseModelType\": \"string\",\n  \"createdAt\": \"2025-04-16T00:40:00.069Z\",\n  \"updatedAt\": \"1949-01-05T21:57:39.628Z\",\n  \"publishedAt\": \"1998-09-03T22:14:24.193Z\",\n  \"trainedWords\": [\n    \"string\",\n    \"string\"\n  ],\n  \"air\": \"string\",\n  \"downloadUrl\": \"https://sGbmvZhOpG.uwra3JzaDYeK3stXxz4Mj6HocLT0u,EN1xQs\",\n  \"files\": [\n    {\n      \"id\": 837,\n      \"name\": \"string\",\n      \"sizeKB\": 4965.356694214576,\n      \"type\": \"Model\",\n      \"format\": \"SafeTensor\",\n      \"pickleScanResult\": \"string\",\n      \"virusScanResult\": \"string\",\n      \"scannedAt\": \"1975-03-29T21:24:10.824Z\",\n      \"downloadUrl\": \"https://LCjoowPGgeaCcjaIXGiUaz.lsuwphaCgeZyneiqVJweOrDf\",\n      \"hashes\": {\n        \"AutoV1\": \"string\",\n        \"AutoV2\": \"string\",\n        \"SHA256\": \"string\",\n        \"CRC32\": \"string\",\n        \"Blake3\": \"string\"\n      }\n    },\n    {\n      \"id\": 1046,\n      \"name\": \"string\",\n      \"sizeKB\": 245.43123263973564,\n      \"type\": \"Training Data\",\n      \"format\": \"SafeTensor\",\n      \"pickleScanResult\": \"string\",\n      \"virusScanResult\": \"string\",\n      \"scannedAt\": \"2006-10-28T19:07:54.227Z\",\n      \"downloadUrl\": \"https://zfQpQUtQMXthRPfgYpZjSUCylKMH.vyG4WDea51hgCfwKF\",\n      \"hashes\": {\n        \"AutoV1\": \"string\",\n        \"AutoV2\": \"string\",\n        \"SHA256\": \"string\",\n        \"CRC32\": \"string\",\n        \"Blake3\": \"string\"\n      }\n    }\n  ],\n  \"images\": [\n    {\n      \"id\": 525,\n      \"url\": \"https://BVqHNSpor.zhAQlkPYQe92.Mdhy68a532R5q8OJuYeAIxYSHB3k3hTXMIhrHw1gAWy4brCwh058vNQcUlXkTsMzL\",\n      \"hash\": \"string\",\n      \"width\": 8646,\n      \"height\": 1523,\n      \"nsfwLevel\": 9470,\n      \"nsfw\": false,\n      \"createdAt\": \"1948-01-20T02:07:10.529Z\",\n      \"postId\": 6621,\n      \"stats\": {\n        \"downloadCount\": 5658,\n        \"favoriteCount\": 1325,\n        \"commentCount\": 297,\n        \"ratingCount\": 8516,\n        \"rating\": 6312.042031334953,\n        \"thumbsUpCount\": 9988,\n        \"thumbsDownCount\": 6678\n      },\n      \"meta\": {\n        \"key_0\": \"string\"\n      },\n      \"username\": \"string\"\n    },\n    {\n      \"id\": 3353,\n      \"url\": \"http://pHJhAlPFHjVveaqdXKpNqVVfBxszlKSK.gbmtFcdtSh3fkXaM5PeTBz1MShbKPP,8fWLKY6W1BHlCvZr.uOvx1sGITla7yYmKnnF\",\n      \"hash\": \"string\",\n      \"width\": 6030,\n      \"height\": 5289,\n      \"nsfwLevel\": 9463,\n      \"nsfw\": true,\n      \"createdAt\": \"1996-03-03T23:10:04.244Z\",\n      \"postId\": 1499,\n      \"stats\": {\n        \"downloadCount\": 6633,\n        \"favoriteCount\": 3486,\n        \"commentCount\": 923,\n        \"ratingCount\": 2347,\n        \"rating\": 6769.316299993632,\n        \"thumbsUpCount\": 9570,\n        \"thumbsDownCount\": 3579\n      },\n      \"meta\": {\n        \"key_0\": 3680,\n        \"key_1\": \"string\",\n        \"key_2\": 9650\n      },\n      \"username\": \"string\"\n    }\n  ],\n  \"stats\": {\n    \"downloadCount\": 4230,\n    \"favoriteCount\": 349,\n    \"commentCount\": 4506,\n    \"ratingCount\": 882,\n    \"rating\": 7440.406746116365,\n    \"thumbsUpCount\": 1277,\n    \"thumbsDownCount\": 7373\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e73bb5f-25a7-4eed-9c49-49e5a866f662",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-versions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "909538eb-cfc6-4d98-a8cd-1317e7942ffd",
+          "name": "Get Model Version Mini",
+          "request": {
+            "name": "Get Model Version Mini",
+            "description": {
+              "content": "Lightweight model-version payload optimized for client tools.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model-versions",
+                "mini",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1c1c322-dee4-4c8d-acb2-20a6eebce009",
+              "name": "Lightweight model version.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-versions",
+                    "mini",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2311,\n  \"modelId\": 5013,\n  \"name\": \"string\",\n  \"baseModel\": \"string\",\n  \"air\": \"string\",\n  \"downloadUrl\": \"http://e.uxmmmKaYBSMTNpfcpG6b6pZd39WPfQaQbGSdw\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2025229d-44ff-49ef-98b9-863d65c82bb8",
+          "name": "Get Model Version By Hash",
+          "request": {
+            "name": "Get Model Version By Hash",
+            "description": {},
+            "url": {
+              "path": [
+                "model-versions",
+                "by-hash",
+                ":hash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hash",
+                  "description": "(Required) AutoV1, AutoV2, SHA256, CRC32, or Blake3 hash of the model file."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1ed38ca-ba1c-4fcb-853f-6f3db731414a",
+              "name": "Model version matching the file hash.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-versions",
+                    "by-hash",
+                    ":hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hash",
+                      "description": "(Required) AutoV1, AutoV2, SHA256, CRC32, or Blake3 hash of the model file."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4925,\n  \"modelId\": 5564,\n  \"name\": \"string\",\n  \"baseModel\": \"string\",\n  \"baseModelType\": \"string\",\n  \"createdAt\": \"2025-04-16T00:40:00.069Z\",\n  \"updatedAt\": \"1949-01-05T21:57:39.628Z\",\n  \"publishedAt\": \"1998-09-03T22:14:24.193Z\",\n  \"trainedWords\": [\n    \"string\",\n    \"string\"\n  ],\n  \"air\": \"string\",\n  \"downloadUrl\": \"https://sGbmvZhOpG.uwra3JzaDYeK3stXxz4Mj6HocLT0u,EN1xQs\",\n  \"files\": [\n    {\n      \"id\": 837,\n      \"name\": \"string\",\n      \"sizeKB\": 4965.356694214576,\n      \"type\": \"Model\",\n      \"format\": \"SafeTensor\",\n      \"pickleScanResult\": \"string\",\n      \"virusScanResult\": \"string\",\n      \"scannedAt\": \"1975-03-29T21:24:10.824Z\",\n      \"downloadUrl\": \"https://LCjoowPGgeaCcjaIXGiUaz.lsuwphaCgeZyneiqVJweOrDf\",\n      \"hashes\": {\n        \"AutoV1\": \"string\",\n        \"AutoV2\": \"string\",\n        \"SHA256\": \"string\",\n        \"CRC32\": \"string\",\n        \"Blake3\": \"string\"\n      }\n    },\n    {\n      \"id\": 1046,\n      \"name\": \"string\",\n      \"sizeKB\": 245.43123263973564,\n      \"type\": \"Training Data\",\n      \"format\": \"SafeTensor\",\n      \"pickleScanResult\": \"string\",\n      \"virusScanResult\": \"string\",\n      \"scannedAt\": \"2006-10-28T19:07:54.227Z\",\n      \"downloadUrl\": \"https://zfQpQUtQMXthRPfgYpZjSUCylKMH.vyG4WDea51hgCfwKF\",\n      \"hashes\": {\n        \"AutoV1\": \"string\",\n        \"AutoV2\": \"string\",\n        \"SHA256\": \"string\",\n        \"CRC32\": \"string\",\n        \"Blake3\": \"string\"\n      }\n    }\n  ],\n  \"images\": [\n    {\n      \"id\": 525,\n      \"url\": \"https://BVqHNSpor.zhAQlkPYQe92.Mdhy68a532R5q8OJuYeAIxYSHB3k3hTXMIhrHw1gAWy4brCwh058vNQcUlXkTsMzL\",\n      \"hash\": \"string\",\n      \"width\": 8646,\n      \"height\": 1523,\n      \"nsfwLevel\": 9470,\n      \"nsfw\": false,\n      \"createdAt\": \"1948-01-20T02:07:10.529Z\",\n      \"postId\": 6621,\n      \"stats\": {\n        \"downloadCount\": 5658,\n        \"favoriteCount\": 1325,\n        \"commentCount\": 297,\n        \"ratingCount\": 8516,\n        \"rating\": 6312.042031334953,\n        \"thumbsUpCount\": 9988,\n        \"thumbsDownCount\": 6678\n      },\n      \"meta\": {\n        \"key_0\": \"string\"\n      },\n      \"username\": \"string\"\n    },\n    {\n      \"id\": 3353,\n      \"url\": \"http://pHJhAlPFHjVveaqdXKpNqVVfBxszlKSK.gbmtFcdtSh3fkXaM5PeTBz1MShbKPP,8fWLKY6W1BHlCvZr.uOvx1sGITla7yYmKnnF\",\n      \"hash\": \"string\",\n      \"width\": 6030,\n      \"height\": 5289,\n      \"nsfwLevel\": 9463,\n      \"nsfw\": true,\n      \"createdAt\": \"1996-03-03T23:10:04.244Z\",\n      \"postId\": 1499,\n      \"stats\": {\n        \"downloadCount\": 6633,\n        \"favoriteCount\": 3486,\n        \"commentCount\": 923,\n        \"ratingCount\": 2347,\n        \"rating\": 6769.316299993632,\n        \"thumbsUpCount\": 9570,\n        \"thumbsDownCount\": 3579\n      },\n      \"meta\": {\n        \"key_0\": 3680,\n        \"key_1\": \"string\",\n        \"key_2\": 9650\n      },\n      \"username\": \"string\"\n    }\n  ],\n  \"stats\": {\n    \"downloadCount\": 4230,\n    \"favoriteCount\": 349,\n    \"commentCount\": 4506,\n    \"ratingCount\": 882,\n    \"rating\": 7440.406746116365,\n    \"thumbsUpCount\": 1277,\n    \"thumbsDownCount\": 7373\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0ad97a5-074c-4f20-910e-412673b6fa95",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-versions",
+                    "by-hash",
+                    ":hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hash",
+                      "description": "(Required) AutoV1, AutoV2, SHA256, CRC32, or Blake3 hash of the model file."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3e33a94f-6c4d-492e-afea-f6d72182ee8b",
+          "name": "Get Model Versions By Hashes",
+          "request": {
+            "name": "Get Model Versions By Hashes",
+            "description": {},
+            "url": {
+              "path": [
+                "model-versions",
+                "by-hash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a40dada6-fc4b-4334-aa13-7eb5d29552df",
+              "name": "Map of hash to model version.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-versions",
+                    "by-hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8417,\n    \"modelId\": 6164,\n    \"name\": \"string\",\n    \"baseModel\": \"string\",\n    \"baseModelType\": \"string\",\n    \"createdAt\": \"2014-03-04T14:47:24.407Z\",\n    \"updatedAt\": \"1947-07-27T19:57:43.660Z\",\n    \"publishedAt\": \"1967-06-29T13:36:39.435Z\",\n    \"trainedWords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"air\": \"string\",\n    \"downloadUrl\": \"http://KucouSn.ywmpmm5aQFXsQRc.oIyLnvTATUBE6k7+-,\",\n    \"files\": [\n      {\n        \"id\": 9510,\n        \"name\": \"string\",\n        \"sizeKB\": 9467.562423743577,\n        \"type\": \"VAE\",\n        \"format\": \"PickleTensor\",\n        \"pickleScanResult\": \"string\",\n        \"virusScanResult\": \"string\",\n        \"scannedAt\": \"1971-07-22T23:51:27.059Z\",\n        \"downloadUrl\": \"http://HpzFnhmHnFJrczmgUBDMOYz.fouB5znnC.qtbRAW.SxXYvwvcUxG8KQ1Z\",\n        \"hashes\": {\n          \"AutoV1\": \"string\",\n          \"AutoV2\": \"string\",\n          \"SHA256\": \"string\",\n          \"CRC32\": \"string\",\n          \"Blake3\": \"string\"\n        }\n      },\n      {\n        \"id\": 6425,\n        \"name\": \"string\",\n        \"sizeKB\": 6281.345183359841,\n        \"type\": \"Model\",\n        \"format\": \"Other\",\n        \"pickleScanResult\": \"string\",\n        \"virusScanResult\": \"string\",\n        \"scannedAt\": \"1966-05-17T23:04:59.585Z\",\n        \"downloadUrl\": \"https://DoEML.dmdeJwjZnHoC51qj4Ko3eoRqiwzpIWxFFrMI7fHEgQkHH\",\n        \"hashes\": {\n          \"AutoV1\": \"string\",\n          \"AutoV2\": \"string\",\n          \"SHA256\": \"string\",\n          \"CRC32\": \"string\",\n          \"Blake3\": \"string\"\n        }\n      }\n    ],\n    \"images\": [\n      {\n        \"id\": 3677,\n        \"url\": \"https://CGkSQwLuYo.ooSSoaJwUvpwyuEiY5cazPxeqQitxr4P9yw7XdsYA5e0E5MrxgUDc\",\n        \"hash\": \"string\",\n        \"width\": 1310,\n        \"height\": 6749,\n        \"nsfwLevel\": 6244,\n        \"nsfw\": false,\n        \"createdAt\": \"1978-06-02T03:33:24.987Z\",\n        \"postId\": 7796,\n        \"stats\": {\n          \"downloadCount\": 9207,\n          \"favoriteCount\": 6095,\n          \"commentCount\": 7709,\n          \"ratingCount\": 8570,\n          \"rating\": 7269.033389343727,\n          \"thumbsUpCount\": 8924,\n          \"thumbsDownCount\": 1640\n        },\n        \"meta\": {\n          \"key_0\": 5184.777649689705\n        },\n        \"username\": \"string\"\n      },\n      {\n        \"id\": 2797,\n        \"url\": \"http://LPwJUqQr.yraaonlOHwH2BInW6qwtXV-YyU2xUsZZ8X1-CQ6koUDHIxR6\",\n        \"hash\": \"string\",\n        \"width\": 5760,\n        \"height\": 3310,\n        \"nsfwLevel\": 9344,\n        \"nsfw\": true,\n        \"createdAt\": \"1985-05-10T23:37:30.777Z\",\n        \"postId\": 2968,\n        \"stats\": {\n          \"downloadCount\": 4208,\n          \"favoriteCount\": 2341,\n          \"commentCount\": 9328,\n          \"ratingCount\": 8004,\n          \"rating\": 3132.1590691550205,\n          \"thumbsUpCount\": 4019,\n          \"thumbsDownCount\": 9274\n        },\n        \"meta\": {\n          \"key_0\": \"string\",\n          \"key_1\": 8106\n        },\n        \"username\": \"string\"\n      }\n    ],\n    \"stats\": {\n      \"downloadCount\": 7586,\n      \"favoriteCount\": 1051,\n      \"commentCount\": 5518,\n      \"ratingCount\": 1989,\n      \"rating\": 7113.783671325416,\n      \"thumbsUpCount\": 3266,\n      \"thumbsDownCount\": 6831\n    }\n  },\n  {\n    \"id\": 4128,\n    \"modelId\": 5776,\n    \"name\": \"string\",\n    \"baseModel\": \"string\",\n    \"baseModelType\": \"string\",\n    \"createdAt\": \"2013-10-20T13:19:41.936Z\",\n    \"updatedAt\": \"2012-06-25T22:03:08.404Z\",\n    \"publishedAt\": \"2015-12-28T04:53:31.116Z\",\n    \"trainedWords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"air\": \"string\",\n    \"downloadUrl\": \"http://AZNREknMIAlYKaTYZsi.cbffYwM8X6egFbHdITX92x+xZpmXblNMeUUSU\",\n    \"files\": [\n      {\n        \"id\": 2472,\n        \"name\": \"string\",\n        \"sizeKB\": 7189.196959910521,\n        \"type\": \"Training Data\",\n        \"format\": \"SafeTensor\",\n        \"pickleScanResult\": \"string\",\n        \"virusScanResult\": \"string\",\n        \"scannedAt\": \"2008-08-18T10:04:58.922Z\",\n        \"downloadUrl\": \"http://DrGqGpzNqRqGgSpvjWwaFLDJRSg.ziztvtLXtolKfQ8iaLSqV6svLwJ+Hd3NCai19U\",\n        \"hashes\": {\n          \"AutoV1\": \"string\",\n          \"AutoV2\": \"string\",\n          \"SHA256\": \"string\",\n          \"CRC32\": \"string\",\n          \"Blake3\": \"string\"\n        }\n      },\n      {\n        \"id\": 1371,\n        \"name\": \"string\",\n        \"sizeKB\": 9359.73577576242,\n        \"type\": \"Other\",\n        \"format\": \"Other\",\n        \"pickleScanResult\": \"string\",\n        \"virusScanResult\": \"string\",\n        \"scannedAt\": \"1965-01-13T04:53:40.823Z\",\n        \"downloadUrl\": \"https://KEuBGvHHrrZzvxcrnv.xrlHv5K,8\",\n        \"hashes\": {\n          \"AutoV1\": \"string\",\n          \"AutoV2\": \"string\",\n          \"SHA256\": \"string\",\n          \"CRC32\": \"string\",\n          \"Blake3\": \"string\"\n        }\n      }\n    ],\n    \"images\": [\n      {\n        \"id\": 2264,\n        \"url\": \"http://RaVRcigz.hcxMZA-lUg0CI2N5mDZ\",\n        \"hash\": \"string\",\n        \"width\": 1035,\n        \"height\": 6354,\n        \"nsfwLevel\": 7731,\n        \"nsfw\": true,\n        \"createdAt\": \"1946-10-29T01:44:00.376Z\",\n        \"postId\": 6277,\n        \"stats\": {\n          \"downloadCount\": 7965,\n          \"favoriteCount\": 7090,\n          \"commentCount\": 3334,\n          \"ratingCount\": 1046,\n          \"rating\": 9989.466439712029,\n          \"thumbsUpCount\": 3871,\n          \"thumbsDownCount\": 3975\n        },\n        \"meta\": {\n          \"key_0\": \"string\",\n          \"key_1\": true,\n          \"key_2\": false,\n          \"key_3\": 7525\n        },\n        \"username\": \"string\"\n      },\n      {\n        \"id\": 2910,\n        \"url\": \"https://nzkWdDGLL.ehsuFV0SvQ3dJDoIjGxV68sRfGTIUKMIw,\",\n        \"hash\": \"string\",\n        \"width\": 323,\n        \"height\": 1560,\n        \"nsfwLevel\": 7143,\n        \"nsfw\": false,\n        \"createdAt\": \"1950-06-14T05:06:09.392Z\",\n        \"postId\": 6367,\n        \"stats\": {\n          \"downloadCount\": 7782,\n          \"favoriteCount\": 4074,\n          \"commentCount\": 1677,\n          \"ratingCount\": 8514,\n          \"rating\": 4673.474909028925,\n          \"thumbsUpCount\": 3789,\n          \"thumbsDownCount\": 3097\n        },\n        \"meta\": {\n          \"key_0\": true,\n          \"key_1\": false\n        },\n        \"username\": \"string\"\n      }\n    ],\n    \"stats\": {\n      \"downloadCount\": 8357,\n      \"favoriteCount\": 7241,\n      \"commentCount\": 4689,\n      \"ratingCount\": 992,\n      \"rating\": 4900.787865358788,\n      \"thumbsUpCount\": 3521,\n      \"thumbsDownCount\": 4890\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40ac3c9d-5ab4-407f-8042-3d3d47599b29",
+          "name": "Get Model Version IDs By Hashes",
+          "request": {
+            "name": "Get Model Version IDs By Hashes",
+            "description": {},
+            "url": {
+              "path": [
+                "model-versions",
+                "by-hash",
+                "ids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "30e7a861-c8cf-4ce5-8aea-3b3b74a50374",
+              "name": "Map of hash to model version ID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-versions",
+                    "by-hash",
+                    "ids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 9867,\n  \"key_1\": 9403\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ab164799-c5ff-4f19-8f95-4c2e5bd7b184",
+      "name": "Images",
+      "description": {
+        "content": "Community-shared generation outputs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4eae2b3f-48b2-42c2-9bc6-e78263418a87",
+          "name": "List Images",
+          "request": {
+            "name": "List Images",
+            "description": {},
+            "url": {
+              "path": [
+                "images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "postId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "modelId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "modelVersionId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "username",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsfw",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "period",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab23f983-dd7a-44e2-a6e7-0cb7600c7b5a",
+              "name": "Page of images.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "postId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "modelId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "modelVersionId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsfw",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": 6356,\n      \"url\": \"http://tFFJOTaMmNcMSQiaJFyBcE.vreJNKE,N,Z9fgrkgnFeooLaGnXj-5BVkyY+f4Qgq-hJxp8\",\n      \"hash\": \"string\",\n      \"width\": 3553,\n      \"height\": 5421,\n      \"nsfwLevel\": 6251,\n      \"nsfw\": true,\n      \"createdAt\": \"2017-09-03T16:49:48.794Z\",\n      \"postId\": 7755,\n      \"stats\": {\n        \"downloadCount\": 6602,\n        \"favoriteCount\": 4988,\n        \"commentCount\": 9987,\n        \"ratingCount\": 3644,\n        \"rating\": 224.21261896519385,\n        \"thumbsUpCount\": 5144,\n        \"thumbsDownCount\": 6339\n      },\n      \"meta\": {\n        \"key_0\": true,\n        \"key_1\": true,\n        \"key_2\": \"string\"\n      },\n      \"username\": \"string\"\n    },\n    {\n      \"id\": 6,\n      \"url\": \"https://PcuCsdvwuskTwYoxcbZX.aydOR70Z21G5agt.k9IMqfmgd2tWgk+QX4BNd\",\n      \"hash\": \"string\",\n      \"width\": 8359,\n      \"height\": 8315,\n      \"nsfwLevel\": 4028,\n      \"nsfw\": false,\n      \"createdAt\": \"1953-02-14T20:30:08.488Z\",\n      \"postId\": 8660,\n      \"stats\": {\n        \"downloadCount\": 1619,\n        \"favoriteCount\": 5652,\n        \"commentCount\": 4525,\n        \"ratingCount\": 7571,\n        \"rating\": 3858.812327190603,\n        \"thumbsUpCount\": 8116,\n        \"thumbsDownCount\": 5887\n      },\n      \"meta\": {\n        \"key_0\": false\n      },\n      \"username\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": 5282,\n    \"pageSize\": 5026,\n    \"nextPage\": \"string\",\n    \"prevPage\": \"string\",\n    \"totalItems\": 1313,\n    \"totalPages\": 2277\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e8e85643-8984-4978-8acd-6550f8db17e9",
+      "name": "Creators",
+      "description": {
+        "content": "Users who publish models.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a3d74136-7a5e-4203-857f-c85f79fb5ece",
+          "name": "List Creators",
+          "request": {
+            "name": "List Creators",
+            "description": {},
+            "url": {
+              "path": [
+                "creators"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7a03bca-e215-412c-9eff-b80803f6010f",
+              "name": "Page of creators.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "creators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"username\": \"string\",\n      \"image\": \"http://Sq.atprtTXWtD9VrqDb7neK-Pm7oltDUFKrkMmI\",\n      \"modelCount\": 4574,\n      \"link\": \"https://BtiVoOqUxOKHuRFA.mgrhgoyCV08AbW-q-+E6mUOLwbKw9sMETekXUyN.io1CEhtKPQmGq0jD87JL-rkjCDxynAD7OF1ivOyYhDK3+\"\n    },\n    {\n      \"username\": \"string\",\n      \"image\": \"http://UJpBnBPcBk.jahrNQLvqF5C-VUPq5GIO+GdjuIWbKKALwAtV7z-NwjFp0DsbvagPs5FtY6K2dLnf\",\n      \"modelCount\": 6626,\n      \"link\": \"http://HahrcMcPZiJtfbjwCpkZINcJBuIJgw.potpiFuljIAyIcCmvBe+toAKSjqQPCeAEqou8vFiUXP-ylt\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": 1766,\n    \"pageSize\": 5857,\n    \"nextPage\": \"string\",\n    \"prevPage\": \"string\",\n    \"totalItems\": 3453,\n    \"totalPages\": 9838\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "606d753b-4b5c-45f7-9a51-84db923429a1",
+      "name": "Tags",
+      "description": {
+        "content": "Catalog tag taxonomy.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "522da2d5-a936-479c-a8c1-bdeb7b4f24c2",
+          "name": "List Tags",
+          "request": {
+            "name": "List Tags",
+            "description": {},
+            "url": {
+              "path": [
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2b68a3fc-d636-4f7c-a068-9af8861e7c66",
+              "name": "Page of tags.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"modelCount\": 7674,\n      \"link\": \"https://uvWPOOtTpASwrTOmRaAf.rrfmdaozNZ6UiGwfZMss1DPMOoUdIM2yWdcvPBL-mQIUXNV4a\"\n    },\n    {\n      \"name\": \"string\",\n      \"modelCount\": 5804,\n      \"link\": \"http://sQvGoSZis.dufjkLVatLHZexSin0BBn7EC-KF+FWKkR.YzIXj4b7\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": 8295,\n    \"pageSize\": 6852,\n    \"nextPage\": \"string\",\n    \"prevPage\": \"string\",\n    \"totalItems\": 2888,\n    \"totalPages\": 9655\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8aa04be1-5e8c-4a82-8b56-145cdcab6758",
+      "name": "Users",
+      "description": {
+        "content": "User accounts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e0f8210a-7439-4a4f-87fc-0e5b851715ab",
+          "name": "Get Current User",
+          "request": {
+            "name": "Get Current User",
+            "description": {},
+            "url": {
+              "path": [
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b23fb3b9-93d7-452c-8c8c-8aa0aea0ae84",
+              "name": "Authenticated user profile.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4107,\n  \"username\": \"string\",\n  \"email\": \"string\",\n  \"image\": \"http://gJwpgdEDSrMzQYKjzSQxhBfktczwA.ehbsnz,F3mInCgcYHzAhSZjm\",\n  \"tier\": \"Free\",\n  \"createdAt\": \"2002-03-04T20:39:23.615Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c841e4a2-7009-4c32-a5bc-2dd868128a90",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd459f00-cb42-42ff-b63c-0769385b3701",
+          "name": "List Users",
+          "request": {
+            "name": "List Users",
+            "description": {},
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "username",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d53c61a1-b1c2-456c-873a-fe32bc73ab00",
+              "name": "Matching users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2583,\n    \"username\": \"string\",\n    \"email\": \"string\",\n    \"image\": \"https://DabMZictLZVF.zyrkVO,MfnJdsSlkxhuSh\",\n    \"tier\": \"Silver\",\n    \"createdAt\": \"2002-06-27T00:21:28.937Z\"\n  },\n  {\n    \"id\": 4114,\n    \"username\": \"string\",\n    \"email\": \"string\",\n    \"image\": \"https://OLZcPsOgXvnhDTFmSNVDIjPUH.jqlBEoR-j,2Dd6a6WDRK79wwt\",\n    \"tier\": \"Silver\",\n    \"createdAt\": \"1971-03-21T02:36:29.464Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "88a47295-7f4c-4d4d-bf32-acda56399613",
+      "name": "Permissions",
+      "description": {
+        "content": "Permission checks for the current bearer.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a3c89bc8-4af2-425e-b5f6-06ff2e1d4112",
+          "name": "Check Permissions",
+          "request": {
+            "name": "Check Permissions",
+            "description": {},
+            "url": {
+              "path": [
+                "permissions",
+                "check"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "entityType",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "entityId",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2612e1af-1bd9-4b81-9504-17490deb7b8e",
+              "name": "Permission decisions for the current bearer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permissions",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entityType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "entityId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entityType\": \"string\",\n  \"entityId\": 2470,\n  \"canView\": true,\n  \"canEdit\": true,\n  \"canDelete\": true,\n  \"canDownload\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2d4e396e-e537-4746-b522-fa7b83bdc6f1",
+      "name": "Vault",
+      "description": {
+        "content": "A user's saved-model vault (membership tiers).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bb4b5b90-698b-4795-b6e0-487074abb26c",
+          "name": "Get Vault Item",
+          "request": {
+            "name": "Get Vault Item",
+            "description": {},
+            "url": {
+              "path": [
+                "vault",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "modelVersionId",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3463b5ad-1b92-493c-8589-356460916fea",
+              "name": "Vault item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vault",
+                    "get"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "modelVersionId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1246,\n  \"modelVersionId\": 7838,\n  \"modelId\": 6110,\n  \"addedAt\": \"1995-10-08T21:05:34.291Z\",\n  \"status\": \"Pending\",\n  \"sizeKb\": 337.1495188123663\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39a32695-294f-4a68-97b6-61d74b738e5c",
+          "name": "Get All Vault Items",
+          "request": {
+            "name": "Get All Vault Items",
+            "description": {},
+            "url": {
+              "path": [
+                "vault",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "87db81e3-0770-4397-93a2-26ab8117ac02",
+              "name": "All vault items for the current user.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vault",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5591,\n    \"modelVersionId\": 3932,\n    \"modelId\": 1659,\n    \"addedAt\": \"1993-02-22T12:15:43.959Z\",\n    \"status\": \"Pending\",\n    \"sizeKb\": 1517.2531716550886\n  },\n  {\n    \"id\": 4387,\n    \"modelVersionId\": 1823,\n    \"modelId\": 2571,\n    \"addedAt\": \"1977-09-07T21:19:33.972Z\",\n    \"status\": \"Pending\",\n    \"sizeKb\": 4506.443597161542\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b09b39b0-2cea-42b2-aa7c-2c9ed3f041d2",
+          "name": "Check Vault Status",
+          "request": {
+            "name": "Check Vault Status",
+            "description": {},
+            "url": {
+              "path": [
+                "vault",
+                "check-vault"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0f2c337f-b0a6-49db-b62d-6eaab81d2523",
+              "name": "Vault subscription/storage status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vault",
+                    "check-vault"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"subscribed\": false,\n  \"storageUsedKb\": 4251.305598446325,\n  \"storageLimitKb\": 3988.827274263885,\n  \"tier\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74b770b3-6f4a-4b78-9162-5c7e0ef272e3",
+          "name": "Toggle Vault Version",
+          "request": {
+            "name": "Toggle Vault Version",
+            "description": {},
+            "url": {
+              "path": [
+                "vault",
+                "toggle-version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"modelVersionId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca041d28-3b51-4bcf-80be-5f8762f04fb2",
+              "name": "Vault item after toggle.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vault",
+                    "toggle-version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"modelVersionId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1246,\n  \"modelVersionId\": 7838,\n  \"modelId\": 6110,\n  \"addedAt\": \"1995-10-08T21:05:34.291Z\",\n  \"status\": \"Pending\",\n  \"sizeKb\": 337.1495188123663\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ad91fe7e-f37b-429a-8399-6d24339d14bf",
+      "name": "Enums",
+      "description": {
+        "content": "Enumerations used throughout the API.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3363ebcc-141c-4ac8-9191-574043549af0",
+          "name": "Get Enums",
+          "request": {
+            "name": "Get Enums",
+            "description": {},
+            "url": {
+              "path": [
+                "enums"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e7a81a0-9387-4ea2-8ba4-881d16a14020",
+              "name": "Enumeration values used by the API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enums"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": true,\n  \"key_1\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://civitai.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ea8b7738-0423-48df-af57-a55f2c33c42a",
+    "name": "Civitai Site API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Browse and search the Civitai public catalog of Stable Diffusion, SDXL, Flux, and video models.\nExposes models, model versions, images, creators, tags, users, permissions, and the user vault.\nPublic read endpoints are cached; authenticated endpoints are not. Authenticate with a personal\nAPI key issued at civitai.com using a Bearer token.\n\n\nContact Support:\n Name: Civitai Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
