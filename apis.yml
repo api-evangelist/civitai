@@ -71,7 +71,7 @@ apis:
       - url: https://developer.civitai.com/orchestration/guide/results-and-webhooks
         type: Webhooks
       - url: https://developer.civitai.com/orchestration/guide/errors-and-retries
-        type: Errors
+        type: ErrorCodes
       - url: https://developer.civitai.com/orchestration/reference/
         type: Documentation
       - url: https://developer.civitai.com/orchestration/recipes/
@@ -81,9 +81,9 @@ apis:
       - url: json-schema/civitai-workflow-schema.json
         type: JSONSchema
       - url: examples/civitai-image-generation-example.json
-        type: Example
+        type: Examples
       - url: examples/civitai-video-generation-example.json
-        type: Example
+        type: Examples
     description: >-
       Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single contract at
       `https://orchestration.civitai.com`. Races multiple providers and engines (Flux 1/2, SDXL, SD1, Z-Image, Qwen,
@@ -133,48 +133,45 @@ access: 3rd-Party
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/civitai/overview
-  - type: ArazzoWorkflows
-    url: arazzo/
-    workflows:
-      - url: arazzo/civitai-batch-hash-reconcile-workflow.yml
-        name: Civitai Batch Hash Reconciliation
-        summary: Resolve many file hashes to version ids in bulk, then enrich the first match with model detail.
-      - url: arazzo/civitai-blob-upload-img2img-workflow.yml
-        name: Civitai Blob Upload and Image-to-Image Generation
-        summary: Upload a source image blob, run an img2img workflow against it, poll, and read the result.
-      - url: arazzo/civitai-creator-models-gallery-workflow.yml
-        name: Civitai Creator Models and Image Gallery
-        summary: Find a creator, list the models they publish, and pull a gallery of images for one model.
-      - url: arazzo/civitai-image-generation-poll-workflow.yml
-        name: Civitai Image Generation Submit and Poll
-        summary: Submit an image generation workflow, poll until it finishes, and collect the output blobs.
-      - url: arazzo/civitai-model-images-explorer-workflow.yml
-        name: Civitai Model Images Explorer
-        summary: Open a model, browse its community images, and resolve the version behind the top image.
-      - url: arazzo/civitai-model-version-by-hash-workflow.yml
-        name: Civitai Identify a Model From a File Hash
-        summary: Resolve a local model file's hash to its model version, then load the parent model.
-      - url: arazzo/civitai-model-version-to-generation-workflow.yml
-        name: Civitai Generate From a Catalog Model Version
-        summary: Resolve a catalog model version's AIR, generate an image with it, poll, and read the result.
-      - url: arazzo/civitai-permission-gated-download-workflow.yml
-        name: Civitai Permission-Gated Version Download
-        summary: Resolve a model version, check the bearer's permissions, and branch on download rights.
-      - url: arazzo/civitai-presigned-blob-generate-workflow.yml
-        name: Civitai Presigned Blob Upload Then Generate
-        summary: Request a presigned blob upload URL, reference the blob in a workflow with webhook callbacks, and poll.
-      - url: arazzo/civitai-search-models-detail-workflow.yml
-        name: Civitai Search Models and Drill Into a Version
-        summary: Search the model catalog, open the top matching model, and resolve one of its versions.
-      - url: arazzo/civitai-tag-models-discovery-workflow.yml
-        name: Civitai Tag-Driven Model Discovery
-        summary: Pick a tag from the taxonomy, list models carrying that tag, and open the top model.
-      - url: arazzo/civitai-vault-toggle-verify-workflow.yml
-        name: Civitai Vault Add and Verify
-        summary: Confirm the user, check vault capacity, add a model version to the vault, and verify storage.
-      - url: arazzo/civitai-workflow-query-cancel-workflow.yml
-        name: Civitai Query and Cancel a Running Workflow
-        summary: List active workflows, inspect the first one, cancel it, and confirm the canceled state.
+  - type: Arazzo
+    url: arazzo/civitai-batch-hash-reconcile-workflow.yml
+    name: Civitai Batch Hash Reconciliation
+  - type: Arazzo
+    url: arazzo/civitai-blob-upload-img2img-workflow.yml
+    name: Civitai Blob Upload and Image-to-Image Generation
+  - type: Arazzo
+    url: arazzo/civitai-creator-models-gallery-workflow.yml
+    name: Civitai Creator Models and Image Gallery
+  - type: Arazzo
+    url: arazzo/civitai-image-generation-poll-workflow.yml
+    name: Civitai Image Generation Submit and Poll
+  - type: Arazzo
+    url: arazzo/civitai-model-images-explorer-workflow.yml
+    name: Civitai Model Images Explorer
+  - type: Arazzo
+    url: arazzo/civitai-model-version-by-hash-workflow.yml
+    name: Civitai Identify a Model From a File Hash
+  - type: Arazzo
+    url: arazzo/civitai-model-version-to-generation-workflow.yml
+    name: Civitai Generate From a Catalog Model Version
+  - type: Arazzo
+    url: arazzo/civitai-permission-gated-download-workflow.yml
+    name: Civitai Permission-Gated Version Download
+  - type: Arazzo
+    url: arazzo/civitai-presigned-blob-generate-workflow.yml
+    name: Civitai Presigned Blob Upload Then Generate
+  - type: Arazzo
+    url: arazzo/civitai-search-models-detail-workflow.yml
+    name: Civitai Search Models and Drill Into a Version
+  - type: Arazzo
+    url: arazzo/civitai-tag-models-discovery-workflow.yml
+    name: Civitai Tag-Driven Model Discovery
+  - type: Arazzo
+    url: arazzo/civitai-vault-toggle-verify-workflow.yml
+    name: Civitai Vault Add and Verify
+  - type: Arazzo
+    url: arazzo/civitai-workflow-query-cancel-workflow.yml
+    name: Civitai Query and Cancel a Running Workflow
   - type: LinkedIn
     url: https://www.linkedin.com/company/civitai
   - type: Twitter
@@ -193,9 +190,9 @@ common:
     url: https://developer.civitai.com/orchestration/guide/authentication
   - type: Webhooks
     url: https://developer.civitai.com/orchestration/guide/results-and-webhooks
-  - type: Errors
+  - type: ErrorCodes
     url: https://developer.civitai.com/orchestration/guide/errors-and-retries
-  - type: SignUp
+  - type: Signup
     url: https://civitai.com/login
   - type: TermsOfService
     url: https://civitai.com/content/tos
@@ -207,29 +204,29 @@ common:
     url: https://education.civitai.com/
   - type: Blog
     url: https://civitai.com/articles
-  - type: Forum
+  - type: Forums
     url: https://education.civitai.com/forums/
   - url: https://github.com/civitai/civitai-client-javascript
     name: Civitai JavaScript Client
-    type: SDK
+    type: SDKs
   - url: https://github.com/civitai/civitai-app-starters
     name: Civitai App Starters (OAuth + PKCE SDK)
-    type: SDK
+    type: SDKs
   - url: https://github.com/civitai/civitai-link-desktop
     name: Civitai Link Desktop
-    type: Tool
+    type: Tools
   - url: https://github.com/civitai/civitai
     name: Civitai Platform (open source)
     type: GitHubRepository
   - url: https://github.com/civitai/ai-toolkit
     name: AI Toolkit (Diffusion Finetuning)
-    type: Tool
+    type: Tools
   - url: https://github.com/civitai/model-scanner
     name: Model Scanner
-    type: Tool
+    type: Tools
   - url: https://github.com/civitai/ComfyUI
     name: ComfyUI (Civitai fork)
-    type: Tool
+    type: Tools
   - url: https://github.com/civitai/ComfyUI_smZNodes
     name: ComfyUI smZNodes
     type: Plugins
