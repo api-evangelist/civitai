@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/civitai-orchestration-api-openapi.yml, openapi/civitai-site-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: token
+  description: Personal API token issued at https://civitai.com/user/account.
+  sources:
+  - openapi/civitai-orchestration-api-openapi.yml
+  - openapi/civitai-site-api-openapi.yml

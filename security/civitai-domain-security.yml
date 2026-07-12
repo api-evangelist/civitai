@@ -1,0 +1,26 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: civitai.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  4 12:15:38 2026 GMT
+  hsts: false
+- host: developer.civitai.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 24 08:35:56 2026 GMT
+  hsts: false
+- host: orchestration.civitai.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  7 21:36:04 2026 GMT
+  hsts: null
+domains:
+- domain: civitai.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
