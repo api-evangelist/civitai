@@ -1,0 +1,48 @@
+openapi: 3.1.0
+info:
+  title: Civitai Orchestration Blobs Enums API
+  version: v2
+  description: 'Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single
+
+    contract. The Orchestration API races multiple providers and engines behind one workflow surface and
+
+    delivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.
+
+    '
+  contact:
+    name: Civitai Developer Support
+    url: https://developer.civitai.com/orchestration/
+  termsOfService: https://civitai.com/content/tos
+  license:
+    name: Civitai Terms of Service
+    url: https://civitai.com/content/tos
+servers:
+- url: https://orchestration.civitai.com
+  description: Civitai Orchestration API
+security:
+- BearerAuth: []
+tags:
+- name: Enums
+  description: Enumerations used throughout the API.
+paths:
+  /enums:
+    get:
+      operationId: getEnums
+      summary: Get Enums
+      tags:
+      - Enums
+      responses:
+        '200':
+          description: Enumeration values used by the API.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+      description: Personal API token issued at https://civitai.com/user/account.

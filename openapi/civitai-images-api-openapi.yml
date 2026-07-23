@@ -1,0 +1,173 @@
+openapi: 3.1.0
+info:
+  title: Civitai Orchestration Blobs Images API
+  version: v2
+  description: 'Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single
+
+    contract. The Orchestration API races multiple providers and engines behind one workflow surface and
+
+    delivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.
+
+    '
+  contact:
+    name: Civitai Developer Support
+    url: https://developer.civitai.com/orchestration/
+  termsOfService: https://civitai.com/content/tos
+  license:
+    name: Civitai Terms of Service
+    url: https://civitai.com/content/tos
+servers:
+- url: https://orchestration.civitai.com
+  description: Civitai Orchestration API
+security:
+- BearerAuth: []
+tags:
+- name: Images
+  description: Community-shared generation outputs.
+paths:
+  /images:
+    get:
+      operationId: listImages
+      summary: List Images
+      tags:
+      - Images
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+          maximum: 200
+      - name: postId
+        in: query
+        schema:
+          type: integer
+      - name: modelId
+        in: query
+        schema:
+          type: integer
+      - name: modelVersionId
+        in: query
+        schema:
+          type: integer
+      - name: username
+        in: query
+        schema:
+          type: string
+      - name: nsfw
+        in: query
+        schema:
+          type: string
+          enum:
+          - None
+          - Soft
+          - Mature
+          - X
+      - name: sort
+        in: query
+        schema:
+          type: string
+          enum:
+          - Most Reactions
+          - Most Comments
+          - Newest
+      - name: period
+        in: query
+        schema:
+          type: string
+          enum:
+          - AllTime
+          - Year
+          - Month
+          - Week
+          - Day
+      - name: page
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Page of images.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagePage'
+components:
+  schemas:
+    Stats:
+      type: object
+      properties:
+        downloadCount:
+          type: integer
+        favoriteCount:
+          type: integer
+        commentCount:
+          type: integer
+        ratingCount:
+          type: integer
+        rating:
+          type: number
+        thumbsUpCount:
+          type: integer
+        thumbsDownCount:
+          type: integer
+    Metadata:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        pageSize:
+          type: integer
+        nextPage:
+          type: string
+        prevPage:
+          type: string
+        totalItems:
+          type: integer
+        totalPages:
+          type: integer
+    Image:
+      type: object
+      properties:
+        id:
+          type: integer
+        url:
+          type: string
+          format: uri
+        hash:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+        nsfwLevel:
+          type: integer
+        nsfw:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        postId:
+          type: integer
+        stats:
+          $ref: '#/components/schemas/Stats'
+        meta:
+          type: object
+          additionalProperties: true
+        username:
+          type: string
+    ImagePage:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+      description: Personal API token issued at https://civitai.com/user/account.

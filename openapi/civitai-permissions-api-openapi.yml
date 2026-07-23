@@ -1,0 +1,82 @@
+openapi: 3.1.0
+info:
+  title: Civitai Orchestration Blobs Permissions API
+  version: v2
+  description: 'Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single
+
+    contract. The Orchestration API races multiple providers and engines behind one workflow surface and
+
+    delivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.
+
+    '
+  contact:
+    name: Civitai Developer Support
+    url: https://developer.civitai.com/orchestration/
+  termsOfService: https://civitai.com/content/tos
+  license:
+    name: Civitai Terms of Service
+    url: https://civitai.com/content/tos
+servers:
+- url: https://orchestration.civitai.com
+  description: Civitai Orchestration API
+security:
+- BearerAuth: []
+tags:
+- name: Permissions
+  description: Permission checks for the current bearer.
+paths:
+  /permissions/check:
+    get:
+      operationId: checkPermissions
+      summary: Check Permissions
+      tags:
+      - Permissions
+      security:
+      - BearerAuth: []
+      parameters:
+      - name: entityType
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - Model
+          - ModelVersion
+          - Image
+          - Post
+          - Article
+      - name: entityId
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Permission decisions for the current bearer.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionResult'
+components:
+  schemas:
+    PermissionResult:
+      type: object
+      properties:
+        entityType:
+          type: string
+        entityId:
+          type: integer
+        canView:
+          type: boolean
+        canEdit:
+          type: boolean
+        canDelete:
+          type: boolean
+        canDownload:
+          type: boolean
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+      description: Personal API token issued at https://civitai.com/user/account.

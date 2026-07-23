@@ -1,0 +1,97 @@
+openapi: 3.1.0
+info:
+  title: Civitai Orchestration Blobs Tags API
+  version: v2
+  description: 'Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single
+
+    contract. The Orchestration API races multiple providers and engines behind one workflow surface and
+
+    delivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.
+
+    '
+  contact:
+    name: Civitai Developer Support
+    url: https://developer.civitai.com/orchestration/
+  termsOfService: https://civitai.com/content/tos
+  license:
+    name: Civitai Terms of Service
+    url: https://civitai.com/content/tos
+servers:
+- url: https://orchestration.civitai.com
+  description: Civitai Orchestration API
+security:
+- BearerAuth: []
+tags:
+- name: Tags
+  description: Catalog tag taxonomy.
+paths:
+  /tags:
+    get:
+      operationId: listTags
+      summary: List Tags
+      tags:
+      - Tags
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 20
+          maximum: 200
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: query
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Page of tags.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagPage'
+components:
+  schemas:
+    Metadata:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        pageSize:
+          type: integer
+        nextPage:
+          type: string
+        prevPage:
+          type: string
+        totalItems:
+          type: integer
+        totalPages:
+          type: integer
+    TagPage:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+    Tag:
+      type: object
+      properties:
+        name:
+          type: string
+        modelCount:
+          type: integer
+        link:
+          type: string
+          format: uri
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+      description: Personal API token issued at https://civitai.com/user/account.

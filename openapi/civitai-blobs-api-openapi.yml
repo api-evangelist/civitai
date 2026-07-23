@@ -1,0 +1,173 @@
+openapi: 3.1.0
+info:
+  title: Civitai Orchestration Blobs API
+  version: v2
+  description: 'Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single
+
+    contract. The Orchestration API races multiple providers and engines behind one workflow surface and
+
+    delivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.
+
+    '
+  contact:
+    name: Civitai Developer Support
+    url: https://developer.civitai.com/orchestration/
+  termsOfService: https://civitai.com/content/tos
+  license:
+    name: Civitai Terms of Service
+    url: https://civitai.com/content/tos
+servers:
+- url: https://orchestration.civitai.com
+  description: Civitai Orchestration API
+security:
+- BearerAuth: []
+tags:
+- name: Blobs
+  description: Upload and reference blobs for inputs and outputs.
+paths:
+  /v2/consumer/blobs:
+    post:
+      operationId: uploadBlob
+      summary: Upload Blob
+      tags:
+      - Blobs
+      description: Upload a blob (image, video, audio) with built-in NSFW moderation.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                moderate:
+                  type: boolean
+                  default: true
+      responses:
+        '201':
+          description: Uploaded blob.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blob'
+  /v2/consumer/blobs/upload-url:
+    get:
+      operationId: getBlobUploadUrl
+      summary: Get Blob Upload URL
+      tags:
+      - Blobs
+      parameters:
+      - name: mimeType
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: sizeBytes
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Presigned upload URL.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  blobId:
+                    type: string
+                  uploadUrl:
+                    type: string
+                    format: uri
+                  expiresAt:
+                    type: string
+                    format: date-time
+                  headers:
+                    type: object
+                    additionalProperties:
+                      type: string
+  /v2/consumer/blobs/{blobId}:
+    parameters:
+    - name: blobId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getBlob
+      summary: Get Blob
+      tags:
+      - Blobs
+      responses:
+        '200':
+          description: Blob metadata and download URL.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blob'
+    head:
+      operationId: headBlob
+      summary: Head Blob
+      tags:
+      - Blobs
+      description: Check blob existence and moderation status without downloading metadata.
+      responses:
+        '200':
+          description: Blob exists.
+        '404':
+          description: Blob not found.
+  /v2/consumer/blobs/{blobId}/refresh:
+    post:
+      operationId: refreshBlob
+      summary: Refresh Blob URL
+      tags:
+      - Blobs
+      parameters:
+      - name: blobId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Refreshed blob with new signed URL.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blob'
+components:
+  schemas:
+    Blob:
+      type: object
+      properties:
+        id:
+          type: string
+        mimeType:
+          type: string
+        sizeBytes:
+          type: integer
+        url:
+          type: string
+          format: uri
+        urlExpiresAt:
+          type: string
+          format: date-time
+        sha256:
+          type: string
+        nsfwLevel:
+          type: integer
+        nsfwReason:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+      description: Personal API token issued at https://civitai.com/user/account.

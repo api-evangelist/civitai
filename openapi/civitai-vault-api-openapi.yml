@@ -1,0 +1,145 @@
+openapi: 3.1.0
+info:
+  title: Civitai Orchestration Blobs Vault API
+  version: v2
+  description: 'Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single
+
+    contract. The Orchestration API races multiple providers and engines behind one workflow surface and
+
+    delivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.
+
+    '
+  contact:
+    name: Civitai Developer Support
+    url: https://developer.civitai.com/orchestration/
+  termsOfService: https://civitai.com/content/tos
+  license:
+    name: Civitai Terms of Service
+    url: https://civitai.com/content/tos
+servers:
+- url: https://orchestration.civitai.com
+  description: Civitai Orchestration API
+security:
+- BearerAuth: []
+tags:
+- name: Vault
+  description: A user's saved-model vault (membership tiers).
+paths:
+  /vault/get:
+    get:
+      operationId: getVaultItem
+      summary: Get Vault Item
+      tags:
+      - Vault
+      security:
+      - BearerAuth: []
+      parameters:
+      - name: modelVersionId
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Vault item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VaultItem'
+  /vault/all:
+    get:
+      operationId: getAllVaultItems
+      summary: Get All Vault Items
+      tags:
+      - Vault
+      security:
+      - BearerAuth: []
+      responses:
+        '200':
+          description: All vault items for the current user.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VaultItem'
+  /vault/check-vault:
+    get:
+      operationId: checkVault
+      summary: Check Vault Status
+      tags:
+      - Vault
+      security:
+      - BearerAuth: []
+      responses:
+        '200':
+          description: Vault subscription/storage status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VaultStatus'
+  /vault/toggle-version:
+    post:
+      operationId: toggleVaultVersion
+      summary: Toggle Vault Version
+      tags:
+      - Vault
+      security:
+      - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - modelVersionId
+              properties:
+                modelVersionId:
+                  type: integer
+      responses:
+        '200':
+          description: Vault item after toggle.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VaultItem'
+components:
+  schemas:
+    VaultItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        modelVersionId:
+          type: integer
+        modelId:
+          type: integer
+        addedAt:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - Pending
+          - Stored
+          - Failed
+        sizeKb:
+          type: number
+    VaultStatus:
+      type: object
+      properties:
+        subscribed:
+          type: boolean
+        storageUsedKb:
+          type: number
+        storageLimitKb:
+          type: number
+        tier:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+      description: Personal API token issued at https://civitai.com/user/account.

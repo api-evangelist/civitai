@@ -1,0 +1,115 @@
+openapi: 3.1.0
+info:
+  title: Civitai Orchestration Blobs Users API
+  version: v2
+  description: 'Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single
+
+    contract. The Orchestration API races multiple providers and engines behind one workflow surface and
+
+    delivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.
+
+    '
+  contact:
+    name: Civitai Developer Support
+    url: https://developer.civitai.com/orchestration/
+  termsOfService: https://civitai.com/content/tos
+  license:
+    name: Civitai Terms of Service
+    url: https://civitai.com/content/tos
+servers:
+- url: https://orchestration.civitai.com
+  description: Civitai Orchestration API
+security:
+- BearerAuth: []
+tags:
+- name: Users
+  description: User accounts.
+paths:
+  /me:
+    get:
+      operationId: getCurrentUser
+      summary: Get Current User
+      tags:
+      - Users
+      security:
+      - BearerAuth: []
+      responses:
+        '200':
+          description: Authenticated user profile.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /users:
+    get:
+      operationId: listUsers
+      summary: List Users
+      tags:
+      - Users
+      parameters:
+      - name: username
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Matching users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        email:
+          type: string
+        image:
+          type: string
+          format: uri
+        tier:
+          type: string
+          enum:
+          - Free
+          - Founder
+          - Bronze
+          - Silver
+          - Gold
+        createdAt:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+      description: Personal API token issued at https://civitai.com/user/account.

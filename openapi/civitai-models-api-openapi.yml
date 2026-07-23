@@ -1,0 +1,396 @@
+openapi: 3.1.0
+info:
+  title: Civitai Orchestration Blobs Models API
+  version: v2
+  description: 'Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single
+
+    contract. The Orchestration API races multiple providers and engines behind one workflow surface and
+
+    delivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.
+
+    '
+  contact:
+    name: Civitai Developer Support
+    url: https://developer.civitai.com/orchestration/
+  termsOfService: https://civitai.com/content/tos
+  license:
+    name: Civitai Terms of Service
+    url: https://civitai.com/content/tos
+servers:
+- url: https://orchestration.civitai.com
+  description: Civitai Orchestration API
+security:
+- BearerAuth: []
+tags:
+- name: Models
+  description: Catalog of model checkpoints, LoRAs, embeddings, and VAEs.
+paths:
+  /models:
+    get:
+      operationId: listModels
+      summary: List Models
+      tags:
+      - Models
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 100
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+      - name: query
+        in: query
+        schema:
+          type: string
+      - name: tag
+        in: query
+        schema:
+          type: string
+      - name: username
+        in: query
+        schema:
+          type: string
+      - name: types
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - Checkpoint
+            - TextualInversion
+            - Hypernetwork
+            - AestheticGradient
+            - LORA
+            - LoCon
+            - Controlnet
+            - Poses
+            - Wildcards
+            - Workflows
+            - Other
+      - name: sort
+        in: query
+        schema:
+          type: string
+          enum:
+          - Highest Rated
+          - Most Downloaded
+          - Newest
+      - name: period
+        in: query
+        schema:
+          type: string
+          enum:
+          - AllTime
+          - Year
+          - Month
+          - Week
+          - Day
+      - name: nsfw
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Page of models.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelPage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /models/{id}:
+    get:
+      operationId: getModel
+      summary: Get Model
+      tags:
+      - Models
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Model detail.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    ModelPage:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Model'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+    Metadata:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        pageSize:
+          type: integer
+        nextPage:
+          type: string
+        prevPage:
+          type: string
+        totalItems:
+          type: integer
+        totalPages:
+          type: integer
+    Model:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - Checkpoint
+          - TextualInversion
+          - Hypernetwork
+          - AestheticGradient
+          - LORA
+          - LoCon
+          - Controlnet
+          - Poses
+          - Wildcards
+          - Workflows
+          - Other
+        nsfw:
+          type: boolean
+        nsfwLevel:
+          type: integer
+        allowNoCredit:
+          type: boolean
+        allowCommercialUse:
+          type: array
+          items:
+            type: string
+            enum:
+            - None
+            - Image
+            - RentCivit
+            - Rent
+            - Sell
+        allowDerivatives:
+          type: boolean
+        allowDifferentLicense:
+          type: boolean
+        stats:
+          $ref: '#/components/schemas/Stats'
+        creator:
+          $ref: '#/components/schemas/Creator'
+        tags:
+          type: array
+          items:
+            type: string
+        modelVersions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelVersion'
+    Stats:
+      type: object
+      properties:
+        downloadCount:
+          type: integer
+        favoriteCount:
+          type: integer
+        commentCount:
+          type: integer
+        ratingCount:
+          type: integer
+        rating:
+          type: number
+        thumbsUpCount:
+          type: integer
+        thumbsDownCount:
+          type: integer
+    ModelVersion:
+      type: object
+      properties:
+        id:
+          type: integer
+        modelId:
+          type: integer
+        name:
+          type: string
+        baseModel:
+          type: string
+          description: e.g. SD 1.5, SDXL 1.0, Flux.1 D
+        baseModelType:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        publishedAt:
+          type: string
+          format: date-time
+        trainedWords:
+          type: array
+          items:
+            type: string
+        air:
+          type: string
+          description: AI Resource Identifier, e.g. urn:air:sdxl:lora:civitai:12345@67890
+        downloadUrl:
+          type: string
+          format: uri
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelFile'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+        stats:
+          $ref: '#/components/schemas/Stats'
+    Image:
+      type: object
+      properties:
+        id:
+          type: integer
+        url:
+          type: string
+          format: uri
+        hash:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+        nsfwLevel:
+          type: integer
+        nsfw:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        postId:
+          type: integer
+        stats:
+          $ref: '#/components/schemas/Stats'
+        meta:
+          type: object
+          additionalProperties: true
+        username:
+          type: string
+    ModelFile:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        sizeKB:
+          type: number
+        type:
+          type: string
+          enum:
+          - Model
+          - VAE
+          - Config
+          - Negative
+          - Training Data
+          - Archive
+          - Other
+        format:
+          type: string
+          enum:
+          - SafeTensor
+          - PickleTensor
+          - Other
+        pickleScanResult:
+          type: string
+        virusScanResult:
+          type: string
+        scannedAt:
+          type: string
+          format: date-time
+        downloadUrl:
+          type: string
+          format: uri
+        hashes:
+          type: object
+          properties:
+            AutoV1:
+              type: string
+            AutoV2:
+              type: string
+            SHA256:
+              type: string
+            CRC32:
+              type: string
+            Blake3:
+              type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: string
+    Creator:
+      type: object
+      properties:
+        username:
+          type: string
+        image:
+          type: string
+          format: uri
+        modelCount:
+          type: integer
+        link:
+          type: string
+          format: uri
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Too many requests.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+      description: Personal API token issued at https://civitai.com/user/account.

@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: Civitai Orchestration Blobs Creators API
+  version: v2
+  description: 'Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single
+
+    contract. The Orchestration API races multiple providers and engines behind one workflow surface and
+
+    delivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.
+
+    '
+  contact:
+    name: Civitai Developer Support
+    url: https://developer.civitai.com/orchestration/
+  termsOfService: https://civitai.com/content/tos
+  license:
+    name: Civitai Terms of Service
+    url: https://civitai.com/content/tos
+servers:
+- url: https://orchestration.civitai.com
+  description: Civitai Orchestration API
+security:
+- BearerAuth: []
+tags:
+- name: Creators
+  description: Users who publish models.
+paths:
+  /creators:
+    get:
+      operationId: listCreators
+      summary: List Creators
+      tags:
+      - Creators
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 20
+          maximum: 200
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: query
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Page of creators.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatorPage'
+components:
+  schemas:
+    CreatorPage:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Creator'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+    Creator:
+      type: object
+      properties:
+        username:
+          type: string
+        image:
+          type: string
+          format: uri
+        modelCount:
+          type: integer
+        link:
+          type: string
+          format: uri
+    Metadata:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        pageSize:
+          type: integer
+        nextPage:
+          type: string
+        prevPage:
+          type: string
+        totalItems:
+          type: integer
+        totalPages:
+          type: integer
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+      description: Personal API token issued at https://civitai.com/user/account.
