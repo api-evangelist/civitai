@@ -1,0 +1,34 @@
+{
+  "provider": "civitai",
+  "sources": [
+    "civitai-blobs-api-openapi.yml",
+    "civitai-creators-api-openapi.yml",
+    "civitai-enums-api-openapi.yml",
+    "civitai-images-api-openapi.yml",
+    "civitai-models-api-openapi.yml",
+    "civitai-modelversions-api-openapi.yml",
+    "civitai-permissions-api-openapi.yml",
+    "civitai-tags-api-openapi.yml",
+    "civitai-users-api-openapi.yml",
+    "civitai-vault-api-openapi.yml",
+    "civitai-workflows-api-openapi.yml"
+  ],
+  "outputs": [
+    "civitai-blobs-api-openapi.yml",
+    "civitai-creators-api-openapi.yml",
+    "civitai-enums-api-openapi.yml",
+    "civitai-images-api-openapi.yml",
+    "civitai-models-api-openapi.yml",
+    "civitai-modelversions-api-openapi.yml",
+    "civitai-permissions-api-openapi.yml",
+    "civitai-tags-api-openapi.yml",
+    "civitai-users-api-openapi.yml",
+    "civitai-vault-api-openapi.yml",
+    "civitai-workflows-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
