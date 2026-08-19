@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Civitai Orchestration Blobs ModelVersions API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ModelVersions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Model Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://orchestration.civitai.com/model-versions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Model Version"
+        },
+        {
+          "info": {
+            "name": "Get Model Version Mini",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://orchestration.civitai.com/model-versions/mini/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lightweight model-version payload optimized for client tools."
+        },
+        {
+          "info": {
+            "name": "Get Model Version By Hash",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://orchestration.civitai.com/model-versions/by-hash/:hash",
+            "params": [
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "AutoV1, AutoV2, SHA256, CRC32, or Blake3 hash of the model file."
+              }
+            ]
+          },
+          "docs": "Get Model Version By Hash"
+        },
+        {
+          "info": {
+            "name": "Get Model Versions By Hashes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://orchestration.civitai.com/model-versions/by-hash",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get Model Versions By Hashes"
+        },
+        {
+          "info": {
+            "name": "Get Model Version IDs By Hashes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://orchestration.civitai.com/model-versions/by-hash/ids",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get Model Version IDs By Hashes"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

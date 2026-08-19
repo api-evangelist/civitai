@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Civitai Orchestration Blobs API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload Blob",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://orchestration.civitai.com/v2/consumer/blobs",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "moderate",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a blob (image, video, audio) with built-in NSFW moderation."
+        },
+        {
+          "info": {
+            "name": "Get Blob Upload URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://orchestration.civitai.com/v2/consumer/blobs/upload-url",
+            "params": [
+              {
+                "name": "mimeType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sizeBytes",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Blob Upload URL"
+        },
+        {
+          "info": {
+            "name": "Get Blob",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://orchestration.civitai.com/v2/consumer/blobs/:blobId",
+            "params": [
+              {
+                "name": "blobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Blob"
+        },
+        {
+          "info": {
+            "name": "Head Blob",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://orchestration.civitai.com/v2/consumer/blobs/:blobId",
+            "params": [
+              {
+                "name": "blobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Check blob existence and moderation status without downloading metadata."
+        },
+        {
+          "info": {
+            "name": "Refresh Blob URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://orchestration.civitai.com/v2/consumer/blobs/:blobId/refresh",
+            "params": [
+              {
+                "name": "blobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Refresh Blob URL"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

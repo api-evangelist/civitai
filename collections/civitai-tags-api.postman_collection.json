@@ -1,0 +1,145 @@
+{
+  "item": [
+    {
+      "id": "09f83adb-6a3e-4bde-9e40-b3de52afff1e",
+      "name": "Tags",
+      "description": {
+        "content": "Catalog tag taxonomy.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "811adb96-62af-41cc-a147-b4e3cdc1ea16",
+          "name": "List Tags",
+          "request": {
+            "name": "List Tags",
+            "description": {},
+            "url": {
+              "path": [
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b6a9d4d-b13a-4a15-b1d3-8949360aec7f",
+              "name": "Page of tags.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"modelCount\": 225,\n      \"link\": \"http://WYNLGJuXtiRvouzobGVtPcAMHxBfGXN.qccXPMQIqLdXpBNJel\"\n    },\n    {\n      \"name\": \"string\",\n      \"modelCount\": 6790,\n      \"link\": \"https://Hl.alpcWtKQDdeYNt0+t7QcRQxVRx+LVB76rV8iD-gVt8xCLYobOjvHD5rEoLi\"\n    }\n  ],\n  \"metadata\": {\n    \"currentPage\": 7719,\n    \"pageSize\": 103,\n    \"nextPage\": \"string\",\n    \"prevPage\": \"string\",\n    \"totalItems\": 7301,\n    \"totalPages\": 2099\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://orchestration.civitai.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "aa06a912-9c14-407b-9260-4df6c282b7de",
+    "name": "Civitai Orchestration Blobs Tags API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single\ncontract. The Orchestration API races multiple providers and engines behind one workflow surface and\ndelivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.\n\n\nContact Support:\n Name: Civitai Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

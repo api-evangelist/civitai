@@ -1,0 +1,603 @@
+{
+  "item": [
+    {
+      "id": "f2503c11-bb15-4d86-8e1b-d91a4ee9b5dd",
+      "name": "Blobs",
+      "description": {
+        "content": "Upload and reference blobs for inputs and outputs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bf428a0d-05a3-4179-8115-90b234abd74e",
+          "name": "Upload Blob",
+          "request": {
+            "name": "Upload Blob",
+            "description": {
+              "content": "Upload a blob (image, video, audio) with built-in NSFW moderation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "consumer",
+                "blobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) "
+                },
+                {
+                  "key": "moderate",
+                  "value": "true",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5574d5d3-85c1-4d8a-926f-eb64ad5240c6",
+              "name": "Uploaded blob.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "consumer",
+                    "blobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "moderate",
+                      "value": "true",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"mimeType\": \"string\",\n  \"sizeBytes\": 1652,\n  \"url\": \"http://FiGYuyJKHHTZnCCxUFEnR.zfulNuk2zHZ8D.u5qk\",\n  \"urlExpiresAt\": \"1958-02-14T06:38:19.497Z\",\n  \"sha256\": \"string\",\n  \"nsfwLevel\": 2811,\n  \"nsfwReason\": \"string\",\n  \"createdAt\": \"1966-09-30T21:12:53.213Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d195ff18-59a4-41c5-9ac8-3d30a943f0e7",
+          "name": "Get Blob Upload URL",
+          "request": {
+            "name": "Get Blob Upload URL",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "consumer",
+                "blobs",
+                "upload-url"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mimeType",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sizeBytes",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2dfb236-f6e6-4faf-ab91-35c9b60d354a",
+              "name": "Presigned upload URL.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "consumer",
+                    "blobs",
+                    "upload-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mimeType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sizeBytes",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blobId\": \"string\",\n  \"uploadUrl\": \"http://hMjaOkFUNqBhnKtQog.dsvgNogQCGGRLmYrl9uJMt-wpktBp7EbFGV1P+\",\n  \"expiresAt\": \"2007-06-07T11:36:10.169Z\",\n  \"headers\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da7880e3-aef0-4474-93b2-f99859267194",
+          "name": "Get Blob",
+          "request": {
+            "name": "Get Blob",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "consumer",
+                "blobs",
+                ":blobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "blobId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0c54658-1225-428b-bb7b-d0198a693b01",
+              "name": "Blob metadata and download URL.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "consumer",
+                    "blobs",
+                    ":blobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blobId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"mimeType\": \"string\",\n  \"sizeBytes\": 1652,\n  \"url\": \"http://FiGYuyJKHHTZnCCxUFEnR.zfulNuk2zHZ8D.u5qk\",\n  \"urlExpiresAt\": \"1958-02-14T06:38:19.497Z\",\n  \"sha256\": \"string\",\n  \"nsfwLevel\": 2811,\n  \"nsfwReason\": \"string\",\n  \"createdAt\": \"1966-09-30T21:12:53.213Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8a7e6d7-53ee-4d18-9172-99cebc80f5ec",
+          "name": "Head Blob",
+          "request": {
+            "name": "Head Blob",
+            "description": {
+              "content": "Check blob existence and moderation status without downloading metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "consumer",
+                "blobs",
+                ":blobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "blobId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "HEAD",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea6af519-9cb0-48cf-8564-3334dd9369b6",
+              "name": "Blob exists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "consumer",
+                    "blobs",
+                    ":blobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blobId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bbef022f-bc2f-42b0-80a4-a15de52e3191",
+              "name": "Blob not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "consumer",
+                    "blobs",
+                    ":blobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blobId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef04db2a-2bfb-4e7c-81af-a0642cd0e410",
+          "name": "Refresh Blob URL",
+          "request": {
+            "name": "Refresh Blob URL",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "consumer",
+                "blobs",
+                ":blobId",
+                "refresh"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "blobId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e31dc0f-ff12-436d-87e2-4c9ab66c48fd",
+              "name": "Refreshed blob with new signed URL.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "consumer",
+                    "blobs",
+                    ":blobId",
+                    "refresh"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blobId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"mimeType\": \"string\",\n  \"sizeBytes\": 1652,\n  \"url\": \"http://FiGYuyJKHHTZnCCxUFEnR.zfulNuk2zHZ8D.u5qk\",\n  \"urlExpiresAt\": \"1958-02-14T06:38:19.497Z\",\n  \"sha256\": \"string\",\n  \"nsfwLevel\": 2811,\n  \"nsfwReason\": \"string\",\n  \"createdAt\": \"1966-09-30T21:12:53.213Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://orchestration.civitai.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0907ade9-22ef-40fe-8b64-32018aea8151",
+    "name": "Civitai Orchestration Blobs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single\ncontract. The Orchestration API races multiple providers and engines behind one workflow surface and\ndelivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.\n\n\nContact Support:\n Name: Civitai Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

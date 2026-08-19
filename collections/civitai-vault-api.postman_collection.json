@@ -1,0 +1,414 @@
+{
+  "item": [
+    {
+      "id": "fad77fd6-8e7f-40fd-870e-8c5498a2cf2a",
+      "name": "Vault",
+      "description": {
+        "content": "A user's saved-model vault (membership tiers).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "27a911aa-6dfb-43f0-9214-9eb57f87efd0",
+          "name": "Get Vault Item",
+          "request": {
+            "name": "Get Vault Item",
+            "description": {},
+            "url": {
+              "path": [
+                "vault",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "modelVersionId",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a1692a1a-03f9-40f1-8a87-6cbb7fd5d70a",
+              "name": "Vault item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vault",
+                    "get"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "modelVersionId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4972,\n  \"modelVersionId\": 4194,\n  \"modelId\": 5460,\n  \"addedAt\": \"1992-04-18T19:13:17.265Z\",\n  \"status\": \"Pending\",\n  \"sizeKb\": 421.12282432636096\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b02c70b3-6850-46b9-89cf-30d8f00d5da4",
+          "name": "Get All Vault Items",
+          "request": {
+            "name": "Get All Vault Items",
+            "description": {},
+            "url": {
+              "path": [
+                "vault",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0fd01bf3-ce07-4e24-9bd8-56861d497e6e",
+              "name": "All vault items for the current user.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vault",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 3342,\n    \"modelVersionId\": 8363,\n    \"modelId\": 1099,\n    \"addedAt\": \"1975-05-08T02:05:05.081Z\",\n    \"status\": \"Failed\",\n    \"sizeKb\": 4921.9445785096395\n  },\n  {\n    \"id\": 3076,\n    \"modelVersionId\": 4853,\n    \"modelId\": 5751,\n    \"addedAt\": \"2026-02-10T03:44:38.176Z\",\n    \"status\": \"Stored\",\n    \"sizeKb\": 629.3846476411047\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7b4ee17-2370-4782-b7f5-e7e527a978f2",
+          "name": "Check Vault Status",
+          "request": {
+            "name": "Check Vault Status",
+            "description": {},
+            "url": {
+              "path": [
+                "vault",
+                "check-vault"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e0fcf8dd-ed91-48f5-a4c2-6f33e116690e",
+              "name": "Vault subscription/storage status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vault",
+                    "check-vault"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"subscribed\": false,\n  \"storageUsedKb\": 6738.760769729993,\n  \"storageLimitKb\": 1750.022974823311,\n  \"tier\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2a518ff-29d6-4433-8f4d-545d776e67a7",
+          "name": "Toggle Vault Version",
+          "request": {
+            "name": "Toggle Vault Version",
+            "description": {},
+            "url": {
+              "path": [
+                "vault",
+                "toggle-version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"modelVersionId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "381300f2-4505-40ca-b93b-ee986a78d68d",
+              "name": "Vault item after toggle.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vault",
+                    "toggle-version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"modelVersionId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4972,\n  \"modelVersionId\": 4194,\n  \"modelId\": 5460,\n  \"addedAt\": \"1992-04-18T19:13:17.265Z\",\n  \"status\": \"Pending\",\n  \"sizeKb\": 421.12282432636096\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://orchestration.civitai.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "593fed2d-9fb1-4529-aff9-298b1414b8db",
+    "name": "Civitai Orchestration Blobs Vault API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single\ncontract. The Orchestration API races multiple providers and engines behind one workflow surface and\ndelivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.\n\n\nContact Support:\n Name: Civitai Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

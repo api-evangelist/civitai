@@ -1,0 +1,116 @@
+{
+  "item": [
+    {
+      "id": "42fe43a2-b281-41dc-86e1-63da2d9bedf2",
+      "name": "Enums",
+      "description": {
+        "content": "Enumerations used throughout the API.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c687bbbb-49bd-4627-863a-4c8cc02be0ea",
+          "name": "Get Enums",
+          "request": {
+            "name": "Get Enums",
+            "description": {},
+            "url": {
+              "path": [
+                "enums"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21901bde-9344-47f0-959f-0b739ca3caf2",
+              "name": "Enumeration values used by the API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enums"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 2253.77562814708\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://orchestration.civitai.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b52963f0-6892-44ba-b250-8a3de0379ba8",
+    "name": "Civitai Orchestration Blobs Enums API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single\ncontract. The Orchestration API races multiple providers and engines behind one workflow surface and\ndelivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.\n\n\nContact Support:\n Name: Civitai Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

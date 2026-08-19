@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Civitai Orchestration Blobs Workflows API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://orchestration.civitai.com/v2/consumer/workflows",
+            "params": [
+              {
+                "name": "take",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query Workflows"
+        },
+        {
+          "info": {
+            "name": "Submit Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://orchestration.civitai.com/v2/consumer/workflows",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a new workflow composed of one or more steps. Each step references a recipe such as an image, video, audio, or training generator."
+        },
+        {
+          "info": {
+            "name": "Get Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://orchestration.civitai.com/v2/consumer/workflows/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Workflow"
+        },
+        {
+          "info": {
+            "name": "Update Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://orchestration.civitai.com/v2/consumer/workflows/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Workflow"
+        },
+        {
+          "info": {
+            "name": "Patch Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://orchestration.civitai.com/v2/consumer/workflows/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Workflow"
+        },
+        {
+          "info": {
+            "name": "Delete Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://orchestration.civitai.com/v2/consumer/workflows/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Workflow"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

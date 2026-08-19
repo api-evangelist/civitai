@@ -1,0 +1,630 @@
+{
+  "item": [
+    {
+      "id": "f14c03df-9f52-4733-b740-6ddb4618a856",
+      "name": "ModelVersions",
+      "description": {
+        "content": "Specific versions of a model with files, hashes, and AIR identifiers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "177e98da-d720-4d08-8953-a81c1c2bcf72",
+          "name": "Get Model Version",
+          "request": {
+            "name": "Get Model Version",
+            "description": {},
+            "url": {
+              "path": [
+                "model-versions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a2cdd25-8fe2-4e2c-84da-393c2d0a5ae9",
+              "name": "Model version detail.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-versions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3676,\n  \"modelId\": 9546,\n  \"name\": \"string\",\n  \"baseModel\": \"string\",\n  \"baseModelType\": \"string\",\n  \"createdAt\": \"1976-08-27T12:59:35.061Z\",\n  \"updatedAt\": \"1963-01-06T20:08:45.184Z\",\n  \"publishedAt\": \"2018-09-01T10:51:24.101Z\",\n  \"trainedWords\": [\n    \"string\",\n    \"string\"\n  ],\n  \"air\": \"string\",\n  \"downloadUrl\": \"https://qaPmYRXaVWEbAh.ocO5IQKeovzI8qm2aBrp0h45Hg3Fn+2HwfbhQV.qsgv\",\n  \"files\": [\n    {\n      \"id\": 7665,\n      \"name\": \"string\",\n      \"sizeKB\": 1819.5967667515133,\n      \"type\": \"Config\",\n      \"format\": \"SafeTensor\",\n      \"pickleScanResult\": \"string\",\n      \"virusScanResult\": \"string\",\n      \"scannedAt\": \"1954-07-23T19:16:27.952Z\",\n      \"downloadUrl\": \"https://S.nwzq2k1lSgNz\",\n      \"hashes\": {\n        \"AutoV1\": \"string\",\n        \"AutoV2\": \"string\",\n        \"SHA256\": \"string\",\n        \"CRC32\": \"string\",\n        \"Blake3\": \"string\"\n      }\n    },\n    {\n      \"id\": 8034,\n      \"name\": \"string\",\n      \"sizeKB\": 1076.0401545883403,\n      \"type\": \"Other\",\n      \"format\": \"Other\",\n      \"pickleScanResult\": \"string\",\n      \"virusScanResult\": \"string\",\n      \"scannedAt\": \"1979-09-13T08:56:43.774Z\",\n      \"downloadUrl\": \"http://guGpSopZSAlCsUsHeJ.wzcvj8.-6ThccWeXkCbt\",\n      \"hashes\": {\n        \"AutoV1\": \"string\",\n        \"AutoV2\": \"string\",\n        \"SHA256\": \"string\",\n        \"CRC32\": \"string\",\n        \"Blake3\": \"string\"\n      }\n    }\n  ],\n  \"images\": [\n    {\n      \"id\": 2769,\n      \"url\": \"https://jYfsSDdeAJtUnghgxkWJZAsm.ixmKxG7t3WsbqYNB.tctrBHbAXUtXGu1yItgWxBCzSzkP28wkEikz6b2jA\",\n      \"hash\": \"string\",\n      \"width\": 748,\n      \"height\": 454,\n      \"nsfwLevel\": 1410,\n      \"nsfw\": false,\n      \"createdAt\": \"2003-05-02T22:30:53.888Z\",\n      \"postId\": 6374,\n      \"stats\": {\n        \"downloadCount\": 3664,\n        \"favoriteCount\": 3102,\n        \"commentCount\": 3243,\n        \"ratingCount\": 8993,\n        \"rating\": 1372.8226112959862,\n        \"thumbsUpCount\": 7340,\n        \"thumbsDownCount\": 3498\n      },\n      \"meta\": {\n        \"key_0\": 2462.5562458056484\n      },\n      \"username\": \"string\"\n    },\n    {\n      \"id\": 9953,\n      \"url\": \"https://gWAvjLEBhegnoB.cnbp6haYAzzJE7Utxto6XIDPnXdPx6R5BHbLYt0DD-0cWZq4I1Ew\",\n      \"hash\": \"string\",\n      \"width\": 9218,\n      \"height\": 7675,\n      \"nsfwLevel\": 933,\n      \"nsfw\": false,\n      \"createdAt\": \"1983-06-25T13:59:33.819Z\",\n      \"postId\": 2939,\n      \"stats\": {\n        \"downloadCount\": 9858,\n        \"favoriteCount\": 8962,\n        \"commentCount\": 9479,\n        \"ratingCount\": 9135,\n        \"rating\": 7667.2850826310905,\n        \"thumbsUpCount\": 6185,\n        \"thumbsDownCount\": 1278\n      },\n      \"meta\": {\n        \"key_0\": 4422,\n        \"key_1\": 3583\n      },\n      \"username\": \"string\"\n    }\n  ],\n  \"stats\": {\n    \"downloadCount\": 4002,\n    \"favoriteCount\": 627,\n    \"commentCount\": 9367,\n    \"ratingCount\": 9993,\n    \"rating\": 2494.634596242777,\n    \"thumbsUpCount\": 611,\n    \"thumbsDownCount\": 3196\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d6b8a42-0816-43d4-8e33-57d08547ec55",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-versions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff86a841-0a0a-4475-bb16-0613cf81d5cb",
+          "name": "Get Model Version Mini",
+          "request": {
+            "name": "Get Model Version Mini",
+            "description": {
+              "content": "Lightweight model-version payload optimized for client tools.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model-versions",
+                "mini",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3562c5e5-0362-42ca-9adf-ffd8a85cfc0c",
+              "name": "Lightweight model version.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-versions",
+                    "mini",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4259,\n  \"modelId\": 1195,\n  \"name\": \"string\",\n  \"baseModel\": \"string\",\n  \"air\": \"string\",\n  \"downloadUrl\": \"https://EuvyzpzTt.udwgr1mbSwAdZ\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87e7efe5-187d-4c62-b04b-c57f702487fb",
+          "name": "Get Model Version By Hash",
+          "request": {
+            "name": "Get Model Version By Hash",
+            "description": {},
+            "url": {
+              "path": [
+                "model-versions",
+                "by-hash",
+                ":hash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hash",
+                  "description": "(Required) AutoV1, AutoV2, SHA256, CRC32, or Blake3 hash of the model file."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "33005d07-dc13-4f86-9ff0-a6731b53df1f",
+              "name": "Model version matching the file hash.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-versions",
+                    "by-hash",
+                    ":hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hash",
+                      "description": "(Required) AutoV1, AutoV2, SHA256, CRC32, or Blake3 hash of the model file."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3676,\n  \"modelId\": 9546,\n  \"name\": \"string\",\n  \"baseModel\": \"string\",\n  \"baseModelType\": \"string\",\n  \"createdAt\": \"1976-08-27T12:59:35.061Z\",\n  \"updatedAt\": \"1963-01-06T20:08:45.184Z\",\n  \"publishedAt\": \"2018-09-01T10:51:24.101Z\",\n  \"trainedWords\": [\n    \"string\",\n    \"string\"\n  ],\n  \"air\": \"string\",\n  \"downloadUrl\": \"https://qaPmYRXaVWEbAh.ocO5IQKeovzI8qm2aBrp0h45Hg3Fn+2HwfbhQV.qsgv\",\n  \"files\": [\n    {\n      \"id\": 7665,\n      \"name\": \"string\",\n      \"sizeKB\": 1819.5967667515133,\n      \"type\": \"Config\",\n      \"format\": \"SafeTensor\",\n      \"pickleScanResult\": \"string\",\n      \"virusScanResult\": \"string\",\n      \"scannedAt\": \"1954-07-23T19:16:27.952Z\",\n      \"downloadUrl\": \"https://S.nwzq2k1lSgNz\",\n      \"hashes\": {\n        \"AutoV1\": \"string\",\n        \"AutoV2\": \"string\",\n        \"SHA256\": \"string\",\n        \"CRC32\": \"string\",\n        \"Blake3\": \"string\"\n      }\n    },\n    {\n      \"id\": 8034,\n      \"name\": \"string\",\n      \"sizeKB\": 1076.0401545883403,\n      \"type\": \"Other\",\n      \"format\": \"Other\",\n      \"pickleScanResult\": \"string\",\n      \"virusScanResult\": \"string\",\n      \"scannedAt\": \"1979-09-13T08:56:43.774Z\",\n      \"downloadUrl\": \"http://guGpSopZSAlCsUsHeJ.wzcvj8.-6ThccWeXkCbt\",\n      \"hashes\": {\n        \"AutoV1\": \"string\",\n        \"AutoV2\": \"string\",\n        \"SHA256\": \"string\",\n        \"CRC32\": \"string\",\n        \"Blake3\": \"string\"\n      }\n    }\n  ],\n  \"images\": [\n    {\n      \"id\": 2769,\n      \"url\": \"https://jYfsSDdeAJtUnghgxkWJZAsm.ixmKxG7t3WsbqYNB.tctrBHbAXUtXGu1yItgWxBCzSzkP28wkEikz6b2jA\",\n      \"hash\": \"string\",\n      \"width\": 748,\n      \"height\": 454,\n      \"nsfwLevel\": 1410,\n      \"nsfw\": false,\n      \"createdAt\": \"2003-05-02T22:30:53.888Z\",\n      \"postId\": 6374,\n      \"stats\": {\n        \"downloadCount\": 3664,\n        \"favoriteCount\": 3102,\n        \"commentCount\": 3243,\n        \"ratingCount\": 8993,\n        \"rating\": 1372.8226112959862,\n        \"thumbsUpCount\": 7340,\n        \"thumbsDownCount\": 3498\n      },\n      \"meta\": {\n        \"key_0\": 2462.5562458056484\n      },\n      \"username\": \"string\"\n    },\n    {\n      \"id\": 9953,\n      \"url\": \"https://gWAvjLEBhegnoB.cnbp6haYAzzJE7Utxto6XIDPnXdPx6R5BHbLYt0DD-0cWZq4I1Ew\",\n      \"hash\": \"string\",\n      \"width\": 9218,\n      \"height\": 7675,\n      \"nsfwLevel\": 933,\n      \"nsfw\": false,\n      \"createdAt\": \"1983-06-25T13:59:33.819Z\",\n      \"postId\": 2939,\n      \"stats\": {\n        \"downloadCount\": 9858,\n        \"favoriteCount\": 8962,\n        \"commentCount\": 9479,\n        \"ratingCount\": 9135,\n        \"rating\": 7667.2850826310905,\n        \"thumbsUpCount\": 6185,\n        \"thumbsDownCount\": 1278\n      },\n      \"meta\": {\n        \"key_0\": 4422,\n        \"key_1\": 3583\n      },\n      \"username\": \"string\"\n    }\n  ],\n  \"stats\": {\n    \"downloadCount\": 4002,\n    \"favoriteCount\": 627,\n    \"commentCount\": 9367,\n    \"ratingCount\": 9993,\n    \"rating\": 2494.634596242777,\n    \"thumbsUpCount\": 611,\n    \"thumbsDownCount\": 3196\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "414373d0-eb5d-4a23-b386-f1b37e51ba84",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-versions",
+                    "by-hash",
+                    ":hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hash",
+                      "description": "(Required) AutoV1, AutoV2, SHA256, CRC32, or Blake3 hash of the model file."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cece9d3e-cdbe-4d51-9f17-613e7c58b513",
+          "name": "Get Model Versions By Hashes",
+          "request": {
+            "name": "Get Model Versions By Hashes",
+            "description": {},
+            "url": {
+              "path": [
+                "model-versions",
+                "by-hash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "00f009f9-aa89-4d57-b4a5-599866a3779c",
+              "name": "Map of hash to model version.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-versions",
+                    "by-hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5248,\n    \"modelId\": 6666,\n    \"name\": \"string\",\n    \"baseModel\": \"string\",\n    \"baseModelType\": \"string\",\n    \"createdAt\": \"1950-06-04T05:12:01.809Z\",\n    \"updatedAt\": \"2013-11-29T12:43:19.776Z\",\n    \"publishedAt\": \"1965-06-29T07:37:11.744Z\",\n    \"trainedWords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"air\": \"string\",\n    \"downloadUrl\": \"http://IlJCVcppXzKfbEyqZBYDmyMW.pywc1tNT\",\n    \"files\": [\n      {\n        \"id\": 2195,\n        \"name\": \"string\",\n        \"sizeKB\": 5308.058378417265,\n        \"type\": \"Other\",\n        \"format\": \"SafeTensor\",\n        \"pickleScanResult\": \"string\",\n        \"virusScanResult\": \"string\",\n        \"scannedAt\": \"1957-01-23T21:27:39.966Z\",\n        \"downloadUrl\": \"http://eRZuPkrLiZZjUlHXVhKJL.dtncECHQ\",\n        \"hashes\": {\n          \"AutoV1\": \"string\",\n          \"AutoV2\": \"string\",\n          \"SHA256\": \"string\",\n          \"CRC32\": \"string\",\n          \"Blake3\": \"string\"\n        }\n      },\n      {\n        \"id\": 9451,\n        \"name\": \"string\",\n        \"sizeKB\": 6559.742985935254,\n        \"type\": \"Model\",\n        \"format\": \"SafeTensor\",\n        \"pickleScanResult\": \"string\",\n        \"virusScanResult\": \"string\",\n        \"scannedAt\": \"1946-10-07T21:07:06.844Z\",\n        \"downloadUrl\": \"https://JWSSHYERqlIeJZLnjNRRswPzvF.emfViqy92LCjfDLDQfaSoWsHnuEZ.vq3eAaTBG63Twt1WcWymHN9SiyN.dBHBl\",\n        \"hashes\": {\n          \"AutoV1\": \"string\",\n          \"AutoV2\": \"string\",\n          \"SHA256\": \"string\",\n          \"CRC32\": \"string\",\n          \"Blake3\": \"string\"\n        }\n      }\n    ],\n    \"images\": [\n      {\n        \"id\": 6165,\n        \"url\": \"https://wseiyhnlvYOyEO.jiejxxdYldXqNS\",\n        \"hash\": \"string\",\n        \"width\": 6155,\n        \"height\": 840,\n        \"nsfwLevel\": 8694,\n        \"nsfw\": false,\n        \"createdAt\": \"2025-07-10T13:04:28.289Z\",\n        \"postId\": 8073,\n        \"stats\": {\n          \"downloadCount\": 5422,\n          \"favoriteCount\": 1941,\n          \"commentCount\": 9016,\n          \"ratingCount\": 3097,\n          \"rating\": 144.45832154327377,\n          \"thumbsUpCount\": 1552,\n          \"thumbsDownCount\": 6320\n        },\n        \"meta\": {\n          \"key_0\": \"string\"\n        },\n        \"username\": \"string\"\n      },\n      {\n        \"id\": 6014,\n        \"url\": \"http://iHtXc.xzqOAEYf5fY5fdyGhVNlKWIFiVggeW1NwoHeNgqn7mpnOfT5R76\",\n        \"hash\": \"string\",\n        \"width\": 1417,\n        \"height\": 5183,\n        \"nsfwLevel\": 9729,\n        \"nsfw\": false,\n        \"createdAt\": \"1949-04-29T10:02:44.582Z\",\n        \"postId\": 65,\n        \"stats\": {\n          \"downloadCount\": 9226,\n          \"favoriteCount\": 438,\n          \"commentCount\": 5075,\n          \"ratingCount\": 6258,\n          \"rating\": 1415.3488738848973,\n          \"thumbsUpCount\": 1269,\n          \"thumbsDownCount\": 8002\n        },\n        \"meta\": {\n          \"key_0\": 5007.300463288999,\n          \"key_1\": 5458.838926472032,\n          \"key_2\": true,\n          \"key_3\": 8646\n        },\n        \"username\": \"string\"\n      }\n    ],\n    \"stats\": {\n      \"downloadCount\": 6563,\n      \"favoriteCount\": 5078,\n      \"commentCount\": 1366,\n      \"ratingCount\": 9994,\n      \"rating\": 3119.6232281119264,\n      \"thumbsUpCount\": 610,\n      \"thumbsDownCount\": 2476\n    }\n  },\n  {\n    \"id\": 7751,\n    \"modelId\": 1669,\n    \"name\": \"string\",\n    \"baseModel\": \"string\",\n    \"baseModelType\": \"string\",\n    \"createdAt\": \"1998-04-26T21:09:39.504Z\",\n    \"updatedAt\": \"2017-04-10T03:26:32.033Z\",\n    \"publishedAt\": \"1988-06-23T23:07:57.928Z\",\n    \"trainedWords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"air\": \"string\",\n    \"downloadUrl\": \"http://DAQYUsaz.vxXofpThPtYD\",\n    \"files\": [\n      {\n        \"id\": 9836,\n        \"name\": \"string\",\n        \"sizeKB\": 1170.4419084287842,\n        \"type\": \"Other\",\n        \"format\": \"SafeTensor\",\n        \"pickleScanResult\": \"string\",\n        \"virusScanResult\": \"string\",\n        \"scannedAt\": \"1965-11-21T00:47:24.233Z\",\n        \"downloadUrl\": \"http://JNUgmxhomgIoS.eizAEHNAcE-tGGdhIgW4p+T.+BOPsMlA2CwxG8p.0NefKduXNamEw\",\n        \"hashes\": {\n          \"AutoV1\": \"string\",\n          \"AutoV2\": \"string\",\n          \"SHA256\": \"string\",\n          \"CRC32\": \"string\",\n          \"Blake3\": \"string\"\n        }\n      },\n      {\n        \"id\": 9043,\n        \"name\": \"string\",\n        \"sizeKB\": 7914.3534196427545,\n        \"type\": \"Model\",\n        \"format\": \"PickleTensor\",\n        \"pickleScanResult\": \"string\",\n        \"virusScanResult\": \"string\",\n        \"scannedAt\": \"2024-11-05T05:49:06.049Z\",\n        \"downloadUrl\": \"https://oXz.ztrqqKi1Tgb6i9TM7rk.aKY4boa.uAmuVviuQFJ3z+lcC\",\n        \"hashes\": {\n          \"AutoV1\": \"string\",\n          \"AutoV2\": \"string\",\n          \"SHA256\": \"string\",\n          \"CRC32\": \"string\",\n          \"Blake3\": \"string\"\n        }\n      }\n    ],\n    \"images\": [\n      {\n        \"id\": 1856,\n        \"url\": \"https://gpfjzYhsDJtQoj.zyhwHHR9EDg-io0azDVEwCgktnk\",\n        \"hash\": \"string\",\n        \"width\": 4795,\n        \"height\": 9112,\n        \"nsfwLevel\": 2678,\n        \"nsfw\": false,\n        \"createdAt\": \"2003-02-24T23:19:41.777Z\",\n        \"postId\": 3592,\n        \"stats\": {\n          \"downloadCount\": 3542,\n          \"favoriteCount\": 9843,\n          \"commentCount\": 3752,\n          \"ratingCount\": 6051,\n          \"rating\": 9444.413649981634,\n          \"thumbsUpCount\": 6550,\n          \"thumbsDownCount\": 3793\n        },\n        \"meta\": {\n          \"key_0\": 6935.297871284663\n        },\n        \"username\": \"string\"\n      },\n      {\n        \"id\": 2012,\n        \"url\": \"http://DrBgcTrXSMcxpBQuD.gaviAeZsS,13KJkAa1,NYItEpouuecZrqZ\",\n        \"hash\": \"string\",\n        \"width\": 8141,\n        \"height\": 6508,\n        \"nsfwLevel\": 4726,\n        \"nsfw\": true,\n        \"createdAt\": \"2000-08-15T13:47:37.091Z\",\n        \"postId\": 5615,\n        \"stats\": {\n          \"downloadCount\": 5371,\n          \"favoriteCount\": 3980,\n          \"commentCount\": 3845,\n          \"ratingCount\": 8312,\n          \"rating\": 4146.951263974461,\n          \"thumbsUpCount\": 6390,\n          \"thumbsDownCount\": 8677\n        },\n        \"meta\": {\n          \"key_0\": false\n        },\n        \"username\": \"string\"\n      }\n    ],\n    \"stats\": {\n      \"downloadCount\": 7700,\n      \"favoriteCount\": 9406,\n      \"commentCount\": 4851,\n      \"ratingCount\": 8626,\n      \"rating\": 79.53486938474418,\n      \"thumbsUpCount\": 6531,\n      \"thumbsDownCount\": 6762\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99dd00cf-6ab7-48cc-9a92-4d0d3dceb785",
+          "name": "Get Model Version IDs By Hashes",
+          "request": {
+            "name": "Get Model Version IDs By Hashes",
+            "description": {},
+            "url": {
+              "path": [
+                "model-versions",
+                "by-hash",
+                "ids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6c35ff82-62b2-41c4-9c29-4b5db7829458",
+              "name": "Map of hash to model version ID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-versions",
+                    "by-hash",
+                    "ids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 1552\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://orchestration.civitai.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c418fbad-632d-47de-8211-eea765a4885e",
+    "name": "Civitai Orchestration Blobs ModelVersions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single\ncontract. The Orchestration API races multiple providers and engines behind one workflow surface and\ndelivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.\n\n\nContact Support:\n Name: Civitai Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

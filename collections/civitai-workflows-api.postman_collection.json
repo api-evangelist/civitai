@@ -1,0 +1,956 @@
+{
+  "item": [
+    {
+      "id": "5622ef8c-e5af-4c37-a728-40e9fb815b1b",
+      "name": "Workflows",
+      "description": {
+        "content": "Submit and manage generation workflows.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e1bf9593-9f1a-4d60-a9d0-e8448061f13c",
+          "name": "Submit Workflow",
+          "request": {
+            "name": "Submit Workflow",
+            "description": {
+              "content": "Submit a new workflow composed of one or more steps. Each step references a recipe such as an image, video, audio, or training generator.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "consumer",
+                "workflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"steps\": [\n    {\n      \"$type\": \"<string>\",\n      \"input\": {\n        \"engine\": \"<string>\",\n        \"model\": \"<string>\",\n        \"prompt\": \"<string>\",\n        \"negativePrompt\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"aspectRatio\": \"<string>\",\n        \"steps\": \"<integer>\",\n        \"cfgScale\": \"<number>\",\n        \"sampler\": \"<string>\",\n        \"seed\": \"<integer>\",\n        \"clipSkip\": \"<integer>\",\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          },\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          }\n        ],\n        \"images\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"duration\": \"<number>\",\n        \"fps\": \"<integer>\",\n        \"upscaler\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"priority\": \"<string>\"\n    },\n    {\n      \"$type\": \"<string>\",\n      \"input\": {\n        \"engine\": \"<string>\",\n        \"model\": \"<string>\",\n        \"prompt\": \"<string>\",\n        \"negativePrompt\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"aspectRatio\": \"<string>\",\n        \"steps\": \"<integer>\",\n        \"cfgScale\": \"<number>\",\n        \"sampler\": \"<string>\",\n        \"seed\": \"<integer>\",\n        \"clipSkip\": \"<integer>\",\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          },\n          {\n            \"air\": \"<string>\",\n            \"strength\": \"<number>\"\n          }\n        ],\n        \"images\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"duration\": \"<number>\",\n        \"fps\": \"<integer>\",\n        \"upscaler\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"priority\": \"<string>\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"callbackUrl\": \"<uri>\",\n  \"callbackEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"detailed\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f3a8c512-d0e2-462b-8c46-fc6ad9c7de1b",
+              "name": "Workflow accepted for processing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "consumer",
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"steps\": [\n    {\n      \"$type\": \"videoGen\",\n      \"input\": {\n        \"engine\": \"string\",\n        \"model\": \"string\",\n        \"prompt\": \"string\",\n        \"negativePrompt\": \"string\",\n        \"width\": 5602,\n        \"height\": 5819,\n        \"aspectRatio\": \"string\",\n        \"steps\": 4094,\n        \"cfgScale\": 1932.7465709094738,\n        \"sampler\": \"string\",\n        \"seed\": 1863,\n        \"clipSkip\": 1670,\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"string\",\n            \"strength\": 5426.682043609801\n          },\n          {\n            \"air\": \"string\",\n            \"strength\": 2938.392808362349\n          }\n        ],\n        \"images\": [\n          \"string\",\n          \"string\"\n        ],\n        \"duration\": 116.97847249825477,\n        \"fps\": 2847,\n        \"upscaler\": \"string\"\n      },\n      \"name\": \"string\",\n      \"priority\": \"high\"\n    },\n    {\n      \"$type\": \"imageGen\",\n      \"input\": {\n        \"engine\": \"string\",\n        \"model\": \"string\",\n        \"prompt\": \"string\",\n        \"negativePrompt\": \"string\",\n        \"width\": 3114,\n        \"height\": 9499,\n        \"aspectRatio\": \"string\",\n        \"steps\": 1307,\n        \"cfgScale\": 5760.842129644929,\n        \"sampler\": \"string\",\n        \"seed\": 4367,\n        \"clipSkip\": 2798,\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"string\",\n            \"strength\": 2958.2837701959998\n          },\n          {\n            \"air\": \"string\",\n            \"strength\": 8138.987042865648\n          }\n        ],\n        \"images\": [\n          \"string\",\n          \"string\"\n        ],\n        \"duration\": 6790.024817988477,\n        \"fps\": 2712,\n        \"upscaler\": \"string\"\n      },\n      \"name\": \"string\",\n      \"priority\": \"normal\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"callbackUrl\": \"<uri>\",\n  \"callbackEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"detailed\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"succeeded\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"2015-03-30T09:02:19.390Z\",\n  \"startedAt\": \"2019-07-26T21:52:42.859Z\",\n  \"completedAt\": \"1974-11-24T16:44:05.419Z\",\n  \"cost\": {\n    \"base\": 8173,\n    \"total\": 6841,\n    \"currency\": \"BUZZ\"\n  },\n  \"steps\": [\n    {\n      \"name\": \"string\",\n      \"$type\": \"string\",\n      \"status\": \"string\",\n      \"startedAt\": \"2009-01-15T13:32:47.311Z\",\n      \"completedAt\": \"1961-08-16T16:07:39.633Z\",\n      \"jobs\": [\n        {\n          \"id\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"1967-09-27T14:46:21.862Z\",\n          \"completedAt\": \"1948-11-02T20:25:48.794Z\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"1966-06-28T14:56:20.227Z\",\n          \"completedAt\": \"1961-06-09T14:24:34.681Z\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"$type\": \"string\",\n      \"status\": \"string\",\n      \"startedAt\": \"1950-02-27T20:45:43.564Z\",\n      \"completedAt\": \"1981-02-26T02:04:02.806Z\",\n      \"jobs\": [\n        {\n          \"id\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"1985-06-19T13:44:00.225Z\",\n          \"completedAt\": \"1951-11-16T21:45:21.660Z\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"2008-04-25T17:04:49.729Z\",\n          \"completedAt\": \"2011-02-26T11:49:54.207Z\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e30876e-18c1-4d42-b3b4-5d72306af868",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "consumer",
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"steps\": [\n    {\n      \"$type\": \"videoGen\",\n      \"input\": {\n        \"engine\": \"string\",\n        \"model\": \"string\",\n        \"prompt\": \"string\",\n        \"negativePrompt\": \"string\",\n        \"width\": 5602,\n        \"height\": 5819,\n        \"aspectRatio\": \"string\",\n        \"steps\": 4094,\n        \"cfgScale\": 1932.7465709094738,\n        \"sampler\": \"string\",\n        \"seed\": 1863,\n        \"clipSkip\": 1670,\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"string\",\n            \"strength\": 5426.682043609801\n          },\n          {\n            \"air\": \"string\",\n            \"strength\": 2938.392808362349\n          }\n        ],\n        \"images\": [\n          \"string\",\n          \"string\"\n        ],\n        \"duration\": 116.97847249825477,\n        \"fps\": 2847,\n        \"upscaler\": \"string\"\n      },\n      \"name\": \"string\",\n      \"priority\": \"high\"\n    },\n    {\n      \"$type\": \"imageGen\",\n      \"input\": {\n        \"engine\": \"string\",\n        \"model\": \"string\",\n        \"prompt\": \"string\",\n        \"negativePrompt\": \"string\",\n        \"width\": 3114,\n        \"height\": 9499,\n        \"aspectRatio\": \"string\",\n        \"steps\": 1307,\n        \"cfgScale\": 5760.842129644929,\n        \"sampler\": \"string\",\n        \"seed\": 4367,\n        \"clipSkip\": 2798,\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"string\",\n            \"strength\": 2958.2837701959998\n          },\n          {\n            \"air\": \"string\",\n            \"strength\": 8138.987042865648\n          }\n        ],\n        \"images\": [\n          \"string\",\n          \"string\"\n        ],\n        \"duration\": 6790.024817988477,\n        \"fps\": 2712,\n        \"upscaler\": \"string\"\n      },\n      \"name\": \"string\",\n      \"priority\": \"normal\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"callbackUrl\": \"<uri>\",\n  \"callbackEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"detailed\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09942736-dfff-4d22-9837-30c84589d7d5",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "consumer",
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"steps\": [\n    {\n      \"$type\": \"videoGen\",\n      \"input\": {\n        \"engine\": \"string\",\n        \"model\": \"string\",\n        \"prompt\": \"string\",\n        \"negativePrompt\": \"string\",\n        \"width\": 5602,\n        \"height\": 5819,\n        \"aspectRatio\": \"string\",\n        \"steps\": 4094,\n        \"cfgScale\": 1932.7465709094738,\n        \"sampler\": \"string\",\n        \"seed\": 1863,\n        \"clipSkip\": 1670,\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"string\",\n            \"strength\": 5426.682043609801\n          },\n          {\n            \"air\": \"string\",\n            \"strength\": 2938.392808362349\n          }\n        ],\n        \"images\": [\n          \"string\",\n          \"string\"\n        ],\n        \"duration\": 116.97847249825477,\n        \"fps\": 2847,\n        \"upscaler\": \"string\"\n      },\n      \"name\": \"string\",\n      \"priority\": \"high\"\n    },\n    {\n      \"$type\": \"imageGen\",\n      \"input\": {\n        \"engine\": \"string\",\n        \"model\": \"string\",\n        \"prompt\": \"string\",\n        \"negativePrompt\": \"string\",\n        \"width\": 3114,\n        \"height\": 9499,\n        \"aspectRatio\": \"string\",\n        \"steps\": 1307,\n        \"cfgScale\": 5760.842129644929,\n        \"sampler\": \"string\",\n        \"seed\": 4367,\n        \"clipSkip\": 2798,\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"string\",\n            \"strength\": 2958.2837701959998\n          },\n          {\n            \"air\": \"string\",\n            \"strength\": 8138.987042865648\n          }\n        ],\n        \"images\": [\n          \"string\",\n          \"string\"\n        ],\n        \"duration\": 6790.024817988477,\n        \"fps\": 2712,\n        \"upscaler\": \"string\"\n      },\n      \"name\": \"string\",\n      \"priority\": \"normal\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"callbackUrl\": \"<uri>\",\n  \"callbackEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"detailed\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3441586-e40b-4cf4-adce-5c3fa7a03670",
+              "name": "Insufficient Buzz balance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "consumer",
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"steps\": [\n    {\n      \"$type\": \"videoGen\",\n      \"input\": {\n        \"engine\": \"string\",\n        \"model\": \"string\",\n        \"prompt\": \"string\",\n        \"negativePrompt\": \"string\",\n        \"width\": 5602,\n        \"height\": 5819,\n        \"aspectRatio\": \"string\",\n        \"steps\": 4094,\n        \"cfgScale\": 1932.7465709094738,\n        \"sampler\": \"string\",\n        \"seed\": 1863,\n        \"clipSkip\": 1670,\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"string\",\n            \"strength\": 5426.682043609801\n          },\n          {\n            \"air\": \"string\",\n            \"strength\": 2938.392808362349\n          }\n        ],\n        \"images\": [\n          \"string\",\n          \"string\"\n        ],\n        \"duration\": 116.97847249825477,\n        \"fps\": 2847,\n        \"upscaler\": \"string\"\n      },\n      \"name\": \"string\",\n      \"priority\": \"high\"\n    },\n    {\n      \"$type\": \"imageGen\",\n      \"input\": {\n        \"engine\": \"string\",\n        \"model\": \"string\",\n        \"prompt\": \"string\",\n        \"negativePrompt\": \"string\",\n        \"width\": 3114,\n        \"height\": 9499,\n        \"aspectRatio\": \"string\",\n        \"steps\": 1307,\n        \"cfgScale\": 5760.842129644929,\n        \"sampler\": \"string\",\n        \"seed\": 4367,\n        \"clipSkip\": 2798,\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"string\",\n            \"strength\": 2958.2837701959998\n          },\n          {\n            \"air\": \"string\",\n            \"strength\": 8138.987042865648\n          }\n        ],\n        \"images\": [\n          \"string\",\n          \"string\"\n        ],\n        \"duration\": 6790.024817988477,\n        \"fps\": 2712,\n        \"upscaler\": \"string\"\n      },\n      \"name\": \"string\",\n      \"priority\": \"normal\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"callbackUrl\": \"<uri>\",\n  \"callbackEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"detailed\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4fab377-fdc4-4aff-989e-60ada9a0ebfc",
+              "name": "Too many requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "consumer",
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"steps\": [\n    {\n      \"$type\": \"videoGen\",\n      \"input\": {\n        \"engine\": \"string\",\n        \"model\": \"string\",\n        \"prompt\": \"string\",\n        \"negativePrompt\": \"string\",\n        \"width\": 5602,\n        \"height\": 5819,\n        \"aspectRatio\": \"string\",\n        \"steps\": 4094,\n        \"cfgScale\": 1932.7465709094738,\n        \"sampler\": \"string\",\n        \"seed\": 1863,\n        \"clipSkip\": 1670,\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"string\",\n            \"strength\": 5426.682043609801\n          },\n          {\n            \"air\": \"string\",\n            \"strength\": 2938.392808362349\n          }\n        ],\n        \"images\": [\n          \"string\",\n          \"string\"\n        ],\n        \"duration\": 116.97847249825477,\n        \"fps\": 2847,\n        \"upscaler\": \"string\"\n      },\n      \"name\": \"string\",\n      \"priority\": \"high\"\n    },\n    {\n      \"$type\": \"imageGen\",\n      \"input\": {\n        \"engine\": \"string\",\n        \"model\": \"string\",\n        \"prompt\": \"string\",\n        \"negativePrompt\": \"string\",\n        \"width\": 3114,\n        \"height\": 9499,\n        \"aspectRatio\": \"string\",\n        \"steps\": 1307,\n        \"cfgScale\": 5760.842129644929,\n        \"sampler\": \"string\",\n        \"seed\": 4367,\n        \"clipSkip\": 2798,\n        \"quantity\": 1,\n        \"additionalNetworks\": [\n          {\n            \"air\": \"string\",\n            \"strength\": 2958.2837701959998\n          },\n          {\n            \"air\": \"string\",\n            \"strength\": 8138.987042865648\n          }\n        ],\n        \"images\": [\n          \"string\",\n          \"string\"\n        ],\n        \"duration\": 6790.024817988477,\n        \"fps\": 2712,\n        \"upscaler\": \"string\"\n      },\n      \"name\": \"string\",\n      \"priority\": \"normal\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"callbackUrl\": \"<uri>\",\n  \"callbackEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"detailed\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c267dbb-a2fc-446e-b9a8-8c57e741da62",
+          "name": "Query Workflows",
+          "request": {
+            "name": "Query Workflows",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "consumer",
+                "workflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58d0b4a4-2872-4f7c-90b8-8306dcdceaac",
+              "name": "Page of workflows.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "consumer",
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "take",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"succeeded\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdAt\": \"1992-09-15T21:09:00.767Z\",\n      \"startedAt\": \"2018-12-15T06:08:36.608Z\",\n      \"completedAt\": \"1950-02-07T15:41:44.895Z\",\n      \"cost\": {\n        \"base\": 5065,\n        \"total\": 1227,\n        \"currency\": \"BUZZ\"\n      },\n      \"steps\": [\n        {\n          \"name\": \"string\",\n          \"$type\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"1977-06-24T10:44:05.937Z\",\n          \"completedAt\": \"1961-08-24T19:28:40.957Z\",\n          \"jobs\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"startedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"completedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"startedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"completedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"$type\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"1954-03-12T05:27:43.868Z\",\n          \"completedAt\": \"2025-03-29T19:52:01.522Z\",\n          \"jobs\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"startedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"completedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"startedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"completedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"preparing\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdAt\": \"1960-06-10T04:02:53.637Z\",\n      \"startedAt\": \"1994-02-18T23:36:36.144Z\",\n      \"completedAt\": \"1991-09-15T07:42:47.767Z\",\n      \"cost\": {\n        \"base\": 5132,\n        \"total\": 4513,\n        \"currency\": \"BUZZ\"\n      },\n      \"steps\": [\n        {\n          \"name\": \"string\",\n          \"$type\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"1966-03-10T08:14:38.265Z\",\n          \"completedAt\": \"1959-05-27T08:24:13.559Z\",\n          \"jobs\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"startedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"completedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"startedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"completedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"$type\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"1960-11-30T11:39:10.067Z\",\n          \"completedAt\": \"1999-02-26T12:25:13.439Z\",\n          \"jobs\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"startedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"completedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"startedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"completedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"nextCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aabef177-43d8-46cc-ab77-320e4b8fabcc",
+          "name": "Get Workflow",
+          "request": {
+            "name": "Get Workflow",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "consumer",
+                "workflows",
+                ":workflowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6c2a0e7-e207-4fda-9e53-ef20bc5b0221",
+              "name": "Workflow status and outputs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "consumer",
+                    "workflows",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"succeeded\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"2015-03-30T09:02:19.390Z\",\n  \"startedAt\": \"2019-07-26T21:52:42.859Z\",\n  \"completedAt\": \"1974-11-24T16:44:05.419Z\",\n  \"cost\": {\n    \"base\": 8173,\n    \"total\": 6841,\n    \"currency\": \"BUZZ\"\n  },\n  \"steps\": [\n    {\n      \"name\": \"string\",\n      \"$type\": \"string\",\n      \"status\": \"string\",\n      \"startedAt\": \"2009-01-15T13:32:47.311Z\",\n      \"completedAt\": \"1961-08-16T16:07:39.633Z\",\n      \"jobs\": [\n        {\n          \"id\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"1967-09-27T14:46:21.862Z\",\n          \"completedAt\": \"1948-11-02T20:25:48.794Z\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"1966-06-28T14:56:20.227Z\",\n          \"completedAt\": \"1961-06-09T14:24:34.681Z\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"$type\": \"string\",\n      \"status\": \"string\",\n      \"startedAt\": \"1950-02-27T20:45:43.564Z\",\n      \"completedAt\": \"1981-02-26T02:04:02.806Z\",\n      \"jobs\": [\n        {\n          \"id\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"1985-06-19T13:44:00.225Z\",\n          \"completedAt\": \"1951-11-16T21:45:21.660Z\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"2008-04-25T17:04:49.729Z\",\n          \"completedAt\": \"2011-02-26T11:49:54.207Z\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85007fb3-f467-4823-aae3-c581404c1879",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "consumer",
+                    "workflows",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7ceecaf-6a36-4c12-85b5-43c6b9e7f87f",
+          "name": "Update Workflow",
+          "request": {
+            "name": "Update Workflow",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "consumer",
+                "workflows",
+                ":workflowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c00e6fd8-969f-4706-b6c9-24580783e986",
+              "name": "Updated workflow.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "consumer",
+                    "workflows",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"succeeded\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"2015-03-30T09:02:19.390Z\",\n  \"startedAt\": \"2019-07-26T21:52:42.859Z\",\n  \"completedAt\": \"1974-11-24T16:44:05.419Z\",\n  \"cost\": {\n    \"base\": 8173,\n    \"total\": 6841,\n    \"currency\": \"BUZZ\"\n  },\n  \"steps\": [\n    {\n      \"name\": \"string\",\n      \"$type\": \"string\",\n      \"status\": \"string\",\n      \"startedAt\": \"2009-01-15T13:32:47.311Z\",\n      \"completedAt\": \"1961-08-16T16:07:39.633Z\",\n      \"jobs\": [\n        {\n          \"id\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"1967-09-27T14:46:21.862Z\",\n          \"completedAt\": \"1948-11-02T20:25:48.794Z\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"1966-06-28T14:56:20.227Z\",\n          \"completedAt\": \"1961-06-09T14:24:34.681Z\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"$type\": \"string\",\n      \"status\": \"string\",\n      \"startedAt\": \"1950-02-27T20:45:43.564Z\",\n      \"completedAt\": \"1981-02-26T02:04:02.806Z\",\n      \"jobs\": [\n        {\n          \"id\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"1985-06-19T13:44:00.225Z\",\n          \"completedAt\": \"1951-11-16T21:45:21.660Z\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"2008-04-25T17:04:49.729Z\",\n          \"completedAt\": \"2011-02-26T11:49:54.207Z\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4266bcea-aba6-416b-a652-76b352e39977",
+          "name": "Patch Workflow",
+          "request": {
+            "name": "Patch Workflow",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "consumer",
+                "workflows",
+                ":workflowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"<object>\",\n  \"<object>\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "554b7066-fbf7-40fa-ae26-7181fce7356a",
+              "name": "Patched workflow.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "consumer",
+                    "workflows",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<object>\",\n  \"<object>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"succeeded\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"2015-03-30T09:02:19.390Z\",\n  \"startedAt\": \"2019-07-26T21:52:42.859Z\",\n  \"completedAt\": \"1974-11-24T16:44:05.419Z\",\n  \"cost\": {\n    \"base\": 8173,\n    \"total\": 6841,\n    \"currency\": \"BUZZ\"\n  },\n  \"steps\": [\n    {\n      \"name\": \"string\",\n      \"$type\": \"string\",\n      \"status\": \"string\",\n      \"startedAt\": \"2009-01-15T13:32:47.311Z\",\n      \"completedAt\": \"1961-08-16T16:07:39.633Z\",\n      \"jobs\": [\n        {\n          \"id\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"1967-09-27T14:46:21.862Z\",\n          \"completedAt\": \"1948-11-02T20:25:48.794Z\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"1966-06-28T14:56:20.227Z\",\n          \"completedAt\": \"1961-06-09T14:24:34.681Z\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"$type\": \"string\",\n      \"status\": \"string\",\n      \"startedAt\": \"1950-02-27T20:45:43.564Z\",\n      \"completedAt\": \"1981-02-26T02:04:02.806Z\",\n      \"jobs\": [\n        {\n          \"id\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"1985-06-19T13:44:00.225Z\",\n          \"completedAt\": \"1951-11-16T21:45:21.660Z\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"status\": \"string\",\n          \"startedAt\": \"2008-04-25T17:04:49.729Z\",\n          \"completedAt\": \"2011-02-26T11:49:54.207Z\",\n          \"result\": {\n            \"blobs\": [\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"blobId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mimeType\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"durationMs\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"nsfwLevel\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2fac1c4a-af8d-4e15-821a-554487c80054",
+          "name": "Delete Workflow",
+          "request": {
+            "name": "Delete Workflow",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "consumer",
+                "workflows",
+                ":workflowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1424f031-cf38-4d98-ae81-61d0c8a1def2",
+              "name": "Deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "consumer",
+                    "workflows",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://orchestration.civitai.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "06d22b8b-b646-45e8-b421-304b171d06e4",
+    "name": "Civitai Orchestration Blobs Workflows API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single\ncontract. The Orchestration API races multiple providers and engines behind one workflow surface and\ndelivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.\n\n\nContact Support:\n Name: Civitai Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
