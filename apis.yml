@@ -4,6 +4,11 @@ apis:
 - aid: civitai:civitai-oauth-api
   name: Civitai OAuth API
   tags:
+  - Artificial Intelligence
+  - Authentication
+  - PKCE
+  - Identity
+  tags_raw:
   - AI
   - Artificial Intelligence
   - Authentication
@@ -201,6 +206,8 @@ apis:
   description: Community-shared generation outputs.
   humanURL: https://developer.civitai.com/site/reference/
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
@@ -315,6 +322,8 @@ apis:
   description: Specific versions of a model with files, hashes, and AIR identifiers.
   humanURL: https://developer.civitai.com/site/reference/
   tags:
+  - Model Versions
+  tags_raw:
   - ModelVersions
   properties:
   - type: OpenAPI
@@ -486,6 +495,8 @@ apis:
   description: User accounts.
   humanURL: https://developer.civitai.com/site/reference/
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -654,6 +665,17 @@ apis:
     url: examples/civitai-video-generation-example.json
 name: Civitai
 tags:
+  - Artificial Intelligence
+  - Image-Generation
+  - Video Generation
+  - Stable Diffusion
+  - SDXL
+  - Flux
+  - LoRA
+  - Model Hosting
+  - Community
+  - Generative AI
+tags_raw:
   - AI
   - Artificial Intelligence
   - Image Generation
