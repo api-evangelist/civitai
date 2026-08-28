@@ -11,8 +11,14 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: civitaiSiteApi
-  url: ../openapi/civitai-site-api-openapi.yml
+- name: creatorsApi
+  url: ../openapi/civitai-creators-api-openapi.yml
+  type: openapi
+- name: imagesApi
+  url: ../openapi/civitai-images-api-openapi.yml
+  type: openapi
+- name: modelsApi
+  url: ../openapi/civitai-models-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: creator-models-gallery

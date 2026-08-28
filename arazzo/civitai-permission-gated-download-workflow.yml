@@ -12,8 +12,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: civitaiSiteApi
-  url: ../openapi/civitai-site-api-openapi.yml
+- name: modelversionsApi
+  url: ../openapi/civitai-modelversions-api-openapi.yml
+  type: openapi
+- name: permissionsApi
+  url: ../openapi/civitai-permissions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: permission-gated-download

@@ -10,8 +10,11 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: civitaiSiteApi
-  url: ../openapi/civitai-site-api-openapi.yml
+- name: usersApi
+  url: ../openapi/civitai-users-api-openapi.yml
+  type: openapi
+- name: vaultApi
+  url: ../openapi/civitai-vault-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: vault-toggle-verify

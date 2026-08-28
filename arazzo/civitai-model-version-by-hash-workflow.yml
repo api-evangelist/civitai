@@ -11,8 +11,11 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: civitaiSiteApi
-  url: ../openapi/civitai-site-api-openapi.yml
+- name: modelsApi
+  url: ../openapi/civitai-models-api-openapi.yml
+  type: openapi
+- name: modelversionsApi
+  url: ../openapi/civitai-modelversions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: model-version-by-hash

@@ -12,8 +12,11 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: civitaiOrchestrationApi
-  url: ../openapi/civitai-orchestration-api-openapi.yml
+- name: blobsApi
+  url: ../openapi/civitai-blobs-api-openapi.yml
+  type: openapi
+- name: workflowsApi
+  url: ../openapi/civitai-workflows-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: presigned-blob-generate
