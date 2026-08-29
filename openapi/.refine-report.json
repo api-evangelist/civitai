@@ -1,34 +1,41 @@
 {
   "provider": "civitai",
   "sources": [
-    "civitai-blobs-api-openapi.yml",
-    "civitai-creators-api-openapi.yml",
-    "civitai-enums-api-openapi.yml",
-    "civitai-images-api-openapi.yml",
-    "civitai-models-api-openapi.yml",
-    "civitai-modelversions-api-openapi.yml",
-    "civitai-permissions-api-openapi.yml",
-    "civitai-tags-api-openapi.yml",
-    "civitai-users-api-openapi.yml",
-    "civitai-vault-api-openapi.yml",
-    "civitai-workflows-api-openapi.yml"
+    "_original/civitai-orchestration-api-openapi.yml",
+    "_original/civitai-site-api-openapi.yml"
   ],
   "outputs": [
     "civitai-blobs-api-openapi.yml",
+    "civitai-workflows-api-openapi.yml",
     "civitai-creators-api-openapi.yml",
     "civitai-enums-api-openapi.yml",
     "civitai-images-api-openapi.yml",
-    "civitai-models-api-openapi.yml",
     "civitai-modelversions-api-openapi.yml",
+    "civitai-models-api-openapi.yml",
     "civitai-permissions-api-openapi.yml",
     "civitai-tags-api-openapi.yml",
     "civitai-users-api-openapi.yml",
-    "civitai-vault-api-openapi.yml",
-    "civitai-workflows-api-openapi.yml"
+    "civitai-vault-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "civitai-orchestration-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "civitai-site-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "civitai-blobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "civitai-creators-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "civitai-enums-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "civitai-images-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "civitai-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "civitai-modelversions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "civitai-permissions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "civitai-tags-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "civitai-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "civitai-vault-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "civitai-workflows-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,26 +1,29 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Civitai Orchestration Blobs Vault API
-  version: v2
-  description: 'Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single
+  title: Civitai Site Vault API
+  version: '1.0'
+  description: 'Browse and search the Civitai public catalog of Stable Diffusion, SDXL, Flux, and video models.
 
-    contract. The Orchestration API races multiple providers and engines behind one workflow surface and
+    Exposes models, model versions, images, creators, tags, users, permissions, and the user vault.
 
-    delivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.
+    Public read endpoints are cached; authenticated endpoints are not. Authenticate with a personal
+
+    API key issued at civitai.com using a Bearer token.
 
     '
   contact:
     name: Civitai Developer Support
-    url: https://developer.civitai.com/orchestration/
+    url: https://developer.civitai.com/
   termsOfService: https://civitai.com/content/tos
   license:
     name: Civitai Terms of Service
     url: https://civitai.com/content/tos
 servers:
-- url: https://orchestration.civitai.com
-  description: Civitai Orchestration API
+- url: https://civitai.com/api/v1
+  description: Civitai Site API
 security:
 - BearerAuth: []
+- {}
 tags:
 - name: Vault
   description: A user's saved-model vault (membership tiers).
@@ -106,6 +109,17 @@ paths:
                 $ref: '#/components/schemas/VaultItem'
 components:
   schemas:
+    VaultStatus:
+      type: object
+      properties:
+        subscribed:
+          type: boolean
+        storageUsedKb:
+          type: number
+        storageLimitKb:
+          type: number
+        tier:
+          type: string
     VaultItem:
       type: object
       properties:
@@ -126,17 +140,6 @@ components:
           - Failed
         sizeKb:
           type: number
-    VaultStatus:
-      type: object
-      properties:
-        subscribed:
-          type: boolean
-        storageUsedKb:
-          type: number
-        storageLimitKb:
-          type: number
-        tier:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http

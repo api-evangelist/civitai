@@ -1,26 +1,29 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Civitai Orchestration Blobs Images API
-  version: v2
-  description: 'Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single
+  title: Civitai Site Images API
+  version: '1.0'
+  description: 'Browse and search the Civitai public catalog of Stable Diffusion, SDXL, Flux, and video models.
 
-    contract. The Orchestration API races multiple providers and engines behind one workflow surface and
+    Exposes models, model versions, images, creators, tags, users, permissions, and the user vault.
 
-    delivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.
+    Public read endpoints are cached; authenticated endpoints are not. Authenticate with a personal
+
+    API key issued at civitai.com using a Bearer token.
 
     '
   contact:
     name: Civitai Developer Support
-    url: https://developer.civitai.com/orchestration/
+    url: https://developer.civitai.com/
   termsOfService: https://civitai.com/content/tos
   license:
     name: Civitai Terms of Service
     url: https://civitai.com/content/tos
 servers:
-- url: https://orchestration.civitai.com
-  description: Civitai Orchestration API
+- url: https://civitai.com/api/v1
+  description: Civitai Site API
 security:
 - BearerAuth: []
+- {}
 tags:
 - name: Images
   description: Community-shared generation outputs.
@@ -94,38 +97,6 @@ paths:
                 $ref: '#/components/schemas/ImagePage'
 components:
   schemas:
-    Stats:
-      type: object
-      properties:
-        downloadCount:
-          type: integer
-        favoriteCount:
-          type: integer
-        commentCount:
-          type: integer
-        ratingCount:
-          type: integer
-        rating:
-          type: number
-        thumbsUpCount:
-          type: integer
-        thumbsDownCount:
-          type: integer
-    Metadata:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-        pageSize:
-          type: integer
-        nextPage:
-          type: string
-        prevPage:
-          type: string
-        totalItems:
-          type: integer
-        totalPages:
-          type: integer
     Image:
       type: object
       properties:
@@ -156,6 +127,23 @@ components:
           additionalProperties: true
         username:
           type: string
+    Stats:
+      type: object
+      properties:
+        downloadCount:
+          type: integer
+        favoriteCount:
+          type: integer
+        commentCount:
+          type: integer
+        ratingCount:
+          type: integer
+        rating:
+          type: number
+        thumbsUpCount:
+          type: integer
+        thumbsDownCount:
+          type: integer
     ImagePage:
       type: object
       properties:
@@ -165,6 +153,21 @@ components:
             $ref: '#/components/schemas/Image'
         metadata:
           $ref: '#/components/schemas/Metadata'
+    Metadata:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        pageSize:
+          type: integer
+        nextPage:
+          type: string
+        prevPage:
+          type: string
+        totalItems:
+          type: integer
+        totalPages:
+          type: integer
   securitySchemes:
     BearerAuth:
       type: http
