@@ -322,7 +322,7 @@ apis:
   description: Specific versions of a model with files, hashes, and AIR identifiers.
   humanURL: https://developer.civitai.com/site/reference/
   tags:
-  - Model Versions
+  - ModelVersions
   tags_raw:
   - ModelVersions
   properties:
