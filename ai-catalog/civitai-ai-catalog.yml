@@ -25,6 +25,7 @@ conformance:
   hard_failures: []
   soft_gaps:
   - cors-not-wildcard
+  - did-web-does-not-resolve
   official_tool:
     tool: ARD conformance-test v0.9.1 (ards-project/ard-spec)
     status: PASS
@@ -42,6 +43,11 @@ conformance:
     - '[Civitai Apps Agent-Setup Prompt] Media type ''text/markdown'' is based on standard discovery type
       ''text/markdown'' but has missing required parameters: profile="urn:air:agent-skills".'
     informational: []
+  did_web:
+    identifier: did:web:developer.civitai.com
+    resolved: false
+    verification_methods: 0
+    http_status: 404
 catalog:
   host_display_name: Civitai Developer Documentation
   host_identifier: did:web:developer.civitai.com
