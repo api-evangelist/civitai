@@ -317,65 +317,6 @@ apis:
     url: examples/civitai-image-generation-example.json
   - type: Examples
     url: examples/civitai-video-generation-example.json
-- aid: civitai:civitai-modelversions-api
-  name: Civitai ModelVersions API
-  description: Specific versions of a model with files, hashes, and AIR identifiers.
-  humanURL: https://developer.civitai.com/site/reference/
-  tags:
-  - Model Versions
-  tags_raw:
-  - ModelVersions
-  properties:
-  - type: OpenAPI
-    url: openapi/civitai-modelversions-api-openapi.yml
-  - type: Documentation
-    url: https://developer.civitai.com/site/
-  - type: Documentation
-    url: https://developer.civitai.com/site/reference/
-  - type: Documentation
-    url: https://developer.civitai.com/site/reference/models
-  - type: Documentation
-    url: https://developer.civitai.com/site/reference/images
-  - type: Documentation
-    url: https://developer.civitai.com/site/reference/creators
-  - type: Documentation
-    url: https://developer.civitai.com/site/reference/users
-  - type: Documentation
-    url: https://developer.civitai.com/site/reference/permissions
-  - type: Documentation
-    url: https://developer.civitai.com/site/reference/vault
-  - type: JSONSchema
-    url: json-schema/civitai-model-schema.json
-  - type: JSONSchema
-    url: json-schema/civitai-image-schema.json
-  - type: JSONLD
-    url: json-ld/civitai-context.jsonld
-  - type: Documentation
-    url: https://developer.civitai.com/orchestration/
-  - type: Documentation
-    url: https://developer.civitai.com/orchestration/guide/
-  - type: Documentation
-    url: https://developer.civitai.com/orchestration/guide/getting-started
-  - type: Authentication
-    url: https://developer.civitai.com/orchestration/guide/authentication
-  - type: Documentation
-    url: https://developer.civitai.com/orchestration/guide/workflows
-  - type: Documentation
-    url: https://developer.civitai.com/orchestration/guide/submitting-work
-  - type: Webhooks
-    url: https://developer.civitai.com/orchestration/guide/results-and-webhooks
-  - type: ErrorCodes
-    url: https://developer.civitai.com/orchestration/guide/errors-and-retries
-  - type: Documentation
-    url: https://developer.civitai.com/orchestration/reference/
-  - type: Documentation
-    url: https://developer.civitai.com/orchestration/recipes/
-  - type: JSONSchema
-    url: json-schema/civitai-workflow-schema.json
-  - type: Examples
-    url: examples/civitai-image-generation-example.json
-  - type: Examples
-    url: examples/civitai-video-generation-example.json
 - aid: civitai:civitai-permissions-api
   name: Civitai Permissions API
   description: Permission checks for the current bearer.
@@ -615,6 +556,63 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/civitai-workflows-api-openapi.yml
+  - type: Documentation
+    url: https://developer.civitai.com/site/
+  - type: Documentation
+    url: https://developer.civitai.com/site/reference/
+  - type: Documentation
+    url: https://developer.civitai.com/site/reference/models
+  - type: Documentation
+    url: https://developer.civitai.com/site/reference/images
+  - type: Documentation
+    url: https://developer.civitai.com/site/reference/creators
+  - type: Documentation
+    url: https://developer.civitai.com/site/reference/users
+  - type: Documentation
+    url: https://developer.civitai.com/site/reference/permissions
+  - type: Documentation
+    url: https://developer.civitai.com/site/reference/vault
+  - type: JSONSchema
+    url: json-schema/civitai-model-schema.json
+  - type: JSONSchema
+    url: json-schema/civitai-image-schema.json
+  - type: JSONLD
+    url: json-ld/civitai-context.jsonld
+  - type: Documentation
+    url: https://developer.civitai.com/orchestration/
+  - type: Documentation
+    url: https://developer.civitai.com/orchestration/guide/
+  - type: Documentation
+    url: https://developer.civitai.com/orchestration/guide/getting-started
+  - type: Authentication
+    url: https://developer.civitai.com/orchestration/guide/authentication
+  - type: Documentation
+    url: https://developer.civitai.com/orchestration/guide/workflows
+  - type: Documentation
+    url: https://developer.civitai.com/orchestration/guide/submitting-work
+  - type: Webhooks
+    url: https://developer.civitai.com/orchestration/guide/results-and-webhooks
+  - type: ErrorCodes
+    url: https://developer.civitai.com/orchestration/guide/errors-and-retries
+  - type: Documentation
+    url: https://developer.civitai.com/orchestration/reference/
+  - type: Documentation
+    url: https://developer.civitai.com/orchestration/recipes/
+  - type: JSONSchema
+    url: json-schema/civitai-workflow-schema.json
+  - type: Examples
+    url: examples/civitai-image-generation-example.json
+  - type: Examples
+    url: examples/civitai-video-generation-example.json
+- aid: civitai:civitai-model-versions-api
+  name: Civitai Model Versions API
+  description: Specific versions of a model with files, hashes, and AIR identifiers.
+  humanURL: https://developer.civitai.com/site/oauth/
+  tags:
+  - Model Versions
+  properties:
+  - type: OpenAPI
+    url: openapi/civitai-model-versions-api-openapi.yml
   - type: Documentation
     url: https://developer.civitai.com/site/
   - type: Documentation
