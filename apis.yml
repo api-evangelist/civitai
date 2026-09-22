@@ -1,5 +1,8 @@
 aid: civitai
 url: https://raw.githubusercontent.com/api-evangelist/civitai/refs/heads/main/apis.yml
+x-docs-platform: vitepress
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-21
 apis:
 - aid: civitai:civitai-oauth-api
   name: Civitai OAuth API
