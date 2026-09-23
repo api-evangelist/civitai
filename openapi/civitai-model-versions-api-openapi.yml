@@ -8,9 +8,7 @@ info:
 
     Public read endpoints are cached; authenticated endpoints are not. Authenticate with a personal
 
-    API key issued at civitai.com using a Bearer token.
-
-    '
+    API key issued at civitai.com using a Bearer token.'
   contact:
     name: Civitai Developer Support
     url: https://developer.civitai.com/
@@ -25,7 +23,7 @@ security:
 - BearerAuth: []
 - {}
 tags:
-- name: ModelVersions
+- name: Model Versions
   description: Specific versions of a model with files, hashes, and AIR identifiers.
 paths:
   /model-versions/{id}:
@@ -33,7 +31,7 @@ paths:
       operationId: getModelVersion
       summary: Get Model Version
       tags:
-      - ModelVersions
+      - Model Versions
       parameters:
       - name: id
         in: path
@@ -54,7 +52,7 @@ paths:
       operationId: getModelVersionMini
       summary: Get Model Version Mini
       tags:
-      - ModelVersions
+      - Model Versions
       description: Lightweight model-version payload optimized for client tools.
       parameters:
       - name: id
@@ -74,7 +72,7 @@ paths:
       operationId: getModelVersionByHash
       summary: Get Model Version By Hash
       tags:
-      - ModelVersions
+      - Model Versions
       parameters:
       - name: hash
         in: path
@@ -96,7 +94,7 @@ paths:
       operationId: getModelVersionsByHashes
       summary: Get Model Versions By Hashes
       tags:
-      - ModelVersions
+      - Model Versions
       requestBody:
         required: true
         content:
@@ -119,7 +117,7 @@ paths:
       operationId: getModelVersionIdsByHashes
       summary: Get Model Version IDs By Hashes
       tags:
-      - ModelVersions
+      - Model Versions
       requestBody:
         required: true
         content:
@@ -139,61 +137,6 @@ paths:
                   type: integer
 components:
   schemas:
-    ModelVersionMini:
-      type: object
-      properties:
-        id:
-          type: integer
-        modelId:
-          type: integer
-        name:
-          type: string
-        baseModel:
-          type: string
-        air:
-          type: string
-        downloadUrl:
-          type: string
-          format: uri
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        code:
-          type: string
-    Image:
-      type: object
-      properties:
-        id:
-          type: integer
-        url:
-          type: string
-          format: uri
-        hash:
-          type: string
-        width:
-          type: integer
-        height:
-          type: integer
-        nsfwLevel:
-          type: integer
-        nsfw:
-          type: boolean
-        createdAt:
-          type: string
-          format: date-time
-        postId:
-          type: integer
-        stats:
-          $ref: '#/components/schemas/Stats'
-        meta:
-          type: object
-          additionalProperties: true
-        username:
-          type: string
     Stats:
       type: object
       properties:
@@ -302,6 +245,61 @@ components:
               type: string
             Blake3:
               type: string
+    Image:
+      type: object
+      properties:
+        id:
+          type: integer
+        url:
+          type: string
+          format: uri
+        hash:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+        nsfwLevel:
+          type: integer
+        nsfw:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        postId:
+          type: integer
+        stats:
+          $ref: '#/components/schemas/Stats'
+        meta:
+          type: object
+          additionalProperties: true
+        username:
+          type: string
+    ModelVersionMini:
+      type: object
+      properties:
+        id:
+          type: integer
+        modelId:
+          type: integer
+        name:
+          type: string
+        baseModel:
+          type: string
+        air:
+          type: string
+        downloadUrl:
+          type: string
+          format: uri
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: string
   responses:
     NotFound:
       description: Resource not found.

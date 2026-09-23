@@ -17,21 +17,25 @@
     "civitai-users-api-openapi.yml",
     "civitai-vault-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "civitai-orchestration-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "civitai-site-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+    "civitai-site-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: civitai-model-versions-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 12 total)"
   ],
   "skipped": [
     "civitai-blobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "civitai-creators-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "civitai-enums-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "civitai-images-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "civitai-model-versions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "civitai-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "civitai-modelversions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "civitai-permissions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "civitai-tags-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "civitai-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",

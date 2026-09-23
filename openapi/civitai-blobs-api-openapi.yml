@@ -6,9 +6,7 @@ info:
 
     contract. The Orchestration API races multiple providers and engines behind one workflow surface and
 
-    delivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.
-
-    '
+    delivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.'
   contact:
     name: Civitai Developer Support
     url: https://developer.civitai.com/orchestration/

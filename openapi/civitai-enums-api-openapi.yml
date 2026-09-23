@@ -8,9 +8,7 @@ info:
 
     Public read endpoints are cached; authenticated endpoints are not. Authenticate with a personal
 
-    API key issued at civitai.com using a Bearer token.
-
-    '
+    API key issued at civitai.com using a Bearer token.'
   contact:
     name: Civitai Developer Support
     url: https://developer.civitai.com/

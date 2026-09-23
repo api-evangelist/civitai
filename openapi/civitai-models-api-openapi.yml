@@ -8,9 +8,7 @@ info:
 
     Public read endpoints are cached; authenticated endpoints are not. Authenticate with a personal
 
-    API key issued at civitai.com using a Bearer token.
-
-    '
+    API key issued at civitai.com using a Bearer token.'
   contact:
     name: Civitai Developer Support
     url: https://developer.civitai.com/
@@ -133,113 +131,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Creator:
-      type: object
-      properties:
-        username:
-          type: string
-        image:
-          type: string
-          format: uri
-        modelCount:
-          type: integer
-        link:
-          type: string
-          format: uri
-    Model:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        description:
-          type: string
-        type:
-          type: string
-          enum:
-          - Checkpoint
-          - TextualInversion
-          - Hypernetwork
-          - AestheticGradient
-          - LORA
-          - LoCon
-          - Controlnet
-          - Poses
-          - Wildcards
-          - Workflows
-          - Other
-        nsfw:
-          type: boolean
-        nsfwLevel:
-          type: integer
-        allowNoCredit:
-          type: boolean
-        allowCommercialUse:
-          type: array
-          items:
-            type: string
-            enum:
-            - None
-            - Image
-            - RentCivit
-            - Rent
-            - Sell
-        allowDerivatives:
-          type: boolean
-        allowDifferentLicense:
-          type: boolean
-        stats:
-          $ref: '#/components/schemas/Stats'
-        creator:
-          $ref: '#/components/schemas/Creator'
-        tags:
-          type: array
-          items:
-            type: string
-        modelVersions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ModelVersion'
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        code:
-          type: string
-    Image:
-      type: object
-      properties:
-        id:
-          type: integer
-        url:
-          type: string
-          format: uri
-        hash:
-          type: string
-        width:
-          type: integer
-        height:
-          type: integer
-        nsfwLevel:
-          type: integer
-        nsfw:
-          type: boolean
-        createdAt:
-          type: string
-          format: date-time
-        postId:
-          type: integer
-        stats:
-          $ref: '#/components/schemas/Stats'
-        meta:
-          type: object
-          additionalProperties: true
-        username:
-          type: string
     Stats:
       type: object
       properties:
@@ -256,6 +147,21 @@ components:
         thumbsUpCount:
           type: integer
         thumbsDownCount:
+          type: integer
+    Metadata:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        pageSize:
+          type: integer
+        nextPage:
+          type: string
+        prevPage:
+          type: string
+        totalItems:
+          type: integer
+        totalPages:
           type: integer
     ModelVersion:
       type: object
@@ -348,6 +254,36 @@ components:
               type: string
             Blake3:
               type: string
+    Image:
+      type: object
+      properties:
+        id:
+          type: integer
+        url:
+          type: string
+          format: uri
+        hash:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+        nsfwLevel:
+          type: integer
+        nsfw:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        postId:
+          type: integer
+        stats:
+          $ref: '#/components/schemas/Stats'
+        meta:
+          type: object
+          additionalProperties: true
+        username:
+          type: string
     ModelPage:
       type: object
       properties:
@@ -357,30 +293,92 @@ components:
             $ref: '#/components/schemas/Model'
         metadata:
           $ref: '#/components/schemas/Metadata'
-    Metadata:
+    Model:
       type: object
       properties:
-        currentPage:
+        id:
           type: integer
-        pageSize:
-          type: integer
-        nextPage:
+        name:
           type: string
-        prevPage:
+        description:
           type: string
-        totalItems:
+        type:
+          type: string
+          enum:
+          - Checkpoint
+          - TextualInversion
+          - Hypernetwork
+          - AestheticGradient
+          - LORA
+          - LoCon
+          - Controlnet
+          - Poses
+          - Wildcards
+          - Workflows
+          - Other
+        nsfw:
+          type: boolean
+        nsfwLevel:
           type: integer
-        totalPages:
+        allowNoCredit:
+          type: boolean
+        allowCommercialUse:
+          type: array
+          items:
+            type: string
+            enum:
+            - None
+            - Image
+            - RentCivit
+            - Rent
+            - Sell
+        allowDerivatives:
+          type: boolean
+        allowDifferentLicense:
+          type: boolean
+        stats:
+          $ref: '#/components/schemas/Stats'
+        creator:
+          $ref: '#/components/schemas/Creator'
+        tags:
+          type: array
+          items:
+            type: string
+        modelVersions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelVersion'
+    Creator:
+      type: object
+      properties:
+        username:
+          type: string
+        image:
+          type: string
+          format: uri
+        modelCount:
           type: integer
+        link:
+          type: string
+          format: uri
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: string
   responses:
-    NotFound:
-      description: Resource not found.
+    RateLimited:
+      description: Too many requests.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    RateLimited:
-      description: Too many requests.
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:

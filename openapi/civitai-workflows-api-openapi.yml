@@ -6,9 +6,7 @@ info:
 
     contract. The Orchestration API races multiple providers and engines behind one workflow surface and
 
-    delivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.
-
-    '
+    delivers results via webhooks or polling. Authenticate with a Bearer token issued at civitai.com.'
   contact:
     name: Civitai Developer Support
     url: https://developer.civitai.com/orchestration/
@@ -173,40 +171,148 @@ paths:
         '204':
           description: Deleted.
 components:
-  responses:
-    BadRequest:
-      description: Invalid request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimited:
-      description: Too many requests.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid bearer token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
+    WorkflowStep:
+      type: object
+      required:
+      - $type
+      - input
+      properties:
+        $type:
+          type: string
+          description: Recipe type — e.g. imageGen, videoGen, audioGen, textGen, training, upscale.
+          enum:
+          - imageGen
+          - videoGen
+          - audioGen
+          - textGen
+          - transcribe
+          - tts
+          - music
+          - upscale
+          - interpolate
+          - training
+          - comfy
+          - moderation
+        name:
+          type: string
+        input:
+          $ref: '#/components/schemas/StepInput'
+        priority:
+          type: string
+          enum:
+          - low
+          - normal
+          - high
+    WorkflowStepResult:
       type: object
       properties:
-        code:
+        name:
           type: string
-        message:
+        $type:
           type: string
-        traceId:
+        status:
+          type: string
+        startedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+    Job:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        startedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+        result:
+          type: object
+          properties:
+            blobs:
+              type: array
+              items:
+                type: object
+                properties:
+                  blobId:
+                    type: string
+                  url:
+                    type: string
+                    format: uri
+                  mimeType:
+                    type: string
+                  width:
+                    type: integer
+                  height:
+                    type: integer
+                  durationMs:
+                    type: integer
+                  nsfwLevel:
+                    type: integer
+    StepInput:
+      type: object
+      description: Recipe-specific input. The shape depends on `$type`. Common image-gen properties shown.
+      properties:
+        engine:
+          type: string
+          description: Engine identifier — e.g. flux2, flux1, sdxl, sd1, z-image, qwen, seedream, grok, wan2.5, kling, ltx2, vidu, veo3, hunyuan.
+        model:
+          type: string
+          description: AIR or model identifier, e.g. urn:air:sdxl:checkpoint:civitai:12345@67890
+        prompt:
+          type: string
+        negativePrompt:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+        aspectRatio:
+          type: string
+        steps:
+          type: integer
+        cfgScale:
+          type: number
+        sampler:
+          type: string
+        seed:
+          type: integer
+        clipSkip:
+          type: integer
+        quantity:
+          type: integer
+          default: 1
+          maximum: 10
+        additionalNetworks:
+          type: array
+          items:
+            type: object
+            properties:
+              air:
+                type: string
+              strength:
+                type: number
+        images:
+          type: array
+          description: Input image blob IDs for img2img / video / editing.
+          items:
+            type: string
+        duration:
+          type: number
+          description: Seconds, for video.
+        fps:
+          type: integer
+        upscaler:
           type: string
     Workflow:
       type: object
@@ -263,79 +369,14 @@ components:
           type: string
           enum:
           - canceled
-    WorkflowStepResult:
+    Error:
       type: object
       properties:
-        name:
+        code:
           type: string
-        $type:
+        message:
           type: string
-        status:
-          type: string
-        startedAt:
-          type: string
-          format: date-time
-        completedAt:
-          type: string
-          format: date-time
-        jobs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
-    StepInput:
-      type: object
-      description: Recipe-specific input. The shape depends on `$type`. Common image-gen properties shown.
-      properties:
-        engine:
-          type: string
-          description: Engine identifier — e.g. flux2, flux1, sdxl, sd1, z-image, qwen, seedream, grok, wan2.5, kling, ltx2, vidu, veo3, hunyuan.
-        model:
-          type: string
-          description: AIR or model identifier, e.g. urn:air:sdxl:checkpoint:civitai:12345@67890
-        prompt:
-          type: string
-        negativePrompt:
-          type: string
-        width:
-          type: integer
-        height:
-          type: integer
-        aspectRatio:
-          type: string
-        steps:
-          type: integer
-        cfgScale:
-          type: number
-        sampler:
-          type: string
-        seed:
-          type: integer
-        clipSkip:
-          type: integer
-        quantity:
-          type: integer
-          default: 1
-          maximum: 10
-        additionalNetworks:
-          type: array
-          items:
-            type: object
-            properties:
-              air:
-                type: string
-              strength:
-                type: number
-        images:
-          type: array
-          description: Input image blob IDs for img2img / video / editing.
-          items:
-            type: string
-        duration:
-          type: number
-          description: Seconds, for video.
-        fps:
-          type: integer
-        upscaler:
+        traceId:
           type: string
     WorkflowRequest:
       type: object
@@ -370,74 +411,31 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/WorkflowStep'
-    WorkflowStep:
-      type: object
-      required:
-      - $type
-      - input
-      properties:
-        $type:
-          type: string
-          description: Recipe type — e.g. imageGen, videoGen, audioGen, textGen, training, upscale.
-          enum:
-          - imageGen
-          - videoGen
-          - audioGen
-          - textGen
-          - transcribe
-          - tts
-          - music
-          - upscale
-          - interpolate
-          - training
-          - comfy
-          - moderation
-        name:
-          type: string
-        input:
-          $ref: '#/components/schemas/StepInput'
-        priority:
-          type: string
-          enum:
-          - low
-          - normal
-          - high
-    Job:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-        startedAt:
-          type: string
-          format: date-time
-        completedAt:
-          type: string
-          format: date-time
-        result:
-          type: object
-          properties:
-            blobs:
-              type: array
-              items:
-                type: object
-                properties:
-                  blobId:
-                    type: string
-                  url:
-                    type: string
-                    format: uri
-                  mimeType:
-                    type: string
-                  width:
-                    type: integer
-                  height:
-                    type: integer
-                  durationMs:
-                    type: integer
-                  nsfwLevel:
-                    type: integer
+  responses:
+    RateLimited:
+      description: Too many requests.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http

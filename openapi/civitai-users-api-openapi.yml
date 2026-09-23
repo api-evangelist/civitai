@@ -8,9 +8,7 @@ info:
 
     Public read endpoints are cached; authenticated endpoints are not. Authenticate with a personal
 
-    API key issued at civitai.com using a Bearer token.
-
-    '
+    API key issued at civitai.com using a Bearer token.'
   contact:
     name: Civitai Developer Support
     url: https://developer.civitai.com/
@@ -70,6 +68,13 @@ paths:
                 items:
                   $ref: '#/components/schemas/User'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     User:
       type: object
@@ -103,13 +108,6 @@ components:
           type: string
         code:
           type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid bearer token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http
