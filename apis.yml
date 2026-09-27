@@ -667,7 +667,7 @@ apis:
 name: Civitai
 tags:
   - Artificial Intelligence
-  - Image-Generation
+  - Image Generation
   - Video Generation
   - Stable Diffusion
   - SDXL
@@ -688,19 +688,25 @@ tags_raw:
   - Model Hosting
   - Community
   - Generative AI
+  - Image-Generation
 kind: contract
 deliveryModel:
-  model: unknown
-  open_source: unknown
+  model: open-core
+  license: Apache-2.0
+  license_evidence:
+    repo: civitai/civitai
+    spdx: Apache-2.0
+    stars: 7256
+  open_source: true
   commercial: true
   callable_host: true
-  label: Delivery model not determined — needs a product licence on record
-  confidence: low
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: medium
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-license
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
