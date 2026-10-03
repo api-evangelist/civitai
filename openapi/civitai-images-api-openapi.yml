@@ -95,6 +95,15 @@ paths:
                 $ref: '#/components/schemas/ImagePage'
 components:
   schemas:
+    ImagePage:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
     Metadata:
       type: object
       properties:
@@ -110,15 +119,6 @@ components:
           type: integer
         totalPages:
           type: integer
-    ImagePage:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image'
-        metadata:
-          $ref: '#/components/schemas/Metadata'
     Image:
       type: object
       properties:

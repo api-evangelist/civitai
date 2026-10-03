@@ -107,6 +107,17 @@ paths:
                 $ref: '#/components/schemas/VaultItem'
 components:
   schemas:
+    VaultStatus:
+      type: object
+      properties:
+        subscribed:
+          type: boolean
+        storageUsedKb:
+          type: number
+        storageLimitKb:
+          type: number
+        tier:
+          type: string
     VaultItem:
       type: object
       properties:
@@ -127,17 +138,6 @@ components:
           - Failed
         sizeKb:
           type: number
-    VaultStatus:
-      type: object
-      properties:
-        subscribed:
-          type: boolean
-        storageUsedKb:
-          type: number
-        storageLimitKb:
-          type: number
-        tier:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http
