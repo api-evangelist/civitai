@@ -1,0 +1,27 @@
+slug: civitai
+provider: Civitai
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Workflows
+  spec_file: civitai-workflows-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.75
+  evidence: '"Submit AI generation workflows — image, video, audio, language, and LoRA training — through
+    a single contract"; POST /v2/consumer/workflows  submitWorkflow'
+  reason: Operations submit, query and manage AI inference and LoRA training jobs across providers and
+    engines (Workflow, WorkflowStep, Job schemas). This is execution and orchestration of ML model workloads,
+    best fitting Artificial Intelligence Management; some ambiguity since it is job orchestration rather
+    than full model lifecycle governance.
