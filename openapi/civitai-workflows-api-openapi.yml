@@ -172,6 +172,114 @@ paths:
           description: Deleted.
 components:
   schemas:
+    Workflow:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+          - unassigned
+          - preparing
+          - processing
+          - succeeded
+          - failed
+          - expired
+          - canceled
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+        startedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+        cost:
+          type: object
+          properties:
+            base:
+              type: integer
+              description: Buzz cost.
+            total:
+              type: integer
+            currency:
+              type: string
+              enum:
+              - BUZZ
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowStepResult'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        traceId:
+          type: string
+    Job:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        startedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+        result:
+          type: object
+          properties:
+            blobs:
+              type: array
+              items:
+                type: object
+                properties:
+                  blobId:
+                    type: string
+                  url:
+                    type: string
+                    format: uri
+                  mimeType:
+                    type: string
+                  width:
+                    type: integer
+                  height:
+                    type: integer
+                  durationMs:
+                    type: integer
+                  nsfwLevel:
+                    type: integer
+    WorkflowStepResult:
+      type: object
+      properties:
+        name:
+          type: string
+        $type:
+          type: string
+        status:
+          type: string
+        startedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
     StepInput:
       type: object
       description: Recipe-specific input. The shape depends on `$type`. Common image-gen properties shown.
@@ -292,105 +400,6 @@ components:
           - low
           - normal
           - high
-    WorkflowStepResult:
-      type: object
-      properties:
-        name:
-          type: string
-        $type:
-          type: string
-        status:
-          type: string
-        startedAt:
-          type: string
-          format: date-time
-        completedAt:
-          type: string
-          format: date-time
-        jobs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
-    Job:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-        startedAt:
-          type: string
-          format: date-time
-        completedAt:
-          type: string
-          format: date-time
-        result:
-          type: object
-          properties:
-            blobs:
-              type: array
-              items:
-                type: object
-                properties:
-                  blobId:
-                    type: string
-                  url:
-                    type: string
-                    format: uri
-                  mimeType:
-                    type: string
-                  width:
-                    type: integer
-                  height:
-                    type: integer
-                  durationMs:
-                    type: integer
-                  nsfwLevel:
-                    type: integer
-    Workflow:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-          enum:
-          - unassigned
-          - preparing
-          - processing
-          - succeeded
-          - failed
-          - expired
-          - canceled
-        tags:
-          type: array
-          items:
-            type: string
-        createdAt:
-          type: string
-          format: date-time
-        startedAt:
-          type: string
-          format: date-time
-        completedAt:
-          type: string
-          format: date-time
-        cost:
-          type: object
-          properties:
-            base:
-              type: integer
-              description: Buzz cost.
-            total:
-              type: integer
-            currency:
-              type: string
-              enum:
-              - BUZZ
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkflowStepResult'
     WorkflowUpdate:
       type: object
       properties:
@@ -402,15 +411,6 @@ components:
           type: string
           enum:
           - canceled
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        traceId:
-          type: string
   responses:
     NotFound:
       description: Resource not found.
@@ -418,14 +418,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid bearer token.
+    BadRequest:
+      description: Invalid request.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request.
+    Unauthorized:
+      description: Missing or invalid bearer token.
       content:
         application/json:
           schema:

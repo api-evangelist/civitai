@@ -56,6 +56,25 @@ paths:
                 $ref: '#/components/schemas/TagPage'
 components:
   schemas:
+    TagPage:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+    Tag:
+      type: object
+      properties:
+        name:
+          type: string
+        modelCount:
+          type: integer
+        link:
+          type: string
+          format: uri
     Metadata:
       type: object
       properties:
@@ -71,25 +90,6 @@ components:
           type: integer
         totalPages:
           type: integer
-    Tag:
-      type: object
-      properties:
-        name:
-          type: string
-        modelCount:
-          type: integer
-        link:
-          type: string
-          format: uri
-    TagPage:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tag'
-        metadata:
-          $ref: '#/components/schemas/Metadata'
   securitySchemes:
     BearerAuth:
       type: http

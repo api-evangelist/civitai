@@ -95,30 +95,6 @@ paths:
                 $ref: '#/components/schemas/ImagePage'
 components:
   schemas:
-    ImagePage:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image'
-        metadata:
-          $ref: '#/components/schemas/Metadata'
-    Metadata:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-        pageSize:
-          type: integer
-        nextPage:
-          type: string
-        prevPage:
-          type: string
-        totalItems:
-          type: integer
-        totalPages:
-          type: integer
     Image:
       type: object
       properties:
@@ -149,6 +125,15 @@ components:
           additionalProperties: true
         username:
           type: string
+    ImagePage:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
     Stats:
       type: object
       properties:
@@ -165,6 +150,21 @@ components:
         thumbsUpCount:
           type: integer
         thumbsDownCount:
+          type: integer
+    Metadata:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        pageSize:
+          type: integer
+        nextPage:
+          type: string
+        prevPage:
+          type: string
+        totalItems:
+          type: integer
+        totalPages:
           type: integer
   securitySchemes:
     BearerAuth:

@@ -180,22 +180,6 @@ components:
             $ref: '#/components/schemas/Image'
         stats:
           $ref: '#/components/schemas/Stats'
-    ModelVersionMini:
-      type: object
-      properties:
-        id:
-          type: integer
-        modelId:
-          type: integer
-        name:
-          type: string
-        baseModel:
-          type: string
-        air:
-          type: string
-        downloadUrl:
-          type: string
-          format: uri
     ModelFile:
       type: object
       properties:
@@ -244,6 +228,15 @@ components:
               type: string
             Blake3:
               type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: string
     Stats:
       type: object
       properties:
@@ -261,6 +254,22 @@ components:
           type: integer
         thumbsDownCount:
           type: integer
+    ModelVersionMini:
+      type: object
+      properties:
+        id:
+          type: integer
+        modelId:
+          type: integer
+        name:
+          type: string
+        baseModel:
+          type: string
+        air:
+          type: string
+        downloadUrl:
+          type: string
+          format: uri
     Image:
       type: object
       properties:
@@ -290,15 +299,6 @@ components:
           type: object
           additionalProperties: true
         username:
-          type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        code:
           type: string
   responses:
     NotFound:

@@ -56,21 +56,6 @@ paths:
                 $ref: '#/components/schemas/CreatorPage'
 components:
   schemas:
-    Metadata:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-        pageSize:
-          type: integer
-        nextPage:
-          type: string
-        prevPage:
-          type: string
-        totalItems:
-          type: integer
-        totalPages:
-          type: integer
     Creator:
       type: object
       properties:
@@ -93,6 +78,21 @@ components:
             $ref: '#/components/schemas/Creator'
         metadata:
           $ref: '#/components/schemas/Metadata'
+    Metadata:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        pageSize:
+          type: integer
+        nextPage:
+          type: string
+        prevPage:
+          type: string
+        totalItems:
+          type: integer
+        totalPages:
+          type: integer
   securitySchemes:
     BearerAuth:
       type: http
