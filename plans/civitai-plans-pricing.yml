@@ -1,3 +1,8 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (dated 2026-05-25 by the file itself), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
+generated: '2026-05-25'
 specification: API Commons Plans
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
@@ -209,3 +214,70 @@ plans:
       - Paid in Buzz; deducted from balance at workflow submit
       - Insufficient balance returns HTTP 402
       - Cost preview returned in `workflow.cost` field
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  - subscription
+  units:
+  - seat
+  plans:
+  - name: Free
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - other
+    - seat
+    periods:
+    - day
+    - month
+  - name: Founder / Supporter
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - seat
+    periods:
+    - month
+  - name: Bronze
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - seat
+    periods:
+    - month
+  - name: Silver
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - seat
+    periods:
+    - month
+  - name: Gold
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - seat
+    periods:
+    - month
+  - name: Buzz Pack (one-off purchase)
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - other
+    periods:
+    - per-use
+  - name: Orchestration Generation (metered in Buzz)
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - other
+    periods:
+    - per-use
