@@ -172,6 +172,116 @@ paths:
           description: Deleted.
 components:
   schemas:
+    WorkflowRequest:
+      type: object
+      required:
+      - steps
+      properties:
+        tags:
+          type: array
+          items:
+            type: string
+        callbackUrl:
+          type: string
+          format: uri
+          description: HTTPS callback URL for webhook delivery.
+        callbackEvents:
+          type: array
+          items:
+            type: string
+            enum:
+            - workflow:*
+            - workflow:succeeded
+            - workflow:failed
+            - workflow:processing
+            - workflow:expired
+            - workflow:canceled
+            - step:*
+            - job:*
+        detailed:
+          type: boolean
+          default: false
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowStep'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        traceId:
+          type: string
+    WorkflowStep:
+      type: object
+      required:
+      - $type
+      - input
+      properties:
+        $type:
+          type: string
+          description: Recipe type — e.g. imageGen, videoGen, audioGen, textGen, training, upscale.
+          enum:
+          - imageGen
+          - videoGen
+          - audioGen
+          - textGen
+          - transcribe
+          - tts
+          - music
+          - upscale
+          - interpolate
+          - training
+          - comfy
+          - moderation
+        name:
+          type: string
+        input:
+          $ref: '#/components/schemas/StepInput'
+        priority:
+          type: string
+          enum:
+          - low
+          - normal
+          - high
+    Job:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        startedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+        result:
+          type: object
+          properties:
+            blobs:
+              type: array
+              items:
+                type: object
+                properties:
+                  blobId:
+                    type: string
+                  url:
+                    type: string
+                    format: uri
+                  mimeType:
+                    type: string
+                  width:
+                    type: integer
+                  height:
+                    type: integer
+                  durationMs:
+                    type: integer
+                  nsfwLevel:
+                    type: integer
     Workflow:
       type: object
       properties:
@@ -216,51 +326,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/WorkflowStepResult'
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        traceId:
-          type: string
-    Job:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-        startedAt:
-          type: string
-          format: date-time
-        completedAt:
-          type: string
-          format: date-time
-        result:
-          type: object
-          properties:
-            blobs:
-              type: array
-              items:
-                type: object
-                properties:
-                  blobId:
-                    type: string
-                  url:
-                    type: string
-                    format: uri
-                  mimeType:
-                    type: string
-                  width:
-                    type: integer
-                  height:
-                    type: integer
-                  durationMs:
-                    type: integer
-                  nsfwLevel:
-                    type: integer
     WorkflowStepResult:
       type: object
       properties:
@@ -335,71 +400,6 @@ components:
           type: integer
         upscaler:
           type: string
-    WorkflowRequest:
-      type: object
-      required:
-      - steps
-      properties:
-        tags:
-          type: array
-          items:
-            type: string
-        callbackUrl:
-          type: string
-          format: uri
-          description: HTTPS callback URL for webhook delivery.
-        callbackEvents:
-          type: array
-          items:
-            type: string
-            enum:
-            - workflow:*
-            - workflow:succeeded
-            - workflow:failed
-            - workflow:processing
-            - workflow:expired
-            - workflow:canceled
-            - step:*
-            - job:*
-        detailed:
-          type: boolean
-          default: false
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkflowStep'
-    WorkflowStep:
-      type: object
-      required:
-      - $type
-      - input
-      properties:
-        $type:
-          type: string
-          description: Recipe type — e.g. imageGen, videoGen, audioGen, textGen, training, upscale.
-          enum:
-          - imageGen
-          - videoGen
-          - audioGen
-          - textGen
-          - transcribe
-          - tts
-          - music
-          - upscale
-          - interpolate
-          - training
-          - comfy
-          - moderation
-        name:
-          type: string
-        input:
-          $ref: '#/components/schemas/StepInput'
-        priority:
-          type: string
-          enum:
-          - low
-          - normal
-          - high
     WorkflowUpdate:
       type: object
       properties:
@@ -412,8 +412,8 @@ components:
           enum:
           - canceled
   responses:
-    NotFound:
-      description: Resource not found.
+    Unauthorized:
+      description: Missing or invalid bearer token.
       content:
         application/json:
           schema:
@@ -424,14 +424,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid bearer token.
+    RateLimited:
+      description: Too many requests.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    RateLimited:
-      description: Too many requests.
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:

@@ -125,15 +125,21 @@ components:
           additionalProperties: true
         username:
           type: string
-    ImagePage:
+    Metadata:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image'
-        metadata:
-          $ref: '#/components/schemas/Metadata'
+        currentPage:
+          type: integer
+        pageSize:
+          type: integer
+        nextPage:
+          type: string
+        prevPage:
+          type: string
+        totalItems:
+          type: integer
+        totalPages:
+          type: integer
     Stats:
       type: object
       properties:
@@ -151,21 +157,15 @@ components:
           type: integer
         thumbsDownCount:
           type: integer
-    Metadata:
+    ImagePage:
       type: object
       properties:
-        currentPage:
-          type: integer
-        pageSize:
-          type: integer
-        nextPage:
-          type: string
-        prevPage:
-          type: string
-        totalItems:
-          type: integer
-        totalPages:
-          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
   securitySchemes:
     BearerAuth:
       type: http
