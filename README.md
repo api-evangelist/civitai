@@ -1,4 +1,4 @@
-# Civitai (civitai)
+# Civitai
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,170 +66,211 @@
 
 Civitai is the largest open community for Stable Diffusion, SDXL, Flux, and video AI models — hosting over a million model checkpoints, LoRAs, embeddings, and VAEs uploaded and rated by creators. Beyond hosting, Civitai operates a hosted AI image, video, audio, and language generation service through its Orchestration API, which races workflows across providers (Flux 1/2, SDXL, SD1, Z-Image, Qwen, Seedream, Grok, WAN 2.1-2.7, Kling, LTX2, Vidu, Veo 3, HunyuanVideo) and supports LoRA training jobs. The Site API exposes the public catalog plus user vault, permissions, and AIR identifier resolution. OAuth 2.0 with PKCE and per-app Buzz spend caps lets third parties build delegated experiences without owning a user's full credit balance. Generation is metered in Buzz, a virtual credit topped up via memberships or one-off packs.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/civitai/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/civitai/refs/heads/main/apis.yml)
+**Areas:** Artificial Intelligence · Image Generation · Video Generation · Stable Diffusion · SDXL · Flux · LoRA · Model Hosting · Community · Generative AI
 
-## Scope
+## Civitai on APIs.io
 
-- **Position:** Producing
-- **Access:** 3rd-Party
+Everything profiled for Civitai is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/civitai/](https://apis.io/providers/civitai/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (12)
 
-- AI
-- Artificial Intelligence
-- Image Generation
-- Video Generation
-- Stable Diffusion
-- SDXL
-- Flux
-- LoRA
-- Model Hosting
-- Community
-- Generative AI
+- [Civitai OAuth API](https://apis.io/apis/civitai/civitai-oauth-api/) — OAuth 2.0 authorization-code with PKCE for third-party apps that act on behalf of a Civitai user. Supports scoped tokens, refresh flow, and per-app Buzz…
+- [Civitai Blobs API](https://apis.io/apis/civitai/civitai-blobs-api/) — Upload and reference blobs for inputs and outputs.
+- [Civitai Creators API](https://apis.io/apis/civitai/civitai-creators-api/) — Users who publish models.
+- [Civitai Enums API](https://apis.io/apis/civitai/civitai-enums-api/) — Enumerations used throughout the API.
+- [Civitai Images API](https://apis.io/apis/civitai/civitai-images-api/) — Community-shared generation outputs.
+- [Civitai Models API](https://apis.io/apis/civitai/civitai-models-api/) — Catalog of model checkpoints, LoRAs, embeddings, and VAEs.
+- [Civitai Permissions API](https://apis.io/apis/civitai/civitai-permissions-api/) — Permission checks for the current bearer.
+- [Civitai Tags API](https://apis.io/apis/civitai/civitai-tags-api/) — Catalog tag taxonomy.
+- [Civitai Users API](https://apis.io/apis/civitai/civitai-users-api/) — User accounts.
+- [Civitai Vault API](https://apis.io/apis/civitai/civitai-vault-api/) — A user's saved-model vault (membership tiers).
+- [Civitai Workflows API](https://apis.io/apis/civitai/civitai-workflows-api/) — Submit and manage generation workflows.
+- [Civitai Model Versions API](https://apis.io/apis/civitai/civitai-model-versions-api/) — Specific versions of a model with files, hashes, and AIR identifiers.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-25
-- **Modified:** 2026-05-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Arazzo workflows (13)
 
-### Civitai Site API
+Multi-step workflows that chain operations into a business task.
 
-Browse and search the Civitai public catalog of Stable Diffusion, SDXL, Flux, and video models. The Site API exposes models, model versions, images, creators, tags, users, permissions, and the user vault over `https://civitai.com/api/v1/`. Supports hash-based version lookup, AIR identifiers, and Bearer-token authentication via personal API keys. Public endpoints are cached; authenticated endpoints are not.
+- [Civitai Batch Hash Reconciliation](https://apis.io/arazzos/civitai/civitai-batch-hash-reconcile-workflow/)
+- [Civitai Blob Upload and Image-to-Image Generation](https://apis.io/arazzos/civitai/civitai-blob-upload-img2img-workflow/)
+- [Civitai Creator Models and Image Gallery](https://apis.io/arazzos/civitai/civitai-creator-models-gallery-workflow/)
+- [Civitai Image Generation Submit and Poll](https://apis.io/arazzos/civitai/civitai-image-generation-poll-workflow/)
+- [Civitai Model Images Explorer](https://apis.io/arazzos/civitai/civitai-model-images-explorer-workflow/)
+- [Civitai Identify a Model From a File Hash](https://apis.io/arazzos/civitai/civitai-model-version-by-hash-workflow/)
+- [Civitai Generate From a Catalog Model Version](https://apis.io/arazzos/civitai/civitai-model-version-to-generation-workflow/)
+- [Civitai Permission-Gated Version Download](https://apis.io/arazzos/civitai/civitai-permission-gated-download-workflow/)
+- [Civitai Presigned Blob Upload Then Generate](https://apis.io/arazzos/civitai/civitai-presigned-blob-generate-workflow/)
+- [Civitai Search Models and Drill Into a Version](https://apis.io/arazzos/civitai/civitai-search-models-detail-workflow/)
+- [Civitai Tag-Driven Model Discovery](https://apis.io/arazzos/civitai/civitai-tag-models-discovery-workflow/)
+- [Civitai Vault Add and Verify](https://apis.io/arazzos/civitai/civitai-vault-toggle-verify-workflow/)
+- [Civitai Query and Cancel a Running Workflow](https://apis.io/arazzos/civitai/civitai-workflow-query-cancel-workflow/)
 
-- **Human URL:** [https://developer.civitai.com/site/reference/](https://developer.civitai.com/site/reference/)
+#### MCP servers (1)
 
-#### Tags
+Model Context Protocol servers that expose the API to agents.
 
-- AI
-- Artificial Intelligence
-- Image Generation
-- Models
-- Stable Diffusion
-- Flux
-- LoRA
-- Community
+- [Civitai MCP Server](https://apis.io/servers/civitai/civitai-mcp-server/)
 
-#### Properties
+#### Agentic access (1)
 
-- [Documentation](https://developer.civitai.com/site/)
-- [Documentation](https://developer.civitai.com/site/reference/)
-- [Documentation](https://developer.civitai.com/site/reference/models)
-- [Documentation](https://developer.civitai.com/site/reference/images)
-- [Documentation](https://developer.civitai.com/site/reference/creators)
-- [Documentation](https://developer.civitai.com/site/reference/users)
-- [Documentation](https://developer.civitai.com/site/reference/permissions)
-- [Documentation](https://developer.civitai.com/site/reference/vault)
-- [OpenAPI](openapi/civitai-site-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/civitai-site-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/civitai-site-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/civitai-model-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/civitai-image-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/civitai-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### Civitai Orchestration API
+- [Civitai Agentic Access](https://apis.io/agentic-access/civitai/civitai-agentic-access/)
 
-Submit AI generation workflows — image, video, audio, language, and LoRA training — through a single contract at `https://orchestration.civitai.com`. Races multiple providers and engines (Flux 1/2, SDXL, SD1, Z-Image, Qwen, Seedream, Grok, WAN 2.1-2.7, Kling, LTX2, Vidu, Veo 3, HunyuanVideo) behind one workflow API. Includes blob upload with NSFW moderation, presigned URLs, in-order serialized webhooks (`workflow:succeeded`, `workflow:failed`, etc.), and Buzz-metered billing. Bearer-token authenticated.
+#### JSON Schema (3)
 
-- **Human URL:** [https://developer.civitai.com/orchestration/reference/](https://developer.civitai.com/orchestration/reference/)
+The data models the API reads and writes.
 
-#### Tags
+- [Civitai Image](https://apis.io/schemas/civitai/civitai-image/)
+- [Civitai Model](https://apis.io/schemas/civitai/civitai-model/)
+- [Civitai Orchestration Workflow](https://apis.io/schemas/civitai/civitai-workflow/)
 
-- AI
-- Artificial Intelligence
-- Image Generation
-- Video Generation
-- Audio Generation
-- LoRA Training
-- Webhooks
-- Workflows
+#### JSON Structure (1)
 
-#### Properties
+Data models expressed in JSON Structure.
 
-- [Documentation](https://developer.civitai.com/orchestration/)
-- [Documentation](https://developer.civitai.com/orchestration/guide/)
-- [Documentation](https://developer.civitai.com/orchestration/guide/getting-started)
-- [Authentication](https://developer.civitai.com/orchestration/guide/authentication)
-- [Documentation](https://developer.civitai.com/orchestration/guide/workflows)
-- [Documentation](https://developer.civitai.com/orchestration/guide/submitting-work)
-- [Webhooks](https://developer.civitai.com/orchestration/guide/results-and-webhooks)
-- [Errors](https://developer.civitai.com/orchestration/guide/errors-and-retries)
-- [Documentation](https://developer.civitai.com/orchestration/reference/)
-- [Documentation](https://developer.civitai.com/orchestration/recipes/)
-- [OpenAPI](openapi/civitai-orchestration-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/civitai-orchestration-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/civitai-orchestration-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/civitai-workflow-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Example](examples/civitai-image-generation-example.json)
-- [Example](examples/civitai-video-generation-example.json)
+- [Civitai Model Structure](https://apis.io/json-structure/civitai/civitai-model-structure/)
 
-### Civitai OAuth API
+#### JSON-LD (1)
 
-OAuth 2.0 authorization-code with PKCE for third-party apps that act on behalf of a Civitai user. Supports scoped tokens, refresh flow, and per-app Buzz spend caps so a delegated app cannot drain a user's credit balance. Used by `civitai-app-starters` and `civitai-client-javascript` SDKs for building partner integrations against the Site and Orchestration APIs.
+Linked-data contexts for the provider's vocabulary.
 
-- **Human URL:** [https://developer.civitai.com/site/oauth/](https://developer.civitai.com/site/oauth/)
+- [Civitai Context](https://apis.io/jsonld/civitai/civitai-context/)
 
-#### Tags
+#### Vocabulary (1)
 
-- AI
-- Artificial Intelligence
-- Authentication
-- OAuth
-- PKCE
-- Identity
+The provider's domain terms, defined.
 
-#### Properties
+- [Civitai Vocabulary](https://apis.io/vocabularies/civitai/civitai-vocabulary/)
 
-- [Documentation](https://developer.civitai.com/site/oauth/)
-- [Documentation](https://developer.civitai.com/site/oauth/register-app)
-- [Documentation](https://developer.civitai.com/site/oauth/scopes)
-- [Documentation](https://developer.civitai.com/site/oauth/buzz-limits)
-- [Postman Collection](collections/civitai-orchestration-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/civitai-orchestration-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/civitai-site-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/civitai-site-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Examples (2)
 
-## Common Properties
+Example requests and responses.
 
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [LinkedIn](https://www.linkedin.com/company/civitai)
-- [Twitter](https://twitter.com/HelloCivitai)
-- [GitHub Organization](https://github.com/civitai)
-- [Portal](https://civitai.com)
+- [Civitai Image Generation Example](https://apis.io/examples/civitai/civitai-image-generation-example/)
+- [Civitai Video Generation Example](https://apis.io/examples/civitai/civitai-video-generation-example/)
+
+#### Collections (15)
+
+Postman and Open Collection request collections.
+
+- [Civitai Orchestration Blobs API](https://apis.io/collections/civitai/open-civitai-blobs-api/)
+- [Civitai Orchestration Blobs Creators API](https://apis.io/collections/civitai/open-civitai-creators-api/)
+- [Civitai Orchestration Blobs Enums API](https://apis.io/collections/civitai/open-civitai-enums-api/)
+- [Civitai Orchestration Blobs Images API](https://apis.io/collections/civitai/open-civitai-images-api/)
+- [Civitai Orchestration Blobs Models API](https://apis.io/collections/civitai/open-civitai-models-api/)
+- [Civitai Orchestration Blobs ModelVersions API](https://apis.io/collections/civitai/open-civitai-modelversions-api/)
+- [Civitai Orchestration API](https://apis.io/collections/civitai/open-civitai-orchestration-api/)
+- [Civitai Orchestration Blobs Permissions API](https://apis.io/collections/civitai/open-civitai-permissions-api/)
+- [Civitai Site API](https://apis.io/collections/civitai/open-civitai-site-api/)
+- [Civitai Orchestration Blobs Tags API](https://apis.io/collections/civitai/open-civitai-tags-api/)
+- [Civitai Orchestration Blobs Users API](https://apis.io/collections/civitai/open-civitai-users-api/)
+- [Civitai Orchestration Blobs Vault API](https://apis.io/collections/civitai/open-civitai-vault-api/)
+- [Civitai Orchestration Blobs Workflows API](https://apis.io/collections/civitai/open-civitai-workflows-api/)
+- [Civitai Orchestration API](https://apis.io/collections/civitai/postman-civitai-orchestration-api/)
+- [Civitai Site API](https://apis.io/collections/civitai/postman-civitai-site-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Civitai — jsonschema rules](https://apis.io/rules/civitai/civitai-jsonschema-spectral-rules/)
+- [Civitai API Rules](https://apis.io/rules/civitai/civitai-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Civitai Authentication](https://apis.io/security/civitai/civitai-authentication/)
+- [Civitai Domain Security](https://apis.io/security/civitai/civitai-domain-security/)
+- [Civitai Vulnerability Disclosure](https://apis.io/security/civitai/civitai-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Civitai Plans Pricing](https://apis.io/plans/civitai/civitai-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Civitai Rate Limits](https://apis.io/rate-limits/civitai/civitai-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Civitai Finops](https://apis.io/finops/civitai/civitai-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.civitai.com/)
 - [Documentation](https://developer.civitai.com/)
-- [Documentation](https://education.civitai.com/)
-- [Getting Started](https://developer.civitai.com/orchestration/guide/getting-started)
-- [Authentication](https://developer.civitai.com/orchestration/guide/authentication)
-- [Webhooks](https://developer.civitai.com/orchestration/guide/results-and-webhooks)
-- [Errors](https://developer.civitai.com/orchestration/guide/errors-and-retries)
-- [Sign Up](https://civitai.com/login)
-- [Terms of Service](https://civitai.com/content/tos)
-- [Privacy Policy](https://civitai.com/content/privacy)
-- [Content Policy](https://civitai.com/content/content-policy)
+- [Getting started](https://developer.civitai.com/orchestration/guide/getting-started)
 - [Support](https://education.civitai.com/)
 - [Blog](https://civitai.com/articles)
-- [Forum](https://education.civitai.com/forums/)
-- [SDK](https://github.com/civitai/civitai-client-javascript)
-- [SDK](https://github.com/civitai/civitai-app-starters)
-- [Tool](https://github.com/civitai/civitai-link-desktop)
-- [GitHub Repository](https://github.com/civitai/civitai)
-- [Tool](https://github.com/civitai/ai-toolkit)
-- [Tool](https://github.com/civitai/model-scanner)
-- [Tool](https://github.com/civitai/ComfyUI)
-- [Plugins](https://github.com/civitai/ComfyUI_smZNodes)
-- [GitHub Repository](https://github.com/civitai/bitdex)
-- [Documentation](https://developer.civitai.com/site/guide/air)
-- [M C P Server](https://developer.civitai.com/orchestration/mcp)
-- [Documentation](https://developer.civitai.com/llms.txt)
-- [Documentation](https://developer.civitai.com/llms-full.txt)
-- [Plans](plans/civitai-plans-pricing.yml)
-- [Rate Limits](rate-limits/civitai-rate-limits.yml)
-- [Fin Ops](finops/civitai-finops.yml)
-- [Features](undefined)
+- [Terms of service](https://civitai.com/content/tos)
+- [Privacy policy](https://civitai.com/content/privacy)
+- [GitHub](https://github.com/civitai)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 49.7** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 56.7 |
+| Contract quality | 64.4 |
+| Contract governance | 13.6 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 58.3 |
+| Access clarity | 50.0 |
+
+**Agent readiness 31.2** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | unknown |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 28.2** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/civitai/](https://apis.io/providers/civitai/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Civitai: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/civitai/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
